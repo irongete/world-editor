@@ -503,19 +503,23 @@ namespace World_Editor.ProfessionEditor
 
         private void btnDelRecipe_Click(object sender, EventArgs e)
         {
-            if (lstRecipes.SelectedItem == null)
-                return;
+            DialogResult choix = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cette recette ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
+            if (choix == System.Windows.Forms.DialogResult.OK)
+            {
+                if (lstRecipes.SelectedItem == null)
+                    return;
 
-            Recipe recipe = (Recipe)lstRecipes.SelectedItem;
+                Recipe recipe = (Recipe)lstRecipes.SelectedItem;
 
-            loadedSkill.Recipes.Remove(recipe.spell.Id);
-            loadedSkill.Spells.Remove(recipe.spell.Id);
-            loadedSkill.Abilities.Remove(recipe.ability.Id);
+                loadedSkill.Recipes.Remove(recipe.spell.Id);
+                loadedSkill.Spells.Remove(recipe.spell.Id);
+                loadedSkill.Abilities.Remove(recipe.ability.Id);
 
-            DBCStores.Spell.RemoveEntry(recipe.spell.Id);
-            DBCStores.SkillLineAbility.RemoveEntry(recipe.ability.Id);
-            
-            lstRecipes.Items.Remove(recipe);
+                DBCStores.Spell.RemoveEntry(recipe.spell.Id);
+                DBCStores.SkillLineAbility.RemoveEntry(recipe.ability.Id);
+
+                lstRecipes.Items.Remove(recipe);
+            }
         }
 
         private void tpSpell_Click(object sender, EventArgs e)
@@ -531,6 +535,30 @@ namespace World_Editor.ProfessionEditor
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             m_professionsEditor = null;
+        }
+
+        private void btnNewProf_Click(object sender, EventArgs e)
+        {
+            txtSkillName.Clear();
+            txtSkillVerb.Clear();
+            txtSkillDescription.Clear();
+            txtReqLvl.Clear();
+            txtRaceMask.Clear();
+            txtClassMask.Clear();
+        }
+
+        private void btnDelProf_Click(object sender, EventArgs e)
+        {
+            DialogResult choix = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce métier ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
+            if (choix == System.Windows.Forms.DialogResult.OK)
+            {
+                if (lstSkills.SelectedItem == null)
+                    return;
+                SkillLineEntry skillLine = (SkillLineEntry)lstSkills.SelectedItem;
+                DBCStores.SkillLine.RemoveEntry(skillLine.Id);
+
+                lstSkills.Items.Remove(skillLine);
+            }
         }
     }
 }

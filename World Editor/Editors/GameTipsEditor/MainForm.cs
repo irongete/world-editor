@@ -136,18 +136,22 @@ namespace World_Editor.Editors.GameTipsEditor
 
         private void btnDelTip_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult choix = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cette astuce de la liste ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
+            if(choix == System.Windows.Forms.DialogResult.OK)
             {
-                GameTipsEntry t = (GameTipsEntry) listGameTips.SelectedItem;
+                try
+                {
+                    GameTipsEntry t = (GameTipsEntry) listGameTips.SelectedItem;
 
-                --listGameTips.SelectedIndex;
+                    --listGameTips.SelectedIndex;
 
-                DBCStores.GameTips.RemoveEntry(t.Id);
-                listGameTips.Items.Remove(t);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error:" + ex.Message);
+                    DBCStores.GameTips.RemoveEntry(t.Id);
+                    listGameTips.Items.Remove(t);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error:" + ex.Message);
+                }
             }
         }
 

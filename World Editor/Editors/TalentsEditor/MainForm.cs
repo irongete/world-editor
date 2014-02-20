@@ -158,15 +158,19 @@ namespace World_Editor.TalentsEditor
                 if ((e.X > 37 + 35 + 64 * t.Col) && (e.X < 47 + 35 + 64 * t.Col) &&
                     (e.Y > 16 + 60 * t.Row) && (e.Y < 25 + 60 * t.Row))
                 {
-                    talentMouseDown = null;
-                    if (talentMouseDown != null)
-                        return;
-                    DBCStores.Talent.RemoveEntry(t.Id);
-                    if (icons.ContainsKey("SpellIcon." + t.Row.ToString() + "." + t.Col.ToString()))
-                        icons.Remove("SpellIcon." + t.Row.ToString() + "." + t.Col.ToString());
-                    listTalents.Items.Remove(t);
-                    listTalents.SelectedIndex = 0;
-                    LoadTalentTab();
+                    DialogResult choix = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce talent de l'arbre ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
+                    if (choix == System.Windows.Forms.DialogResult.OK)
+                    {
+                        talentMouseDown = null;
+                        if (talentMouseDown != null)
+                            return;
+                        DBCStores.Talent.RemoveEntry(t.Id);
+                        if (icons.ContainsKey("SpellIcon." + t.Row.ToString() + "." + t.Col.ToString()))
+                            icons.Remove("SpellIcon." + t.Row.ToString() + "." + t.Col.ToString());
+                        listTalents.Items.Remove(t);
+                        listTalents.SelectedIndex = 0;
+                        LoadTalentTab();
+                    }
                     return;
                 }
                 else if ((e.X > 35 + 64 * t.Col) && (e.X < 35 + 35 + 64 * t.Col) &&

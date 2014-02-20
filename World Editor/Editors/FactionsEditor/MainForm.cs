@@ -165,16 +165,20 @@ namespace World_Editor.FactionsEditor
 
         private void btnFactTplRemove_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult choix = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cette faction ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
+            if(choix == System.Windows.Forms.DialogResult.OK)
             {
-                FactionTemplateEntry f = (FactionTemplateEntry)listFactionTemplate.Items[listFactionTemplate.SelectedIndex];
+                try
+                {
+                    FactionTemplateEntry f = (FactionTemplateEntry)listFactionTemplate.Items[listFactionTemplate.SelectedIndex];
 
-                --listFactionTemplate.SelectedIndex;
+                    --listFactionTemplate.SelectedIndex;
 
-                listFactionTemplate.Items.Remove(f);
-                DBCStores.FactionTemplate.RemoveEntry(f.Id);
+                    listFactionTemplate.Items.Remove(f);
+                    DBCStores.FactionTemplate.RemoveEntry(f.Id);
+                }
+                catch (Exception) { }
             }
-            catch (Exception) { }
         }
         #endregion
 
@@ -210,20 +214,24 @@ namespace World_Editor.FactionsEditor
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult choix = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cette faction ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
+            if (choix == System.Windows.Forms.DialogResult.OK)
             {
-                FactionEntry f = (FactionEntry)listFactions.Items[listFactions.SelectedIndex];
-                FactionTemplateEntry[] fts = DBCStores.FactionTemplate.Records.Where(ft => ft.Faction == f.Id).ToArray();
+                try
+                {
+                    FactionEntry f = (FactionEntry)listFactions.Items[listFactions.SelectedIndex];
+                    FactionTemplateEntry[] fts = DBCStores.FactionTemplate.Records.Where(ft => ft.Faction == f.Id).ToArray();
 
-                foreach (FactionTemplateEntry ft in fts)
-                    DBCStores.FactionTemplate.RemoveEntry(ft.Id);
+                    foreach (FactionTemplateEntry ft in fts)
+                        DBCStores.FactionTemplate.RemoveEntry(ft.Id);
 
-                --listFactions.SelectedIndex;
+                    --listFactions.SelectedIndex;
 
-                listFactions.Items.Remove(f);
-                DBCStores.Faction.RemoveEntry(f.Id);
+                    listFactions.Items.Remove(f);
+                    DBCStores.Faction.RemoveEntry(f.Id);
+                }
+                catch (Exception) { }
             }
-            catch (Exception) { }
         }
         #endregion
 

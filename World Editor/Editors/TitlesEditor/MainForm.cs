@@ -88,18 +88,22 @@ namespace World_Editor.TitlesEditor
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult choix = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce titre de l'arbre ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
+            if(choix == System.Windows.Forms.DialogResult.OK)
             {
-                CharTitlesEntry t = (CharTitlesEntry)listTitles.Items[listTitles.SelectedIndex];
+                try
+                {
+                    CharTitlesEntry t = (CharTitlesEntry)listTitles.Items[listTitles.SelectedIndex];
 
-                --listTitles.SelectedIndex;
+                    --listTitles.SelectedIndex;
 
-                DBCStores.CharTitles.RemoveEntry(t.Id);
-                listTitles.Items.Remove(t);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(Loc.GetString("DelTitleError"));
+                    DBCStores.CharTitles.RemoveEntry(t.Id);
+                    listTitles.Items.Remove(t);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(Loc.GetString("DelTitleError"));
+                }
             }
         }
 

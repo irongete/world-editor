@@ -208,6 +208,7 @@ namespace World_Editor.POIsEditor
             iconsPoi.Add(0, World_Editor.Properties.Resources.no_icon);
 
             listFaction.SelectedIndex = 0;
+            listWorldMapAreas.Sorted = true;
             listWorldMapAreas.SelectedIndex = 0;
         }
 
@@ -227,9 +228,13 @@ namespace World_Editor.POIsEditor
 
                 if (rectIconDelete.Contains(e.Location))
                 {
-                    DBCStores.AreaPOI.RemoveEntry(poi.Id);
+                    DialogResult choix = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce POI ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
+                    if(choix == System.Windows.Forms.DialogResult.OK)
+                    {
+                        DBCStores.AreaPOI.RemoveEntry(poi.Id);
 
-                    RePaintMap();
+                        RePaintMap();
+                    }
 
                     return;
                 }

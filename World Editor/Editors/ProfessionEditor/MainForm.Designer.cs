@@ -169,6 +169,7 @@
             this.btnDelProf.TabIndex = 18;
             this.btnDelProf.Text = "Supprimer métier";
             this.btnDelProf.UseVisualStyleBackColor = true;
+            this.btnDelProf.Click += new System.EventHandler(this.btnDelProf_Click);
             // 
             // btnNewProf
             // 
@@ -178,6 +179,7 @@
             this.btnNewProf.TabIndex = 17;
             this.btnNewProf.Text = "Nouveau métier";
             this.btnNewProf.UseVisualStyleBackColor = true;
+            this.btnNewProf.Click += new System.EventHandler(this.btnNewProf_Click);
             // 
             // btnClassMask
             // 
