@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Windows.Forms;
 using DBCLib.Structures335;
@@ -13,6 +14,7 @@ namespace World_Editor.ProfessionEditor
 {
     public partial class MainForm : Form
     {
+        ResourceManager Loc = new ResourceManager("World_Editor.Editors.ProfessionEditor.ProfessionEditorLocal", System.Reflection.Assembly.GetExecutingAssembly());
         private Skill loadedSkill = new Skill();
 
         public MainForm()
@@ -37,7 +39,7 @@ namespace World_Editor.ProfessionEditor
             }
             catch (Exception)
             {
-                MessageBox.Show("Erreur lors du chargement des DBCs");
+                MessageBox.Show(Loc.GetString("LoadDbcError"));
                 this.Close();
             }
 
@@ -54,7 +56,7 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             //Nettoyage du tab Recettes à faire !
-
+            //TODO : Mettre à jour la lstSkills quand on écrit les infos d'un nouveau métier
             SkillLineEntry selectedSkill = (SkillLineEntry)lstSkills.SelectedItem;
 
             loadedSkill.load(selectedSkill.Id);
@@ -162,6 +164,7 @@ namespace World_Editor.ProfessionEditor
             DBCStores.SaveProfessionEditorFiles();
         }
 
+        #region recettes
         private void lstRecipes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstRecipes.SelectedItem == null)
@@ -521,6 +524,7 @@ namespace World_Editor.ProfessionEditor
                 lstRecipes.Items.Remove(recipe);
             }
         }
+        #endregion
 
         private void tpSpell_Click(object sender, EventArgs e)
         {
@@ -539,12 +543,46 @@ namespace World_Editor.ProfessionEditor
 
         private void btnNewProf_Click(object sender, EventArgs e)
         {
-            txtSkillName.Clear();
-            txtSkillVerb.Clear();
-            txtSkillDescription.Clear();
-            txtReqLvl.Clear();
-            txtRaceMask.Clear();
-            txtClassMask.Clear();
+            uint linkable = 0;
+            if(cbLinkable.Checked)
+                linkable = 1;
+            try
+            {
+                SkillLineEntry skl = new SkillLineEntry
+                {
+                    Id = DBCStores.SkillLine.MaxKey + 1,
+                    CategoryId = 11,
+                    SkillCostId = 0x0,
+                    Name = Loc.GetString("NewProfession"),
+                    Description = Loc.GetString("NewProfessionDescription"),
+                    SpellIcon = 339,
+                    AlternateVerb = "",
+                    CanLink = linkable
+                };
+
+                lstSkills.Items.Add(skl);
+                DBCStores.SkillLine.AddEntry(skl.Id, skl);
+
+                SkillRaceClassInfoEntry sklrc = new SkillRaceClassInfoEntry
+                {
+                    Id = DBCStores.SkillRaceClassInfo.MaxKey + 1,
+                    SkillId = skl.Id,
+                    RaceMask = 2047,
+                    ClassMask = 1535,
+                    Flags = 0xA0,
+                    ReqLevel = 0,
+                    SkillTierId = 41,
+                    SkillCostId = 0x0
+                };
+
+                DBCStores.SkillRaceClassInfo.AddEntry(sklrc.Id, sklrc);
+
+                lstSkills.SelectedIndex = lstSkills.Items.Count - 1;
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(Loc.GetString("AddProfessionError") + "\n" + error.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnDelProf_Click(object sender, EventArgs e)

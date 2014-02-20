@@ -111,6 +111,11 @@
     <Compile Include="Editors\POIsEditor\Icons.Designer.cs">
       <DependentUpon>Icons.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\ProfessionEditor\ProfessionEditorLocal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProfessionEditorLocal.resx</DependentUpon>
+    </Compile>
     <Compile Include="Editors\TitlesEditor\TitlesEditorLocal.fr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -266,6 +271,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\POIsEditor\Icons.resx">
       <DependentUpon>Icons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\ProfessionEditor\ProfessionEditorLocal.fr.resx" />
+    <EmbeddedResource Include="Editors\ProfessionEditor\ProfessionEditorLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProfessionEditorLocal.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\TitlesEditor\MainForm.fr.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

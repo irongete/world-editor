@@ -88,7 +88,7 @@ namespace World_Editor.TitlesEditor
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DialogResult choix = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce titre de l'arbre ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
+            DialogResult choix = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce titre ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
             if(choix == System.Windows.Forms.DialogResult.OK)
             {
                 try
