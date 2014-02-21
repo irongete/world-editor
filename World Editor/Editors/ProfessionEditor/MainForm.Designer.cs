@@ -53,12 +53,12 @@
             this.tpRecipe = new System.Windows.Forms.TabPage();
             this.btnDelRecipe = new System.Windows.Forms.Button();
             this.btnNewRecipe = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpFacultatif = new System.Windows.Forms.GroupBox();
             this.txtTool2 = new System.Windows.Forms.TextBox();
             this.txtTool1 = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpComposants = new System.Windows.Forms.GroupBox();
             this.cbSpellFocus = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -106,8 +106,8 @@
             this.tcMain.SuspendLayout();
             this.tpSkill.SuspendLayout();
             this.tpRecipe.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grpFacultatif.SuspendLayout();
+            this.grpComposants.SuspendLayout();
             this.grpInfos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -337,8 +337,8 @@
             // 
             this.tpRecipe.Controls.Add(this.btnDelRecipe);
             this.tpRecipe.Controls.Add(this.btnNewRecipe);
-            this.tpRecipe.Controls.Add(this.groupBox2);
-            this.tpRecipe.Controls.Add(this.groupBox1);
+            this.tpRecipe.Controls.Add(this.grpFacultatif);
+            this.tpRecipe.Controls.Add(this.grpComposants);
             this.tpRecipe.Controls.Add(this.grpInfos);
             this.tpRecipe.Controls.Add(this.lstRecipes);
             this.tpRecipe.Location = new System.Drawing.Point(4, 22);
@@ -369,18 +369,18 @@
             this.btnNewRecipe.UseVisualStyleBackColor = true;
             this.btnNewRecipe.Click += new System.EventHandler(this.btnNewRecipe_Click);
             // 
-            // groupBox2
+            // grpFacultatif
             // 
-            this.groupBox2.Controls.Add(this.txtTool2);
-            this.groupBox2.Controls.Add(this.txtTool1);
-            this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Controls.Add(this.label22);
-            this.groupBox2.Location = new System.Drawing.Point(262, 305);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(340, 50);
-            this.groupBox2.TabIndex = 26;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Facultatif";
+            this.grpFacultatif.Controls.Add(this.txtTool2);
+            this.grpFacultatif.Controls.Add(this.txtTool1);
+            this.grpFacultatif.Controls.Add(this.label23);
+            this.grpFacultatif.Controls.Add(this.label22);
+            this.grpFacultatif.Location = new System.Drawing.Point(262, 305);
+            this.grpFacultatif.Name = "grpFacultatif";
+            this.grpFacultatif.Size = new System.Drawing.Size(340, 50);
+            this.grpFacultatif.TabIndex = 26;
+            this.grpFacultatif.TabStop = false;
+            this.grpFacultatif.Text = "Facultatif";
             // 
             // txtTool2
             // 
@@ -416,45 +416,45 @@
             this.label22.TabIndex = 0;
             this.label22.Text = "Outil 1 :";
             // 
-            // groupBox1
+            // grpComposants
             // 
-            this.groupBox1.Controls.Add(this.cbSpellFocus);
-            this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.label21);
-            this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.txtCount8);
-            this.groupBox1.Controls.Add(this.txtCount7);
-            this.groupBox1.Controls.Add(this.txtCount6);
-            this.groupBox1.Controls.Add(this.txtCount5);
-            this.groupBox1.Controls.Add(this.txtCount4);
-            this.groupBox1.Controls.Add(this.txtCount3);
-            this.groupBox1.Controls.Add(this.txtCount2);
-            this.groupBox1.Controls.Add(this.txtCount1);
-            this.groupBox1.Controls.Add(this.txtReagent8);
-            this.groupBox1.Controls.Add(this.txtReagent7);
-            this.groupBox1.Controls.Add(this.txtReagent6);
-            this.groupBox1.Controls.Add(this.txtReagent5);
-            this.groupBox1.Controls.Add(this.txtReagent4);
-            this.groupBox1.Controls.Add(this.txtReagent3);
-            this.groupBox1.Controls.Add(this.txtReagent2);
-            this.groupBox1.Controls.Add(this.txtReagent1);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Location = new System.Drawing.Point(262, 132);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(340, 167);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Recette";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.grpComposants.Controls.Add(this.cbSpellFocus);
+            this.grpComposants.Controls.Add(this.label24);
+            this.grpComposants.Controls.Add(this.label21);
+            this.grpComposants.Controls.Add(this.label20);
+            this.grpComposants.Controls.Add(this.label19);
+            this.grpComposants.Controls.Add(this.label18);
+            this.grpComposants.Controls.Add(this.txtCount8);
+            this.grpComposants.Controls.Add(this.txtCount7);
+            this.grpComposants.Controls.Add(this.txtCount6);
+            this.grpComposants.Controls.Add(this.txtCount5);
+            this.grpComposants.Controls.Add(this.txtCount4);
+            this.grpComposants.Controls.Add(this.txtCount3);
+            this.grpComposants.Controls.Add(this.txtCount2);
+            this.grpComposants.Controls.Add(this.txtCount1);
+            this.grpComposants.Controls.Add(this.txtReagent8);
+            this.grpComposants.Controls.Add(this.txtReagent7);
+            this.grpComposants.Controls.Add(this.txtReagent6);
+            this.grpComposants.Controls.Add(this.txtReagent5);
+            this.grpComposants.Controls.Add(this.txtReagent4);
+            this.grpComposants.Controls.Add(this.txtReagent3);
+            this.grpComposants.Controls.Add(this.txtReagent2);
+            this.grpComposants.Controls.Add(this.txtReagent1);
+            this.grpComposants.Controls.Add(this.label17);
+            this.grpComposants.Controls.Add(this.label16);
+            this.grpComposants.Controls.Add(this.label15);
+            this.grpComposants.Controls.Add(this.label14);
+            this.grpComposants.Controls.Add(this.label13);
+            this.grpComposants.Controls.Add(this.label12);
+            this.grpComposants.Controls.Add(this.label11);
+            this.grpComposants.Controls.Add(this.label10);
+            this.grpComposants.Location = new System.Drawing.Point(262, 132);
+            this.grpComposants.Name = "grpComposants";
+            this.grpComposants.Size = new System.Drawing.Size(340, 167);
+            this.grpComposants.TabIndex = 7;
+            this.grpComposants.TabStop = false;
+            this.grpComposants.Text = "Recette";
+            this.grpComposants.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // cbSpellFocus
             // 
@@ -865,10 +865,10 @@
             this.tpSkill.ResumeLayout(false);
             this.tpSkill.PerformLayout();
             this.tpRecipe.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpFacultatif.ResumeLayout(false);
+            this.grpFacultatif.PerformLayout();
+            this.grpComposants.ResumeLayout(false);
+            this.grpComposants.PerformLayout();
             this.grpInfos.ResumeLayout(false);
             this.grpInfos.PerformLayout();
             this.ResumeLayout(false);
@@ -903,10 +903,10 @@
         private System.Windows.Forms.ListBox lstRecipes;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox grpInfos;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpComposants;
         private System.Windows.Forms.TextBox txtRecipeName;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpFacultatif;
         private System.Windows.Forms.TextBox txtTool2;
         private System.Windows.Forms.TextBox txtTool1;
         private System.Windows.Forms.Label label23;

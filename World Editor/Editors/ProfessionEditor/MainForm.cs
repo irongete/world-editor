@@ -45,9 +45,12 @@ namespace World_Editor.ProfessionEditor
 
             foreach (SkillLineEntry entry in DBC.DBCStores.SkillLine.Records)
             {
-                if (entry.CategoryId == 11 || entry.Id == 185 || entry.Id == 129)
+                if (entry.CategoryId == 11 || entry.Id == 185 /*|| entry.Id == 129*/)//Secourisme buggé
                     lstSkills.Items.Add(entry);
             }
+            lstSkills.Sorted = true;
+            if (lstRecipes.Items.Count == 0)
+                activateComposants(false);
         }
 
         private void lstSkills_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,7 +59,6 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             //Nettoyage du tab Recettes à faire !
-            //TODO : Mettre à jour la lstSkills quand on écrit les infos d'un nouveau métier
             SkillLineEntry selectedSkill = (SkillLineEntry)lstSkills.SelectedItem;
 
             loadedSkill.load(selectedSkill.Id);
@@ -99,6 +101,7 @@ namespace World_Editor.ProfessionEditor
             {
                 lstRecipes.Items.Add(recipe);
             }
+            activateComposants();
         }
 
         private void btnRaceMask_Click(object sender, EventArgs e)
@@ -502,6 +505,9 @@ namespace World_Editor.ProfessionEditor
 
             DBCStores.Spell.AddEntry(sp.Id, sp);
             DBCStores.SkillLineAbility.AddEntry(sla.Id, sla);
+
+            lstRecipes.SelectedItem = recipe;
+            activateComposants();
         }
 
         private void btnDelRecipe_Click(object sender, EventArgs e)
@@ -523,6 +529,8 @@ namespace World_Editor.ProfessionEditor
 
                 lstRecipes.Items.Remove(recipe);
             }
+            if (lstRecipes.Items.Count == 0)
+                activateComposants(false);
         }
         #endregion
 
@@ -577,7 +585,8 @@ namespace World_Editor.ProfessionEditor
 
                 DBCStores.SkillRaceClassInfo.AddEntry(sklrc.Id, sklrc);
 
-                lstSkills.SelectedIndex = lstSkills.Items.Count - 1;
+                lstSkills.SelectedItem = skl;
+                activateComposants(false);
             }
             catch(Exception error)
             {
@@ -597,6 +606,15 @@ namespace World_Editor.ProfessionEditor
 
                 lstSkills.Items.Remove(skillLine);
             }
+        }
+
+        private void activateComposants(bool value = true)
+        {
+            // Activation des box d'informations
+            grpInfos.Enabled = value;
+            grpComposants.Enabled = value;
+            grpFacultatif.Enabled = value;
+            btnDelRecipe.Enabled = value;
         }
     }
 }
