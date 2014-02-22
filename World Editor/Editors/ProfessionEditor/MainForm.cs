@@ -123,12 +123,12 @@ namespace World_Editor.ProfessionEditor
 
         private void txtSkillName_TextChanged(object sender, EventArgs e)
         {
-            SkillLineEntry s = (SkillLineEntry)lstSkills.Items[lstSkills.SelectedIndex];
+            /*SkillLineEntry s = (SkillLineEntry)lstSkills.Items[lstSkills.SelectedIndex];
             s.Name = txtSkillName.Text;
 
             DBCStores.SkillLine.ReplaceEntry(s.Id, s);
-            lstSkills.Items[lstSkills.SelectedIndex] = s;
-            //DBCStores.SkillLine[loadedSkill.Line.Id].Name = txtSkillName.Text;
+            lstSkills.Items[lstSkills.SelectedIndex] = s;*/
+            DBCStores.SkillLine[loadedSkill.Line.Id].Name = txtSkillName.Text;
         }
 
         private void txtSkillVerb_TextChanged(object sender, EventArgs e)
@@ -596,7 +596,7 @@ namespace World_Editor.ProfessionEditor
                 //6 lignes de définition des niveaux de sorts : Aprenti, Compagnon, Expert, Artisan, Maître, Grand Maître
                 //6 lignes de définition des sorts qui apprennent les niveaux de sorts
 
-                List<String> niveauxDeMetiers = new List<string> 
+                List<String> rangsDeMetiers = new List<string> 
                 {
                     "Aprenti",
                     "Compagnon",
@@ -621,8 +621,8 @@ namespace World_Editor.ProfessionEditor
                     SpellEntry spell = new SpellEntry
                     {
                         Id = DBCStores.Spell.MaxKey + 1,
-                        SpellName = skl.Name,
-                        Rank = niveauxDeMetiers[i],
+                        SpellName = txtSkillName.Text,
+                        Rank = rangsDeMetiers[i],
                         SpellIconID = 339,
                         Description = descriptionDesRangs[i]
                     };

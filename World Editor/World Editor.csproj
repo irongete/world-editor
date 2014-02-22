@@ -266,6 +266,7 @@
     <EmbeddedResource Include="Editors\FactionsEditor\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Editors\GameTipsEditor\GameTipsEditorLocal.fr.resx" />
     <EmbeddedResource Include="Editors\GameTipsEditor\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

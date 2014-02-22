@@ -9,11 +9,14 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DBCLib.Structures335;
 using World_Editor.DBC;
+using System.Resources;
 
 namespace World_Editor.Editors.GameTipsEditor
 {
     public partial class MainForm : Form
     {
+        ResourceManager Loc = new ResourceManager("World_Editor.Editors.GameTipsEditor.GameTipsEditorLocal", System.Reflection.Assembly.GetExecutingAssembly());
+
         public MainForm()
         {
             InitializeComponent();
@@ -74,6 +77,11 @@ namespace World_Editor.Editors.GameTipsEditor
                 lblPreview.SelectionColor =
                     Color.FromArgb(int.Parse(foo.Color, System.Globalization.NumberStyles.HexNumber));
             }
+            GameTipsEntry gte = (GameTipsEntry)listGameTips.Items[listGameTips.SelectedIndex];
+            gte.Tips = txtTip.Text;
+
+            DBCStores.GameTips.ReplaceEntry(gte.Id, gte);
+            listGameTips.Items[listGameTips.SelectedIndex] = gte;
         }
 
         private string FormatTip(string tip)
@@ -120,7 +128,7 @@ namespace World_Editor.Editors.GameTipsEditor
                     {
                         Id = DBCStores.GameTips.MaxKey + 1,
                         //Tips = "|cffffd100Tip :|r New Tip"
-                        Tips = txtTip.Text
+                        Tips = Loc.GetString("NewGameTips")
                     };
 
                 listGameTips.Items.Add(t);
