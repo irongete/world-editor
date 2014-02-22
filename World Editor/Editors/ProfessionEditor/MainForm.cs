@@ -14,6 +14,26 @@ namespace World_Editor.ProfessionEditor
 {
     public partial class MainForm : Form
     {
+
+        List<String> rangsDeMetiers = new List<string> 
+        {
+            "Aprenti",
+            "Compagnon",
+            "Expert",
+            "Artisan",
+            "Maître",
+            "Grand Maître"
+        };
+
+        List<String> descriptionDesRangs = new List<string> 
+        {
+            "Vous permet d'évoluer vos talents vers un niveau de compétence de 75 au maximum.",
+            "Vous permet d'évoluer vos talents vers un niveau de compétence de 150 au maximum.",
+            "Vous permet d'évoluer vos talents vers un niveau de compétence de 225 au maximum.",
+            "Vous permet d'évoluer vos talents vers un niveau de compétence de 300 au maximum.",
+            "Vous permet d'évoluer vos talents vers un niveau de compétence de 375 au maximum.",
+            "Vous permet d'évoluer vos talents vers un niveau de compétence de 450 au maximum."
+        };
         ResourceManager Loc = new ResourceManager("World_Editor.Editors.ProfessionEditor.ProfessionEditorLocal", System.Reflection.Assembly.GetExecutingAssembly());
         private Skill loadedSkill = new Skill();
 
@@ -594,39 +614,32 @@ namespace World_Editor.ProfessionEditor
 
                 //Ajout de 12 lignes :
                 //6 lignes de définition des niveaux de sorts : Aprenti, Compagnon, Expert, Artisan, Maître, Grand Maître
-                //6 lignes de définition des sorts qui apprennent les niveaux de sorts
-
-                List<String> rangsDeMetiers = new List<string> 
-                {
-                    "Aprenti",
-                    "Compagnon",
-                    "Expert",
-                    "Artisan",
-                    "Maître",
-                    "Grand Maître"
-                };
-
-                List<String> descriptionDesRangs = new List<string> 
-                {
-                    "Vous permet d'évoluer vers un niveau de compétence de 75 au maximum.",
-                    "Vous permet d'évoluer vers un niveau de compétence de 150 au maximum.",
-                    "Vous permet d'évoluer vers un niveau de compétence de 225 au maximum.",
-                    "Vous permet d'évoluer vers un niveau de compétence de 300 au maximum.",
-                    "Vous permet d'évoluer vers un niveau de compétence de 375 au maximum.",
-                    "Vous permet d'évoluer vers un niveau de compétence de 450 au maximum."
-                };
-
-                for(int i = 0; i< 5; i++)
+                for(int i = 0; i< 6; i++)
                 {
                     SpellEntry spell = new SpellEntry
                     {
                         Id = DBCStores.Spell.MaxKey + 1,
-                        SpellName = txtSkillName.Text,
+                        SkillId = skl.Id,
+                        SpellName = skl.Name,
                         Rank = rangsDeMetiers[i],
-                        SpellIconID = 339,
-                        Description = descriptionDesRangs[i]
+                        Description = descriptionDesRangs[i],
+                        ToolTip = "",
+                        SkillRank = i,
+                        SpellIconID = 339
+                    };
+                //6 lignes de définition des sorts qui apprennent les niveaux de sorts
+                    SpellEntry spellLevel = new SpellEntry
+                    {
+                        Id = DBCStores.Spell.MaxKey + 2,
+                        SkillId = skl.Id,
+                        SpellSkillId = spell.Id,
+                        SpellName = skl.Name + " " + rangsDeMetiers[i],
+                        Rank = "",
+                        Description = "",
+                        ToolTip = ""
                     };
                     DBCStores.Spell.AddEntry(spell.Id, spell);
+                    DBCStores.Spell.AddEntry(spellLevel.Id, spellLevel);
                 }
 
                 lstSkills.SelectedItem = skl;

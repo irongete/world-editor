@@ -1471,8 +1471,10 @@ namespace DBCLib.Structures335
         public int EquippedItemInventoryTypeMask;   // 70       
         public uint[] Effect = new uint[3];         // 71-73 
         public int[] EffectDieSides = new int[3];   // 74-76  
-        public float[] EffectRealPointsPerLevel = new float[3];// 77-79  
-        public int[] EffectBasePoints = new int[3]; // 80-82   
+        public float[] EffectRealPointsPerLevel = new float[3];// 77-79
+        public int[] EffectBasePoints1 = new int[1]; // 80
+        public int SkillRank;                       // 81
+        public int[] EffectBasePoints2 = new int[1]; // 82 
         public uint[] EffectMechanic = new uint[3]; // 83-85  
         public uint[] EffectImplicitTargetA = new uint[3];// 86-88   
         public uint[] EffectImplicitTargetB = new uint[3];// 89-91    
@@ -1481,10 +1483,14 @@ namespace DBCLib.Structures335
         public uint[] EffectAmplitude = new uint[3];// 98-100  
         public float[] EffectMultipleValue = new float[3];// 101-103 
         public uint[] EffectChainTarget = new uint[3];// 104-106  
-        public uint[] EffectItemType = new uint[3]; // 107-109  
-        public int[] EffectMiscValue = new int[3];  // 110-112
+        public uint[] EffectItemType = new uint[3]; // 107-109
+        public uint[] EffectMiscValue1 = new uint[1]; // 110
+        public int[] EffectMiscValue2 = new int[1];  // 111
+        public uint SkillId;                         // 112
         public int[] EffectMiscValueB = new int[3]; // 113-115
-        public uint[] EffectTriggerSpell = new uint[3];// 116-118
+        public uint[] EffectTriggerSpell1 = new uint[1];// 116
+        public uint SpellSkillId;                   // 117
+        public uint[] EffectTriggerSpell2 = new uint[1];// 118
         public float[] EffectPointsPerComboPoint = new float[3];// 119-121
         public float[] EffectSpellClassMask = new float[9];// 122-130 
         public uint[] SpellVisual = new uint[2];    // 131-132
