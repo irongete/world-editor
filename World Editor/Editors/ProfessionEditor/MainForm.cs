@@ -51,6 +51,7 @@ namespace World_Editor.ProfessionEditor
             lstSkills.Sorted = true;
             if (lstRecipes.Items.Count == 0)
                 activateComposants(false);
+            lstSkills.SelectedIndex = lstSkills.Items.Count - 1;
         }
 
         private void lstSkills_SelectedIndexChanged(object sender, EventArgs e)
@@ -122,7 +123,12 @@ namespace World_Editor.ProfessionEditor
 
         private void txtSkillName_TextChanged(object sender, EventArgs e)
         {
-            DBCStores.SkillLine[loadedSkill.Line.Id].Name = txtSkillName.Text;
+            SkillLineEntry s = (SkillLineEntry)lstSkills.Items[lstSkills.SelectedIndex];
+            s.Name = txtSkillName.Text;
+
+            DBCStores.SkillLine.ReplaceEntry(s.Id, s);
+            lstSkills.Items[lstSkills.SelectedIndex] = s;
+            //DBCStores.SkillLine[loadedSkill.Line.Id].Name = txtSkillName.Text;
         }
 
         private void txtSkillVerb_TextChanged(object sender, EventArgs e)
@@ -586,6 +592,7 @@ namespace World_Editor.ProfessionEditor
                 DBCStores.SkillRaceClassInfo.AddEntry(sklrc.Id, sklrc);
 
                 lstSkills.SelectedItem = skl;
+                lstRecipes.SelectedIndex = lstRecipes.Items.Count - 1;
                 activateComposants(false);
             }
             catch(Exception error)
@@ -606,6 +613,7 @@ namespace World_Editor.ProfessionEditor
 
                 lstSkills.Items.Remove(skillLine);
             }
+            lstRecipes.SelectedIndex = lstRecipes.Items.Count - 1;
         }
 
         private void activateComposants(bool value = true)
