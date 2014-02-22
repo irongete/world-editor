@@ -497,7 +497,7 @@ namespace World_Editor.ProfessionEditor
             sp.InitRecipe();
 
             sp.Id = DBCStores.Spell.MaxKey + 1;
-            sp.SpellName = "Nouvelle recette";
+            sp.SpellName = Loc.GetString("NewRecipe");
 
             sla.Id = DBCStores.SkillLineAbility.MaxKey + 1;
             sla.SkillId = loadedSkill.Line.Id;
@@ -562,6 +562,7 @@ namespace World_Editor.ProfessionEditor
                 linkable = 1;
             try
             {
+                //Définition du métier dans SkillLine.dbc
                 SkillLineEntry skl = new SkillLineEntry
                 {
                     Id = DBCStores.SkillLine.MaxKey + 1,
@@ -577,6 +578,7 @@ namespace World_Editor.ProfessionEditor
                 lstSkills.Items.Add(skl);
                 DBCStores.SkillLine.AddEntry(skl.Id, skl);
 
+                //Définition des autorisations du métier dans SkillRaceClassInfo.dbc
                 SkillRaceClassInfoEntry sklrc = new SkillRaceClassInfoEntry
                 {
                     Id = DBCStores.SkillRaceClassInfo.MaxKey + 1,
@@ -588,8 +590,44 @@ namespace World_Editor.ProfessionEditor
                     SkillTierId = 41,
                     SkillCostId = 0x0
                 };
-
                 DBCStores.SkillRaceClassInfo.AddEntry(sklrc.Id, sklrc);
+
+                //Ajout de 12 lignes :
+                //6 lignes de définition des niveaux de sorts : Aprenti, Compagnon, Expert, Artisan, Maître, Grand Maître
+                //6 lignes de définition des sorts qui apprennent les niveaux de sorts
+
+                List<String> niveauxDeMetiers = new List<string> 
+                {
+                    "Aprenti",
+                    "Compagnon",
+                    "Expert",
+                    "Artisan",
+                    "Maître",
+                    "Grand Maître"
+                };
+
+                List<String> descriptionDesRangs = new List<string> 
+                {
+                    "Vous permet d'évoluer vers un niveau de compétence de 75 au maximum.",
+                    "Vous permet d'évoluer vers un niveau de compétence de 150 au maximum.",
+                    "Vous permet d'évoluer vers un niveau de compétence de 225 au maximum.",
+                    "Vous permet d'évoluer vers un niveau de compétence de 300 au maximum.",
+                    "Vous permet d'évoluer vers un niveau de compétence de 375 au maximum.",
+                    "Vous permet d'évoluer vers un niveau de compétence de 450 au maximum."
+                };
+
+                for(int i = 0; i< 5; i++)
+                {
+                    SpellEntry spell = new SpellEntry
+                    {
+                        Id = DBCStores.Spell.MaxKey + 1,
+                        SpellName = skl.Name,
+                        Rank = niveauxDeMetiers[i],
+                        SpellIconID = 339,
+                        Description = descriptionDesRangs[i]
+                    };
+                    DBCStores.Spell.AddEntry(spell.Id, spell);
+                }
 
                 lstSkills.SelectedItem = skl;
                 lstRecipes.SelectedIndex = lstRecipes.Items.Count - 1;

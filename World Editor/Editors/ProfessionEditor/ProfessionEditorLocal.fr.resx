@@ -132,6 +132,9 @@
   <data name="NewProfessionDescription" xml:space="preserve">
     <value>Nouvelle description de métier</value>
   </data>
+  <data name="NewRecipe" xml:space="preserve">
+    <value>Nouvelle recette</value>
+  </data>
   <data name="SaveDbcError" xml:space="preserve">
     <value>Erreur pendant la sauvegarde des DBCs</value>
   </data>

@@ -106,6 +106,15 @@ namespace World_Editor.Editors.ProfessionEditor {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à New recipe.
+        /// </summary>
+        internal static string NewRecipe {
+            get {
+                return ResourceManager.GetString("NewRecipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Error when saving DBCs.
         /// </summary>
         internal static string SaveDbcError {

@@ -1487,7 +1487,7 @@ namespace DBCLib.Structures335
         public uint[] EffectTriggerSpell = new uint[3];// 116-118
         public float[] EffectPointsPerComboPoint = new float[3];// 119-121
         public float[] EffectSpellClassMask = new float[9];// 122-130 
-        public uint[] SpellVisual = new uint[2];    // 131-13
+        public uint[] SpellVisual = new uint[2];    // 131-132
         public uint SpellIconID;                    // 133      
         public uint ActiveIconID;                   // 134      
         public uint SpellPriority;                  // 135
