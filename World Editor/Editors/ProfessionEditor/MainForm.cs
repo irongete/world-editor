@@ -270,6 +270,8 @@ namespace World_Editor.ProfessionEditor
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
 
+            if (txtRecipeGreen.Text == "")
+                txtRecipeGreen.Text = "0";
             recipe.ability.SkillGreenLevel = uint.Parse(txtRecipeGreen.Text);
         }
 
@@ -280,6 +282,8 @@ namespace World_Editor.ProfessionEditor
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
 
+            if (txtRecipeGrey.Text == "")
+                txtRecipeGrey.Text = "0";
             recipe.ability.SkillGreyLevel = uint.Parse(txtRecipeGrey.Text);
         }
 
@@ -518,6 +522,9 @@ namespace World_Editor.ProfessionEditor
 
             sp.Id = DBCStores.Spell.MaxKey + 1;
             sp.SpellName = Loc.GetString("NewRecipe");
+            sp.Rank = "";
+            sp.Description = "";
+            sp.ToolTip = "";
 
             sla.Id = DBCStores.SkillLineAbility.MaxKey + 1;
             sla.SkillId = loadedSkill.Line.Id;
@@ -614,33 +621,33 @@ namespace World_Editor.ProfessionEditor
 
                 //Ajout de 12 lignes :
                 //6 lignes de définition des niveaux de sorts : Aprenti, Compagnon, Expert, Artisan, Maître, Grand Maître
-                for(int i = 0; i< 6; i++)
-                {
-                    SpellEntry spell = new SpellEntry
-                    {
-                        Id = DBCStores.Spell.MaxKey + 1,
-                        SkillId = skl.Id,
-                        SpellName = skl.Name,
-                        Rank = rangsDeMetiers[i],
-                        Description = descriptionDesRangs[i],
-                        ToolTip = "",
-                        SkillRank = i,
-                        SpellIconID = 339
-                    };
+                SpellEntry spell = new SpellEntry();
+                spell.InitJobRanks();
+                spell.Id = DBCStores.Spell.MaxKey + 1;
+                spell.SkillId = skl.Id;
+                spell.SpellIconID = 339;
+                spell.SpellName = skl.Name;
+                spell.Rank = rangsDeMetiers[0];
+                spell.Description = descriptionDesRangs[0];
+                spell.ToolTip = "";
+                spell.SkillRank = 0;
+
                 //6 lignes de définition des sorts qui apprennent les niveaux de sorts
-                    SpellEntry spellLevel = new SpellEntry
-                    {
-                        Id = DBCStores.Spell.MaxKey + 2,
-                        SkillId = skl.Id,
-                        SpellSkillId = spell.Id,
-                        SpellName = skl.Name + " " + rangsDeMetiers[i],
-                        Rank = "",
-                        Description = "",
-                        ToolTip = ""
-                    };
-                    DBCStores.Spell.AddEntry(spell.Id, spell);
-                    DBCStores.Spell.AddEntry(spellLevel.Id, spellLevel);
-                }
+                SpellEntry spellLevel = new SpellEntry();
+                spellLevel.InitJobSpellRanks();
+
+                spellLevel.Id = DBCStores.Spell.MaxKey + 2;
+                spellLevel.SkillId = skl.Id;
+                spellLevel.SpellSkillId = spell.Id;
+                spellLevel.SpellIconID = 339;
+                spellLevel.SpellName = rangsDeMetiers[0] + " " + skl.Name;
+                spellLevel.Rank = "";
+                spellLevel.Description = "";
+                spellLevel.ToolTip = "";
+                spellLevel.SkillRank = 0;
+
+                DBCStores.Spell.AddEntry(spell.Id, spell);
+                DBCStores.Spell.AddEntry(spellLevel.Id, spellLevel);
 
                 lstSkills.SelectedItem = skl;
                 lstRecipes.SelectedIndex = lstRecipes.Items.Count - 1;
