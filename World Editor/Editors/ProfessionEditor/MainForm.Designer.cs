@@ -103,6 +103,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lstRecipes = new System.Windows.Forms.ListBox();
+            this.btnIcons = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tcMain.SuspendLayout();
             this.tpSkill.SuspendLayout();
             this.tpRecipe.SuspendLayout();
@@ -123,6 +125,8 @@
             // 
             // tpSkill
             // 
+            this.tpSkill.Controls.Add(this.textBox1);
+            this.tpSkill.Controls.Add(this.btnIcons);
             this.tpSkill.Controls.Add(this.btnSave);
             this.tpSkill.Controls.Add(this.btnDelProf);
             this.tpSkill.Controls.Add(this.btnNewProf);
@@ -848,6 +852,23 @@
             this.lstRecipes.TabIndex = 0;
             this.lstRecipes.SelectedIndexChanged += new System.EventHandler(this.lstRecipes_SelectedIndexChanged);
             // 
+            // btnIcons
+            // 
+            this.btnIcons.Location = new System.Drawing.Point(435, 16);
+            this.btnIcons.Name = "btnIcons";
+            this.btnIcons.Size = new System.Drawing.Size(75, 23);
+            this.btnIcons.TabIndex = 20;
+            this.btnIcons.Text = "Icône";
+            this.btnIcons.UseVisualStyleBackColor = true;
+            this.btnIcons.Click += new System.EventHandler(this.btnIcons_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(353, 19);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(76, 20);
+            this.textBox1.TabIndex = 21;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -952,5 +973,7 @@
         private System.Windows.Forms.CheckBox chbBase;
         private System.Windows.Forms.TextBox txtRecipeResult;
         private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnIcons;
     }
 }

@@ -1469,9 +1469,6 @@ namespace DBCLib.Structures335
         public int EquippedItemClass;               // 68       
         public int EquippedItemSubClassMask;        // 69       
         public int EquippedItemInventoryTypeMask;   // 70
-        //public uint Effect1;                        // 71
-        //public uint Effect2;                        // 72
-        //public uint Effect3;                        // 73
         public uint[] Effect = new uint[3];         // 71-73 
         public int[] EffectDieSides = new int[3];   // 74-76  
         public float[] EffectRealPointsPerLevel = new float[3];// 77-79
@@ -1554,11 +1551,11 @@ namespace DBCLib.Structures335
             DmgMultiplier[2] = 1.0f;
             SchoolMask = 1;
         }
-        public void InitJobSpellRanks()
+        public void InitJobSpellRanks(uint attr = 0x100, uint targ = 0x100)
         {
-            Attributes = 0x40100;
+            Attributes = attr;
             AttributesEx6 = 0x0;
-            Targets = 0x100;
+            Targets = targ;
             CastingTimeIndex = 1;
             ProcChance = 101;
             RangeIndex = 6;
@@ -1578,15 +1575,16 @@ namespace DBCLib.Structures335
         {
             Attributes = 65584;
             AttributesEx = 1024;
-            CastingTimeIndex = 33;
+            CastingTimeIndex = 14;
             InterruptFlags = 15;
             ProcChance = 101;
             RangeIndex = 1;
             EquippedItemClass = -1;
             Effect[0] = 24;
-            EffectDieSides[1] = 1;
+            EffectDieSides[0] = 1;
             EffectImplicitTargetA[0] = 1;
-            SpellVisual[0] = 395;
+            SpellVisual[0] = 92;
+            SpellIconID = 1;
             DmgMultiplier[0] = 1.0f;
             SchoolMask = 1;
         }

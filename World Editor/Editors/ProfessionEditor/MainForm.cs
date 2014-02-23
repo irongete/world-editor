@@ -14,7 +14,7 @@ namespace World_Editor.ProfessionEditor
 {
     public partial class MainForm : Form
     {
-
+        public static MainForm m_professionEditor;
         List<String> rangsDeMetiers = new List<string> 
         {
             "Aprenti",
@@ -621,33 +621,62 @@ namespace World_Editor.ProfessionEditor
 
                 //Ajout de 12 lignes :
                 //6 lignes de définition des niveaux de sorts : Aprenti, Compagnon, Expert, Artisan, Maître, Grand Maître
-                SpellEntry spell = new SpellEntry();
-                spell.InitJobRanks();
-                spell.Id = DBCStores.Spell.MaxKey + 1;
-                spell.SkillId = skl.Id;
-                spell.SpellIconID = 339;
-                spell.SpellName = skl.Name;
-                spell.Rank = rangsDeMetiers[0];
-                spell.Description = descriptionDesRangs[0];
-                spell.ToolTip = "";
-                spell.SkillRank = 0;
+                for (int i = 0; i < 6; i++)
+                {
+                    SpellEntry spell = new SpellEntry();
+                    spell.InitJobRanks();
 
-                //6 lignes de définition des sorts qui apprennent les niveaux de sorts
-                SpellEntry spellLevel = new SpellEntry();
-                spellLevel.InitJobSpellRanks();
+                    spell.Id = DBCStores.Spell.MaxKey + 1;
+                    spell.SkillId = skl.Id;
+                    spell.SpellIconID = 339;
+                    spell.SpellName = skl.Name;
+                    spell.Rank = rangsDeMetiers[i];
+                    spell.Description = descriptionDesRangs[i];
+                    spell.ToolTip = "";
+                    spell.SkillRank = i;
+                    DBCStores.Spell.AddEntry(spell.Id, spell);
 
-                spellLevel.Id = DBCStores.Spell.MaxKey + 2;
-                spellLevel.SkillId = skl.Id;
-                spellLevel.SpellSkillId = spell.Id;
-                spellLevel.SpellIconID = 339;
-                spellLevel.SpellName = rangsDeMetiers[0] + " " + skl.Name;
-                spellLevel.Rank = "";
-                spellLevel.Description = "";
-                spellLevel.ToolTip = "";
-                spellLevel.SkillRank = 0;
+                    //6 lignes de définition des sorts qui apprennent les niveaux de sorts
+                    SpellEntry spellLevel = new SpellEntry();
+                    if (i == 0)
+                    {
+                        spellLevel.InitJobSpellRanks(0x40100);
+                    }
+                    else if (i == 5)
+                    {
+                        spellLevel.InitJobSpellRanks(0x40100, 0x0);
+                    }
+                    else
+                        spellLevel.InitJobSpellRanks();
 
-                DBCStores.Spell.AddEntry(spell.Id, spell);
-                DBCStores.Spell.AddEntry(spellLevel.Id, spellLevel);
+                    spellLevel.Id = DBCStores.Spell.MaxKey + 1;
+                    spellLevel.SkillId = skl.Id;
+                    spellLevel.SpellSkillId = spell.Id;
+                    spellLevel.SpellIconID = 339;
+                    spellLevel.SpellName = rangsDeMetiers[i] + " " + skl.Name;
+                    spellLevel.Rank = "";
+                    spellLevel.Description = "";
+                    spellLevel.ToolTip = "";
+                    spellLevel.SkillRank = i;
+                    DBCStores.Spell.AddEntry(spellLevel.Id, spellLevel);
+
+                    //Définition de la chaine des sorts d'apprentissage
+                    SkillLineAbilityEntry skla = new SkillLineAbilityEntry();
+                    skla.Id = DBCStores.SkillLineAbility.MaxKey + 1;
+                    skla.SkillId = skl.Id;
+                    skla.SpellId = spell.Id;
+                    skla.RequiredClasses = 0;
+                    skla.RequiredRaces = 0;
+                    skla.MinSkillLineRank = 1;
+                    if(i ==5)
+                        skla.SpellParent = 0;
+                    else
+                        skla.SpellParent = spell.Id + 2;
+                    skla.AcquireMethod = 0x0;
+                    skla.SkillGreyLevel = 0;
+                    skla.SkillGreenLevel = 0;
+                    DBCStores.SkillLineAbility.AddEntry(skla.Id, skla);
+                }
 
                 lstSkills.SelectedItem = skl;
                 lstRecipes.SelectedIndex = lstRecipes.Items.Count - 1;
@@ -681,6 +710,21 @@ namespace World_Editor.ProfessionEditor
             grpComposants.Enabled = value;
             grpFacultatif.Enabled = value;
             btnDelRecipe.Enabled = value;
+        }
+
+        private void btnIcons_Click(object sender, EventArgs e)
+        {
+            //if (Editors.ProfessionEditor.Icons.m_professionIconsEditor == null)
+            //{
+                Editors.ProfessionEditor.Icons d = new Editors.ProfessionEditor.Icons();
+                Editors.ProfessionEditor.Icons.m_professionIconsEditor = d;
+                d.Show(this);
+            /*}
+            else
+            {
+                Editors.ProfessionEditor.Icons d = Editors.ProfessionEditor.Icons.m_professionIconsEditor;
+                d.BringToFront();
+            }*/
         }
     }
 }

@@ -111,6 +111,12 @@
     <Compile Include="Editors\POIsEditor\Icons.Designer.cs">
       <DependentUpon>Icons.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\ProfessionEditor\Icons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\ProfessionEditor\Icons.Designer.cs">
+      <DependentUpon>Icons.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\ProfessionEditor\ProfessionEditorLocal.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -271,6 +277,9 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\POIsEditor\Icons.resx">
+      <DependentUpon>Icons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\ProfessionEditor\Icons.resx">
       <DependentUpon>Icons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\ProfessionEditor\ProfessionEditorLocal.fr.resx" />
