@@ -22,6 +22,23 @@ namespace World_Editor.Database.Emulators
             return @"SELECT entry, class, subclass, displayid, InventoryType, Material, sheath FROM `item_template` WHERE `entry` BETWEEN " + from + " AND " + to + ";";
         }
 
+        /*public string GetItemByName(string name)
+        {
+            return @"SELECT entry, name FROM `item_template` WHERE `name` LIKE '%" + name + "%' LIMIT 40;";
+        }*/
+        public string GetItemByName(string name)
+        {
+            return @"SELECT entry, name_loc2 FROM `locales_item` WHERE `name_loc2` LIKE '%" + name + "%' LIMIT 40;";
+        }
+        /*public string GetItemById(string itemEntry)
+        {
+            return @"SELECT entry, name FROM `item_template` WHERE `entry` = '" + itemEntry + "';";
+        }*/
+        public string GetItemById(string itemEntry)
+        {
+            return @"SELECT entry, name_loc2 FROM `locales_item` WHERE `entry` = '" + itemEntry + "';";
+        }
+
         public CreatureTemplate CreateCreatureTemplate(object[] data)
         {
             long entry = long.Parse(data[0].ToString());

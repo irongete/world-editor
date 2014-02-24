@@ -33,21 +33,17 @@ namespace World_Editor.Editors.ProfessionEditor
 
         private void panelIcons_Paint(object sender, PaintEventArgs e)
         {
-            foreach (SpellIconEntry sie in DBCStores.SpellIcon.Records)
+            Bitmap _bitmapTemp = new Bitmap(panelIcons.Width, panelIcons.Height);
+            using (Graphics g = Graphics.FromImage(_bitmapTemp))
             {
-                Bitmap _bitmapTemp = new Bitmap(panelIcons.Width, panelIcons.Height);
-                using (Graphics g = Graphics.FromImage(_bitmapTemp))
-                {
-                    g.FillRectangle(new SolidBrush(SystemColors.Control), new System.Drawing.Rectangle(0, 0, 256, 256));
-                    Bitmap icons = Blp2.FromStream(new MPQFile(sie.IconPath + ".blp"));
-                    Console.WriteLine(sie.IconPath);
-                    g.DrawImage(icons, 0, 0);
-                    g.DrawImage(World_Editor.Properties.Resources.select_square_18_18, new Rectangle(18 * iconSelect.X, 18 * iconSelect.Y, 18, 18), new Rectangle(0, 0, 18, 18), GraphicsUnit.Pixel);
-                }
-                this.g.DrawImage(_bitmapTemp, 0, 0);
-                _bitmapTemp.Dispose();
-                _bitmapTemp = null;
+                g.FillRectangle(new SolidBrush(SystemColors.Control), new System.Drawing.Rectangle(0, 0, 256, 256));
+                Bitmap icons = Blp2.FromStream(new MPQFile("Interface\\Icons\\Trade_Alchemy.blp"));
+                g.DrawImage(icons, 0, 0);
+                g.DrawImage(World_Editor.Properties.Resources.select_square_18_18, new Rectangle(18 * iconSelect.X, 18 * iconSelect.Y, 18, 18), new Rectangle(0, 0, 18, 18), GraphicsUnit.Pixel);
             }
+            this.g.DrawImage(_bitmapTemp, 0, 0);
+            _bitmapTemp.Dispose();
+            _bitmapTemp = null;
         }
 
         private void btnOk_Click(object sender, EventArgs e)

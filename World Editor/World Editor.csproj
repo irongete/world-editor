@@ -122,6 +122,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProfessionEditorLocal.resx</DependentUpon>
     </Compile>
+    <Compile Include="Editors\ProfessionEditor\SearchComponent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\ProfessionEditor\SearchComponent.Designer.cs">
+      <DependentUpon>SearchComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\TitlesEditor\TitlesEditorLocal.fr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -286,6 +292,9 @@
     <EmbeddedResource Include="Editors\ProfessionEditor\ProfessionEditorLocal.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ProfessionEditorLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\ProfessionEditor\SearchComponent.resx">
+      <DependentUpon>SearchComponent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\TitlesEditor\MainForm.fr.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

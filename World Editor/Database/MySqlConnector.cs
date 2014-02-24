@@ -121,5 +121,69 @@ namespace World_Editor.Database
 
             return (ItemTemplate[])Items.ToArray(typeof(ItemTemplate));
         }
+
+        public List<String> GetItemByName(string name)
+        {
+            MySqlCommand Command = Connection.CreateCommand();
+            Command.CommandText = Core.GetItemByName(name);
+            MySqlDataReader Reader = Command.ExecuteReader();
+
+            List<String> Items = new List<string>();
+            string itemId = "";
+            string itemName;
+            while (Reader.Read())
+            {
+                for (int i = 0; i < Reader.FieldCount; ++i)
+                {
+                    if (itemId == "")
+                    {
+                        itemId = Reader.GetValue(i).ToString();
+                    }
+                    else
+                    {
+                        itemName = Reader.GetValue(i).ToString();
+                        Items.Add(itemId + ", " + itemName);
+                        itemId = "";
+                    }
+                }
+            }
+
+            Reader.Close();
+            Command.Dispose();
+
+            return Items;
+        }
+
+        public List<string> GetItemById(string itemEntry)
+        {
+            MySqlCommand Command = Connection.CreateCommand();
+            Command.CommandText = Core.GetItemById(itemEntry);
+            MySqlDataReader Reader = Command.ExecuteReader();
+
+            List<String> Items = new List<string>();
+            string itemId = "";
+            string itemName;
+            while (Reader.Read())
+            {
+                for (int i = 0; i < Reader.FieldCount; ++i)
+                {
+                    if (itemId == "")
+                    {
+                        itemId = Reader.GetValue(i).ToString();
+                    }
+                    else
+                    {
+                        itemName = Reader.GetValue(i).ToString();
+                        Items.Add(itemId + ", " + itemName);
+                        itemId = "";
+                    }
+                }
+            }
+
+            Reader.Close();
+            Command.Dispose();
+
+            return Items;
+        }
     }
 }

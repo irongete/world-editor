@@ -15,5 +15,9 @@ namespace World_Editor.Database
         CreatureTemplate CreateCreatureTemplate(object[] data);
 
         ItemTemplate CreateItemTemplate(object[] data);
+
+        string GetItemByName(string name);
+
+        string GetItemById(string itemEntry);
     }
 }

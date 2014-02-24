@@ -31,5 +31,14 @@ namespace World_Editor.Database.Emulators
         {
             throw new NotImplementedException();
         }
+
+        public string GetItemByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+        public string GetItemById(string itemEntry)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

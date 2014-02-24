@@ -122,6 +122,7 @@ namespace World_Editor.ProfessionEditor
             {
                 lstRecipes.Items.Add(recipe);
             }
+            lstRecipes.SelectedIndex = lstRecipes.Items.Count - 1;
             activateComposants();
         }
 
@@ -143,12 +144,12 @@ namespace World_Editor.ProfessionEditor
 
         private void txtSkillName_TextChanged(object sender, EventArgs e)
         {
-            /*SkillLineEntry s = (SkillLineEntry)lstSkills.Items[lstSkills.SelectedIndex];
+            SkillLineEntry s = (SkillLineEntry)lstSkills.Items[lstSkills.SelectedIndex];
             s.Name = txtSkillName.Text;
 
             DBCStores.SkillLine.ReplaceEntry(s.Id, s);
-            lstSkills.Items[lstSkills.SelectedIndex] = s;*/
-            DBCStores.SkillLine[loadedSkill.Line.Id].Name = txtSkillName.Text;
+            lstSkills.Items[lstSkills.SelectedIndex] = s;
+            //DBCStores.SkillLine[loadedSkill.Line.Id].Name = txtSkillName.Text;
         }
 
         private void txtSkillVerb_TextChanged(object sender, EventArgs e)
@@ -254,7 +255,6 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
             recipe.spell.SpellName = txtRecipeName.Text;
         }
 
@@ -270,9 +270,8 @@ namespace World_Editor.ProfessionEditor
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
 
-            if (txtRecipeGreen.Text == "")
-                txtRecipeGreen.Text = "0";
-            recipe.ability.SkillGreenLevel = uint.Parse(txtRecipeGreen.Text);
+            if (!txtRecipeGreen.Text.Equals(""))
+                recipe.ability.SkillGreenLevel = uint.Parse(txtRecipeGreen.Text);
         }
 
         private void txtRecipeGrey_TextChanged(object sender, EventArgs e)
@@ -282,9 +281,8 @@ namespace World_Editor.ProfessionEditor
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
 
-            if (txtRecipeGrey.Text == "")
-                txtRecipeGrey.Text = "0";
-            recipe.ability.SkillGreyLevel = uint.Parse(txtRecipeGrey.Text);
+            if (!txtRecipeGrey.Text.Equals(""))
+                recipe.ability.SkillGreyLevel = uint.Parse(txtRecipeGrey.Text);
         }
 
         private void txtRecipeResult_TextChanged(object sender, EventArgs e)
@@ -294,7 +292,8 @@ namespace World_Editor.ProfessionEditor
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
 
-            recipe.spell.EffectItemType[0] = uint.Parse(txtRecipeResult.Text);
+            if(!txtRecipeResult.Text.Equals(""))
+                recipe.spell.EffectItemType[0] = uint.Parse(txtRecipeResult.Text);
         }
 
         private void chbBase_CheckedChanged(object sender, EventArgs e)
@@ -339,8 +338,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.Reagent[0] = int.Parse(txtReagent1.Text);
+            if(!txtReagent1.Text.Equals(""))
+                recipe.spell.Reagent[0] = int.Parse(txtReagent1.Text);
         }
 
         private void txtReagent2_TextChanged(object sender, EventArgs e)
@@ -349,8 +348,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.Reagent[1] = int.Parse(txtReagent2.Text);
+            if (!txtReagent2.Text.Equals(""))
+                recipe.spell.Reagent[1] = int.Parse(txtReagent2.Text);
         }
 
         private void txtReagent3_TextChanged(object sender, EventArgs e)
@@ -359,8 +358,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.Reagent[2] = int.Parse(txtReagent3.Text);
+            if (!txtReagent3.Text.Equals(""))
+                recipe.spell.Reagent[2] = int.Parse(txtReagent3.Text);
         }
 
         private void txtReagent4_TextChanged(object sender, EventArgs e)
@@ -369,8 +368,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.Reagent[3] = int.Parse(txtReagent4.Text);
+            if (!txtReagent4.Text.Equals(""))
+                recipe.spell.Reagent[3] = int.Parse(txtReagent4.Text);
         }
 
         private void txtReagent5_TextChanged(object sender, EventArgs e)
@@ -379,8 +378,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.Reagent[4] = int.Parse(txtReagent5.Text);
+            if (!txtReagent5.Text.Equals(""))
+                recipe.spell.Reagent[4] = int.Parse(txtReagent5.Text);
         }
 
         private void txtReagent6_TextChanged(object sender, EventArgs e)
@@ -389,8 +388,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.Reagent[5] = int.Parse(txtReagent6.Text);
+            if (!txtReagent6.Text.Equals(""))
+                recipe.spell.Reagent[5] = int.Parse(txtReagent6.Text);
         }
 
         private void txtReagent7_TextChanged(object sender, EventArgs e)
@@ -399,8 +398,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.Reagent[6] = int.Parse(txtReagent7.Text);
+            if (!txtReagent7.Text.Equals(""))
+                recipe.spell.Reagent[6] = int.Parse(txtReagent7.Text);
         }
 
         private void txtReagent8_TextChanged(object sender, EventArgs e)
@@ -409,8 +408,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.Reagent[7] = int.Parse(txtReagent8.Text);
+            if (!txtReagent8.Text.Equals(""))
+                recipe.spell.Reagent[7] = int.Parse(txtReagent8.Text);
         }
 
         private void txtCount1_TextChanged(object sender, EventArgs e)
@@ -419,8 +418,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.ReagentCount[0] = uint.Parse(txtCount1.Text);
+            if (!txtCount1.Text.Equals(""))
+                recipe.spell.ReagentCount[0] = uint.Parse(txtCount1.Text);
         }
 
         private void txtCount2_TextChanged(object sender, EventArgs e)
@@ -429,8 +428,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.ReagentCount[1] = uint.Parse(txtCount2.Text);
+            if (!txtCount2.Text.Equals(""))
+                recipe.spell.ReagentCount[1] = uint.Parse(txtCount2.Text);
         }
 
         private void txtCount3_TextChanged(object sender, EventArgs e)
@@ -439,8 +438,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.ReagentCount[2] = uint.Parse(txtCount3.Text);
+            if (!txtCount3.Text.Equals(""))
+                recipe.spell.ReagentCount[2] = uint.Parse(txtCount3.Text);
         }
 
         private void txtCount4_TextChanged(object sender, EventArgs e)
@@ -449,8 +448,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.ReagentCount[3] = uint.Parse(txtCount4.Text);
+            if (!txtCount4.Text.Equals(""))
+                recipe.spell.ReagentCount[3] = uint.Parse(txtCount4.Text);
         }
 
         private void txtCount5_TextChanged(object sender, EventArgs e)
@@ -459,8 +458,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.ReagentCount[4] = uint.Parse(txtCount5.Text);
+            if (!txtCount5.Text.Equals(""))
+                recipe.spell.ReagentCount[4] = uint.Parse(txtCount5.Text);
         }
 
         private void txtCount6_TextChanged(object sender, EventArgs e)
@@ -469,8 +468,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.ReagentCount[5] = uint.Parse(txtCount6.Text);
+            if (!txtCount6.Text.Equals(""))
+                recipe.spell.ReagentCount[5] = uint.Parse(txtCount6.Text);
         }
 
         private void txtCount7_TextChanged(object sender, EventArgs e)
@@ -479,8 +478,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.ReagentCount[6] = uint.Parse(txtCount7.Text);
+            if (!txtCount7.Text.Equals(""))
+                recipe.spell.ReagentCount[6] = uint.Parse(txtCount7.Text);
         }
 
         private void txtCount8_TextChanged(object sender, EventArgs e)
@@ -489,8 +488,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.ReagentCount[7] = uint.Parse(txtCount8.Text);
+            if (!txtCount8.Text.Equals(""))
+                recipe.spell.ReagentCount[7] = uint.Parse(txtCount8.Text);
         }
 
         private void txtTool1_TextChanged(object sender, EventArgs e)
@@ -499,8 +498,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.Totem[0] = uint.Parse(txtTool1.Text);
+            if (!txtTool1.Text.Equals(""))
+                recipe.spell.Totem[0] = uint.Parse(txtTool1.Text);
         }
 
         private void txtTool2_TextChanged(object sender, EventArgs e)
@@ -509,8 +508,8 @@ namespace World_Editor.ProfessionEditor
                 return;
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
-
-            recipe.spell.Totem[1] = uint.Parse(txtTool2.Text);
+            if (!txtTool2.Text.Equals(""))
+                recipe.spell.Totem[1] = uint.Parse(txtTool2.Text);
         }
 
         private void btnNewRecipe_Click(object sender, EventArgs e)
@@ -725,6 +724,60 @@ namespace World_Editor.ProfessionEditor
                 Editors.ProfessionEditor.Icons d = Editors.ProfessionEditor.Icons.m_professionIconsEditor;
                 d.BringToFront();
             }*/
+        }
+
+        private void btnSearchRecipe1_Click(object sender, EventArgs e)
+        {
+            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent1);
+            s.Show(this);
+        }
+
+        private void btnSearchRecipe2_Click(object sender, EventArgs e)
+        {
+            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent2);
+            s.Show(this);
+        }
+
+        private void btnSearchRecipe3_Click(object sender, EventArgs e)
+        {
+            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent3);
+            s.Show(this);
+        }
+
+        private void btnSearchRecipe4_Click(object sender, EventArgs e)
+        {
+            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent4);
+            s.Show(this);
+        }
+
+        private void btnSearchRecipe5_Click(object sender, EventArgs e)
+        {
+            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent5);
+            s.Show(this);
+        }
+
+        private void btnSearchRecipe6_Click(object sender, EventArgs e)
+        {
+            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent6);
+            s.Show(this);
+        }
+
+        private void btnSearchRecipe7_Click(object sender, EventArgs e)
+        {
+            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent7);
+            s.Show(this);
+        }
+
+        private void btnSearchRecipe8_Click(object sender, EventArgs e)
+        {
+            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent8);
+            s.Show(this);
+        }
+
+        private void btnSearchResultRecipe_Click(object sender, EventArgs e)
+        {
+            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtRecipeResult);
+            s.Show(this);
         }
     }
 }
