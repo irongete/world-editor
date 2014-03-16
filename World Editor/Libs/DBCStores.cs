@@ -145,8 +145,8 @@ namespace World_Editor.DBC
         //public static DBCFile<MovieFileDataEntry> MovieFileData { get; private set; }
         //public static DBCFile<MovieVariationEntry> MovieVariation { get; private set; }
         //public static DBCFile<NameGenEntry> NameGen { get; private set; }
-        //public static DBCFile<NamesProfanityEntry> NamesProfanity { get; private set; }
-        //public static DBCFile<NamesReservedEntry> NamesReserved { get; private set; }
+        public static DBCFile<NamesProfanityEntry> NamesProfanity { get; private set; }
+        public static DBCFile<NamesReservedEntry> NamesReserved { get; private set; }
         //public static DBCFile<NPCSoundsEntry> NPCSounds { get; private set; }
         //public static DBCFile<ObjectEffectEntry> ObjectEffect { get; private set; }
         //public static DBCFile<ObjectEffectGroupEntry> ObjectEffectGroup { get; private set; }

@@ -349,5 +349,13 @@ namespace World_Editor
             d.Show();
             d.BringToFront();
         }
+
+        private void toolNamesReservedEditor_Click(object sender, EventArgs e)
+        {
+            NamesReservedEditor.MainForm d = NamesReservedEditor.MainForm.GetChildInstance();
+            d.MdiParent = this;
+            d.Show();
+            d.BringToFront();
+        }
     }
 }

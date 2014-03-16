@@ -22,15 +22,15 @@ namespace World_Editor.DBC
         public static void SaveProfessionEditorFiles()
         {
             Spell.SaveDBC();
-            Console.WriteLine("Spell.dbc : ok");
+            //Console.WriteLine("Spell.dbc : ok");
             SkillLine.SaveDBC();
-            Console.WriteLine("SkillLine.dbc : ok");
+            //Console.WriteLine("SkillLine.dbc : ok");
             SkillLineAbility.SaveDBC();
-            Console.WriteLine("SkillLineAbility.dbc : ok");
+            //Console.WriteLine("SkillLineAbility.dbc : ok");
             SkillRaceClassInfo.SaveDBC();
-            Console.WriteLine("SkillRaceClassInfo.dbc : ok");
+            //Console.WriteLine("SkillRaceClassInfo.dbc : ok");
             SpellFocusObject.SaveDBC();
-            Console.WriteLine("SpellFocusObject.dbc : ok");
+            //Console.WriteLine("SpellFocusObject.dbc : ok");
         }
 
         public static void SaveTalentsEditorFiles()

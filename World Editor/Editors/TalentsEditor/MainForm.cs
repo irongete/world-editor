@@ -155,6 +155,7 @@ namespace World_Editor.TalentsEditor
         {
             foreach (TalentEntry t in listTalents.Items)
             {
+                //Appui sur la croix de suppression du talent
                 if ((e.X > 37 + 35 + 64 * t.Col) && (e.X < 47 + 35 + 64 * t.Col) &&
                     (e.Y > 16 + 60 * t.Row) && (e.Y < 25 + 60 * t.Row))
                 {
@@ -285,7 +286,7 @@ namespace World_Editor.TalentsEditor
             try
             {
                 DBCStores.SaveTalentsEditorFiles();
-                MessageBox.Show("Sauvegarde terminée !");
+                MessageBox.Show("Sauvegarde terminée !", "Réussite", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

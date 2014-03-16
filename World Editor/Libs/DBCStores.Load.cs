@@ -12,6 +12,12 @@ namespace World_Editor.DBC
             CharTitles.LoadData();
         }
 
+        public static void LoadNamesReservedFiles()
+        {
+            NamesProfanity.LoadData();
+            NamesReserved.LoadData();
+        }
+
         public static void LoadProfessionEditorFiles()
         {
             Spell.LoadData();

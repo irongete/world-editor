@@ -17,7 +17,7 @@ namespace World_Editor.ProfessionEditor
         public static MainForm m_professionEditor;
         List<String> rangsDeMetiers = new List<string> 
         {
-            "Aprenti",
+            "Apprenti",
             "Compagnon",
             "Expert",
             "Artisan",
@@ -191,7 +191,15 @@ namespace World_Editor.ProfessionEditor
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DBCStores.SaveProfessionEditorFiles();
+            try
+            {
+                DBCStores.SaveProfessionEditorFiles();
+                MessageBox.Show("Sauvegarde terminée !", "Réussite", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la sauvegarde : " + ex.Message);
+            }
         }
 
         #region recettes

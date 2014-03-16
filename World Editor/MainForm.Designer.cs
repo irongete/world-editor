@@ -42,6 +42,7 @@
             this.menuProfessionsEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPOIsEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuRacesEditor = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuGameTipsEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTitlesEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.générerUnItemdbcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,11 +59,11 @@
             this.toolPOIsEditor = new System.Windows.Forms.ToolStripButton();
             this.toolRacesEditor = new System.Windows.Forms.ToolStripButton();
             this.toolTitlesEditor = new System.Windows.Forms.ToolStripButton();
+            this.toolGameTipsEditor = new System.Windows.Forms.ToolStripButton();
+            this.toolNamesReservedEditor = new System.Windows.Forms.ToolStripButton();
             this.btnValidateProject = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.listProjects = new System.Windows.Forms.ComboBox();
-            this.toolGameTipsEditor = new System.Windows.Forms.ToolStripButton();
-            this.menuGameTipsEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.topMenu.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -189,6 +190,13 @@
             this.menuRacesEditor.Text = "Editeur de races";
             this.menuRacesEditor.Click += new System.EventHandler(this.menuRacesEditor_Click);
             // 
+            // menuGameTipsEditor
+            // 
+            this.menuGameTipsEditor.Name = "menuGameTipsEditor";
+            this.menuGameTipsEditor.Size = new System.Drawing.Size(215, 22);
+            this.menuGameTipsEditor.Text = "Editeur de tips";
+            this.menuGameTipsEditor.Click += new System.EventHandler(this.menuGameTipsEditor_Click);
+            // 
             // menuTitlesEditor
             // 
             this.menuTitlesEditor.Image = global::World_Editor.Properties.Resources.icon_titles;
@@ -244,7 +252,8 @@
             this.toolPOIsEditor,
             this.toolRacesEditor,
             this.toolTitlesEditor,
-            this.toolGameTipsEditor});
+            this.toolGameTipsEditor,
+            this.toolNamesReservedEditor});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(1008, 25);
@@ -341,6 +350,26 @@
             this.toolTitlesEditor.ToolTipText = "Editeur de titres";
             this.toolTitlesEditor.Click += new System.EventHandler(this.menuTitlesEditor_Click);
             // 
+            // toolGameTipsEditor
+            // 
+            this.toolGameTipsEditor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolGameTipsEditor.Image = ((System.Drawing.Image)(resources.GetObject("toolGameTipsEditor.Image")));
+            this.toolGameTipsEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolGameTipsEditor.Name = "toolGameTipsEditor";
+            this.toolGameTipsEditor.Size = new System.Drawing.Size(23, 22);
+            this.toolGameTipsEditor.Text = "Editeur de GameTips";
+            this.toolGameTipsEditor.Click += new System.EventHandler(this.menuGameTipsEditor_Click);
+            // 
+            // toolNamesReservedEditor
+            // 
+            this.toolNamesReservedEditor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolNamesReservedEditor.Image = ((System.Drawing.Image)(resources.GetObject("toolNamesReservedEditor.Image")));
+            this.toolNamesReservedEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolNamesReservedEditor.Name = "toolNamesReservedEditor";
+            this.toolNamesReservedEditor.Size = new System.Drawing.Size(23, 22);
+            this.toolNamesReservedEditor.Text = "toolStripButton1";
+            this.toolNamesReservedEditor.Click += new System.EventHandler(this.toolNamesReservedEditor_Click);
+            // 
             // btnValidateProject
             // 
             this.btnValidateProject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -371,23 +400,6 @@
             this.listProjects.Name = "listProjects";
             this.listProjects.Size = new System.Drawing.Size(180, 21);
             this.listProjects.TabIndex = 18;
-            // 
-            // toolGameTipsEditor
-            // 
-            this.toolGameTipsEditor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolGameTipsEditor.Image = ((System.Drawing.Image)(resources.GetObject("toolGameTipsEditor.Image")));
-            this.toolGameTipsEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolGameTipsEditor.Name = "toolGameTipsEditor";
-            this.toolGameTipsEditor.Size = new System.Drawing.Size(23, 22);
-            this.toolGameTipsEditor.Text = "Editeur de GameTips";
-            this.toolGameTipsEditor.Click += new System.EventHandler(this.menuGameTipsEditor_Click);
-            // 
-            // menuGameTipsEditor
-            // 
-            this.menuGameTipsEditor.Name = "menuGameTipsEditor";
-            this.menuGameTipsEditor.Size = new System.Drawing.Size(215, 22);
-            this.menuGameTipsEditor.Text = "Editeur de tips";
-            this.menuGameTipsEditor.Click += new System.EventHandler(this.menuGameTipsEditor_Click);
             // 
             // MainForm
             // 
@@ -452,6 +464,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuUseDB;
         private System.Windows.Forms.ToolStripMenuItem menuGameTipsEditor;
         private System.Windows.Forms.ToolStripButton toolGameTipsEditor;
+        private System.Windows.Forms.ToolStripButton toolNamesReservedEditor;
     }
 }
 
