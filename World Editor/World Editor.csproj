@@ -99,6 +99,11 @@
     <Compile Include="Editors\AchievementsEditor\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\GameTipsEditor\GameTipsEditorLocal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GameTipsEditorLocal.resx</DependentUpon>
+    </Compile>
     <Compile Include="Editors\GameTipsEditor\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +290,10 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\GameTipsEditor\GameTipsEditorLocal.fr.resx" />
+    <EmbeddedResource Include="Editors\GameTipsEditor\GameTipsEditorLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GameTipsEditorLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editors\GameTipsEditor\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

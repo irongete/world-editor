@@ -41,14 +41,14 @@
             this.btnWowFolder = new System.Windows.Forms.Button();
             this.btnExtractDbc = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtDbPassword = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtDbUser = new System.Windows.Forms.TextBox();
-            this.txtDbDatabase = new System.Windows.Forms.TextBox();
             this.txtDbHost = new System.Windows.Forms.TextBox();
+            this.txtDbDatabase = new System.Windows.Forms.TextBox();
+            this.txtDbUser = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtDbPassword = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnTestDatabase = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.listCores = new System.Windows.Forms.ComboBox();
@@ -86,7 +86,7 @@
             this.btnAdd.Location = new System.Drawing.Point(284, 12);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(21, 21);
-            this.btnAdd.TabIndex = 3;
+            this.btnAdd.TabIndex = 13;
             this.btnAdd.Text = "+";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -96,7 +96,7 @@
             this.btnRemove.Location = new System.Drawing.Point(312, 12);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(21, 21);
-            this.btnRemove.TabIndex = 5;
+            this.btnRemove.TabIndex = 14;
             this.btnRemove.Text = "-";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -124,7 +124,7 @@
             this.btnBrowse.Location = new System.Drawing.Point(269, 81);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(65, 22);
-            this.btnBrowse.TabIndex = 8;
+            this.btnBrowse.TabIndex = 3;
             this.btnBrowse.Text = "Parcourir";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
@@ -134,7 +134,7 @@
             this.txtWowFolder.Location = new System.Drawing.Point(15, 132);
             this.txtWowFolder.Name = "txtWowFolder";
             this.txtWowFolder.Size = new System.Drawing.Size(248, 20);
-            this.txtWowFolder.TabIndex = 9;
+            this.txtWowFolder.TabIndex = 4;
             this.txtWowFolder.TextChanged += new System.EventHandler(this.txtWowFolder_TextChanged);
             // 
             // label3
@@ -151,7 +151,7 @@
             this.btnWowFolder.Location = new System.Drawing.Point(269, 130);
             this.btnWowFolder.Name = "btnWowFolder";
             this.btnWowFolder.Size = new System.Drawing.Size(64, 22);
-            this.btnWowFolder.TabIndex = 11;
+            this.btnWowFolder.TabIndex = 5;
             this.btnWowFolder.Text = "Parcourir";
             this.btnWowFolder.UseVisualStyleBackColor = true;
             this.btnWowFolder.Click += new System.EventHandler(this.btnWowFolder_Click);
@@ -161,7 +161,7 @@
             this.btnExtractDbc.Location = new System.Drawing.Point(60, 323);
             this.btnExtractDbc.Name = "btnExtractDbc";
             this.btnExtractDbc.Size = new System.Drawing.Size(105, 22);
-            this.btnExtractDbc.TabIndex = 12;
+            this.btnExtractDbc.TabIndex = 13;
             this.btnExtractDbc.Text = "Extraire les DBCs";
             this.btnExtractDbc.UseVisualStyleBackColor = true;
             this.btnExtractDbc.Click += new System.EventHandler(this.btnExtractDbc_Click);
@@ -179,44 +179,33 @@
             this.groupBox1.Location = new System.Drawing.Point(16, 190);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(318, 127);
-            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Base de données";
             // 
-            // label4
+            // txtDbHost
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Host";
+            this.txtDbHost.Location = new System.Drawing.Point(65, 19);
+            this.txtDbHost.Name = "txtDbHost";
+            this.txtDbHost.Size = new System.Drawing.Size(247, 20);
+            this.txtDbHost.TabIndex = 8;
+            this.txtDbHost.TextChanged += new System.EventHandler(this.txtDbHost_TextChanged);
             // 
-            // txtDbPassword
+            // txtDbDatabase
             // 
-            this.txtDbPassword.Location = new System.Drawing.Point(65, 97);
-            this.txtDbPassword.Name = "txtDbPassword";
-            this.txtDbPassword.Size = new System.Drawing.Size(247, 20);
-            this.txtDbPassword.TabIndex = 1;
-            this.txtDbPassword.TextChanged += new System.EventHandler(this.txtDbPassword_TextChanged);
+            this.txtDbDatabase.Location = new System.Drawing.Point(65, 45);
+            this.txtDbDatabase.Name = "txtDbDatabase";
+            this.txtDbDatabase.Size = new System.Drawing.Size(247, 20);
+            this.txtDbDatabase.TabIndex = 9;
+            this.txtDbDatabase.TextChanged += new System.EventHandler(this.txtDbDatabase_TextChanged);
             // 
-            // label5
+            // txtDbUser
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 49);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Database";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 74);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "User";
+            this.txtDbUser.Location = new System.Drawing.Point(65, 71);
+            this.txtDbUser.Name = "txtDbUser";
+            this.txtDbUser.Size = new System.Drawing.Size(247, 20);
+            this.txtDbUser.TabIndex = 10;
+            this.txtDbUser.TextChanged += new System.EventHandler(this.txtDbUser_TextChanged);
             // 
             // label7
             // 
@@ -227,36 +216,48 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "Password";
             // 
-            // txtDbUser
+            // label6
             // 
-            this.txtDbUser.Location = new System.Drawing.Point(65, 71);
-            this.txtDbUser.Name = "txtDbUser";
-            this.txtDbUser.Size = new System.Drawing.Size(247, 20);
-            this.txtDbUser.TabIndex = 5;
-            this.txtDbUser.TextChanged += new System.EventHandler(this.txtDbUser_TextChanged);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 74);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "User";
             // 
-            // txtDbDatabase
+            // label5
             // 
-            this.txtDbDatabase.Location = new System.Drawing.Point(65, 45);
-            this.txtDbDatabase.Name = "txtDbDatabase";
-            this.txtDbDatabase.Size = new System.Drawing.Size(247, 20);
-            this.txtDbDatabase.TabIndex = 6;
-            this.txtDbDatabase.TextChanged += new System.EventHandler(this.txtDbDatabase_TextChanged);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 49);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Database";
             // 
-            // txtDbHost
+            // txtDbPassword
             // 
-            this.txtDbHost.Location = new System.Drawing.Point(65, 19);
-            this.txtDbHost.Name = "txtDbHost";
-            this.txtDbHost.Size = new System.Drawing.Size(247, 20);
-            this.txtDbHost.TabIndex = 7;
-            this.txtDbHost.TextChanged += new System.EventHandler(this.txtDbHost_TextChanged);
+            this.txtDbPassword.Location = new System.Drawing.Point(65, 97);
+            this.txtDbPassword.Name = "txtDbPassword";
+            this.txtDbPassword.Size = new System.Drawing.Size(247, 20);
+            this.txtDbPassword.TabIndex = 11;
+            this.txtDbPassword.UseSystemPasswordChar = true;
+            this.txtDbPassword.TextChanged += new System.EventHandler(this.txtDbPassword_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Host";
             // 
             // btnTestDatabase
             // 
             this.btnTestDatabase.Location = new System.Drawing.Point(171, 323);
             this.btnTestDatabase.Name = "btnTestDatabase";
             this.btnTestDatabase.Size = new System.Drawing.Size(105, 22);
-            this.btnTestDatabase.TabIndex = 14;
+            this.btnTestDatabase.TabIndex = 12;
             this.btnTestDatabase.Text = "Tester BDD";
             this.btnTestDatabase.UseVisualStyleBackColor = true;
             this.btnTestDatabase.Click += new System.EventHandler(this.btnTestDatabase_Click);
@@ -281,7 +282,7 @@
             this.listCores.Location = new System.Drawing.Point(73, 163);
             this.listCores.Name = "listCores";
             this.listCores.Size = new System.Drawing.Size(260, 21);
-            this.listCores.TabIndex = 15;
+            this.listCores.TabIndex = 6;
             this.listCores.SelectedIndexChanged += new System.EventHandler(this.listCores_SelectedIndexChanged);
             // 
             // MainForm

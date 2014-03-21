@@ -41,13 +41,24 @@ namespace World_Editor.NamesReservedEditor
                 this.Close();
             }
 
+            lstNamesReserved.Items.Clear();
+            lstNicknamesReserved.Items.Clear();
             foreach (NamesReservedEntry entry in DBC.DBCStores.NamesReserved.Records)
-            {
                 lstNamesReserved.Items.Add(entry);
-            }
-            lstNamesReserved.Sorted = true;
 
-            lstNamesReserved.SelectedIndex = lstNamesReserved.Items.Count - 1;
+            foreach (NamesProfanityEntry entry in DBC.DBCStores.NamesProfanity.Records)
+                lstNicknamesReserved.Items.Add(entry);
+
+            lstNamesReserved.Sorted = true;
+            lstNicknamesReserved.Sorted = true;
+
+            lstNamesReserved.SelectedIndex = 0;
+            lstNicknamesReserved.SelectedIndex = 0;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            m_namesReservedEditor = null;
         }
     }
 }

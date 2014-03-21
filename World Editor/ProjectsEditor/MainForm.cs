@@ -486,18 +486,17 @@ namespace World_Editor.ProjectsEditor
 
         private void btnTestDatabase_Click(object sender, EventArgs e)
         {
-            MySqlConnector conn = new Database.MySqlConnector(txtDbHost.Text,
-                            txtDbDatabase.Text, txtDbUser.Text, txtDbPassword.Text, null);
             try
             {
-                conn.Connect();
+                MySqlConnector conn = new Database.MySqlConnector(txtDbHost.Text,
+                                txtDbDatabase.Text, txtDbUser.Text, txtDbPassword.Text, null);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur de connexion : " + ex.Message);
+                MessageBox.Show("Erreur de connexion : " + ex.Message, "Echec de connexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            MessageBox.Show("Connexion établie.");
+            MessageBox.Show("Connexion établie.", "Connexion réussie", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 

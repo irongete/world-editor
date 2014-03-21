@@ -367,7 +367,7 @@
             this.toolNamesReservedEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolNamesReservedEditor.Name = "toolNamesReservedEditor";
             this.toolNamesReservedEditor.Size = new System.Drawing.Size(23, 22);
-            this.toolNamesReservedEditor.Text = "toolStripButton1";
+            this.toolNamesReservedEditor.Text = "Editeur de noms réservés";
             this.toolNamesReservedEditor.Click += new System.EventHandler(this.toolNamesReservedEditor_Click);
             // 
             // btnValidateProject

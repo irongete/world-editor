@@ -398,8 +398,8 @@ namespace World_Editor.DBC
             //MovieFileData = new DBCFile<MovieFileDataEntry>(dbcFolder + "MovieFileData.dbc");
             //MovieVariation = new DBCFile<MovieVariationEntry>(dbcFolder + "MovieVariation.dbc");
             //NameGen = new DBCFile<NameGenEntry>(dbcFolder + "NameGen.dbc");
-            //NamesProfanity = new DBCFile<NamesProfanityEntry>(dbcFolder + "NamesProfanity.dbc");
-            //NamesReserved = new DBCFile<NamesReservedEntry>(dbcFolder + "NamesReserved.dbc");
+            NamesProfanity = new DBCFile<NamesProfanityEntry>(dbcFolder + "NamesProfanity.dbc");
+            NamesReserved = new DBCFile<NamesReservedEntry>(dbcFolder + "NamesReserved.dbc");
             //NPCSounds = new DBCFile<NPCSoundsEntry>(dbcFolder + "NPCSounds.dbc");
             //ObjectEffect = new DBCFile<ObjectEffectEntry>(dbcFolder + "ObjectEffect.dbc");
             //ObjectEffectGroup = new DBCFile<ObjectEffectGroupEntry>(dbcFolder + "ObjectEffectGroup.dbc");
