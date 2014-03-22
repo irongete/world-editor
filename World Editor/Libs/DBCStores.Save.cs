@@ -76,5 +76,11 @@ namespace World_Editor.DBC
         {
             GameTips.SaveDBC();
         }
+
+        public static void SaveNamesReservedEditorFiles()
+        {
+            NamesReserved.SaveDBC();
+            NamesProfanity.SaveDBC();
+        }
     }
 }
