@@ -1161,7 +1161,14 @@ namespace DBCLib.Structures335
 
     public class NamesProfanityEntry
     {
+        public uint Id;                             // 0
+        public String Name;                         // 2-18
+        public uint LanguageId;                     // 19-35
 
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     public class NamesReservedEntry

@@ -276,7 +276,8 @@ namespace World_Editor
                    RacesEditor.MainForm.m_racesEditor == null &&
                    ClassesEditor.MainForm.m_classesEditor == null &&
                    POIsEditor.MainForm.m_poisEditor == null &&
-                   MapsEditor.MainForm.m_mapsEditor == null;
+                   MapsEditor.MainForm.m_mapsEditor == null &&
+                   NamesReservedEditor.MainForm.m_namesReservedEditor == null;
         }
 
         /// <summary>
@@ -308,6 +309,7 @@ namespace World_Editor
             toolPOIsEditor.Enabled = value;
             toolMapsEditor.Enabled = value;
             toolGameTipsEditor.Enabled = value;
+            toolNamesReservedEditor.Enabled = value;
 
             générerUnItemdbcToolStripMenuItem.Enabled = value;
 
