@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using World_Editor.Database;
 using World_Editor.Database.Emulators;
 using World_Editor.DBC;
+using World_Editor.Model;
 using World_Editor.ProjectsEditor;
 
 namespace World_Editor
@@ -17,8 +18,8 @@ namespace World_Editor
     public partial class MainForm : Form
     {
         private readonly ProjectSettings _projConf = new ProjectSettings();
-        private List<Project> _projects = new List<Project>();
-        private Project _lastproject;
+        private List<ProjectModel> _projects = new List<ProjectModel>();
+        private ProjectModel _lastproject;
 
         public delegate void FinChargement();
 
@@ -41,7 +42,7 @@ namespace World_Editor
 
                 _projects = _projConf.Projects;
 
-                foreach (Project p in _projects)
+                foreach (ProjectModel p in _projects)
                 {
                     listProjects.Items.Add(p); 
 
@@ -58,8 +59,8 @@ namespace World_Editor
         {
             if (btnValidateProject.Text == "Valider")
             {
-                Project selectedProject = null;
-                foreach (Project p in _projects)
+                ProjectModel selectedProject = null;
+                foreach (ProjectModel p in _projects)
                 {
                     p.IsLast = false;
 
@@ -134,14 +135,14 @@ namespace World_Editor
         {
             ProjectsEditor.MainForm d = new ProjectsEditor.MainForm();
             d.ShowDialog();
-            _projConf.Projects = d.Projects;
+            _projConf.Projects = d.GetProjectModels();
             _projConf.Save();
 
             listProjects.Items.Clear();
             _projects = _projConf.Projects;
 
 
-            foreach (Project p in _projects)
+            foreach (ProjectModel p in _projects)
             {
                 listProjects.Items.Add(p);
 
