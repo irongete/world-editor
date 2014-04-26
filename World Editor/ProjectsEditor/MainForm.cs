@@ -326,8 +326,7 @@ namespace World_Editor.ProjectsEditor
                 return;
             }
 
-            ProjectManager.WowDirectory = txtWowFolder.Text;
-            MPQArchiveLoader.Instance.Init();
+            MPQArchiveLoader.Instance.Init(txtWowFolder.Text);
             Directory.CreateDirectory(txtProjectPath.Text + "\\dbc");
             if (Directory.GetFiles(txtProjectPath.Text + "\\dbc").Any())
             {
@@ -356,7 +355,7 @@ namespace World_Editor.ProjectsEditor
             ProjectModel project = GetSelectedProject();
             if (project != null)
             {
-                project.Core = listCores.SelectedIndex + 1;
+                project.Core = (ProjectModel.CoreType)(listCores.SelectedIndex + 1);
             }
         }
 
@@ -450,9 +449,9 @@ namespace World_Editor.ProjectsEditor
             txtWowFolder.Text = project.WowDir;
             try
             {
-                if (listCores.Items.Count > project.Core)
+                if (listCores.Items.Count >= (int) project.Core)
                 {
-                    listCores.SelectedIndex = project.Core - 1;
+                    listCores.SelectedIndex = (int) project.Core - 1;
                 }
             }
             catch (ArgumentOutOfRangeException)

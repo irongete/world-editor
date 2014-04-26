@@ -25,7 +25,7 @@ namespace World_Editor.Editors.ProfessionEditor
             if (txtItemId.Text != "")
             {
                 List<String> Items = new List<string>();
-                Items = ProjectManager.Connection.GetItemById(txtItemId.Text);
+                Items = ProjectManager.SelectedProject.GetMysqlConnector().GetItemById(txtItemId.Text);
                 lstComponents.DataSource = Items;
             }
         }
@@ -33,7 +33,7 @@ namespace World_Editor.Editors.ProfessionEditor
         private void txtSearchComponents_TextChanged(object sender, EventArgs e)
         {
             List<String> Items = new List<string>();
-            Items = ProjectManager.Connection.GetItemByName(txtSearchComponents.Text);
+            Items = ProjectManager.SelectedProject.GetMysqlConnector().GetItemByName(txtSearchComponents.Text);
             lstComponents.DataSource = Items;
         }
 
@@ -53,7 +53,7 @@ namespace World_Editor.Editors.ProfessionEditor
         private void txtComponentID_TextChanged(object sender, EventArgs e)
         {
             List<String> Items = new List<string>();
-            Items = ProjectManager.Connection.GetItemById(txtItemId.Text);
+            Items = ProjectManager.SelectedProject.GetMysqlConnector().GetItemById(txtItemId.Text);
             lstComponents.DataSource = Items;
         }
     }

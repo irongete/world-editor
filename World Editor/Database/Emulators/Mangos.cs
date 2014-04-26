@@ -5,7 +5,7 @@ using System.Text;
 
 namespace World_Editor.Database.Emulators
 {
-    public class Mangos : Core
+    public class Mangos : ICore
     {
         public string GetCreatureTemplate(uint entry)
         {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace World_Editor.Database.Emulators
 {
-    public class Trinity : Core
+    public class Trinity : ICore
     {
         public string GetCreatureTemplate(uint entry)
         {

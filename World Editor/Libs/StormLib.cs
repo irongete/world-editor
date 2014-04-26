@@ -48,9 +48,8 @@ namespace World_Editor.Stormlib
 
         public Locales Locale { get; private set; }
 
-        public bool Init()
+        public bool Init(string basePath)
         {
-            string basePath = ProjectManager.WowDirectory;
             basePath += "\\data";
             LoadArchivesFromDir(basePath);
 
@@ -70,6 +69,11 @@ namespace World_Editor.Stormlib
             LoadArchivesFromDir(basePath);
 
             return true;
+        }
+
+        public bool Init()
+        {
+            return Init(ProjectManager.SelectedProject.WowDir);
         }
 
         private void LoadArchive(List<string> listFiles)

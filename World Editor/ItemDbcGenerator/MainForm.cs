@@ -58,7 +58,7 @@ namespace World_Editor.ItemDbcGenerator
             // TODO : Rendre asynchrone le génération
             try
             {
-                ItemTemplate[] items = checkAll.Checked ? ProjectManager.Connection.GetItemTemplate() : ProjectManager.Connection.GetItemTemplate(Misc.ParseToUInt(txtFrom.Text), Misc.ParseToUInt(txtTo.Text));
+                ItemTemplate[] items = checkAll.Checked ? ProjectManager.SelectedProject.GetMysqlConnector().GetItemTemplate() : ProjectManager.SelectedProject.GetMysqlConnector().GetItemTemplate(Misc.ParseToUInt(txtFrom.Text), Misc.ParseToUInt(txtTo.Text));
 
                 // Si on veut créer un nouveau fichier, on commence par supprimer toutes les entrées.
                 if (radioNew.Checked)

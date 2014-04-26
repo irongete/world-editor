@@ -73,9 +73,7 @@ namespace World_Editor
                 if (selectedProject != null)
                 {
                     selectedProject.IsLast = true;
-                    ProjectManager.ProjectName = selectedProject.Name;
-                    ProjectManager.ProjectDirectory = selectedProject.Path;
-                    ProjectManager.WowDirectory = selectedProject.WowDir;
+                    ProjectManager.SelectedProject = selectedProject;
                 }
 
                 _projConf.Projects = _projects;
@@ -85,24 +83,7 @@ namespace World_Editor
                 {
                     if (Properties.Settings.Default.OptionUseDatabase)
                     {
-                        Core c;
-                        switch (selectedProject.Core)
-                        {
-                            case 1:
-                                c = new Arcemu();
-                                break;
-                            case 2:
-                                c = new Mangos();
-                                break;
-                            case 3:
-                                c = new Trinity();
-                                break;
-                            default:
-                                throw new Exception("No Core defined");
-                        }
-
-                        ProjectManager.Connection = new MySqlConnector(selectedProject.Host,
-                            selectedProject.Database, selectedProject.User, selectedProject.Password, c);
+                        ProjectManager.SelectedProject.GetMysqlConnector();
                     }
 
                     DBCStores.InitFiles();

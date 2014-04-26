@@ -86,7 +86,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\Core.cs" />
+    <Compile Include="Database\ICore.cs" />
     <Compile Include="Database\Emulators\Arcemu.cs" />
     <Compile Include="Database\Emulators\Mangos.cs" />
     <Compile Include="Database\Emulators\Trinity.cs" />

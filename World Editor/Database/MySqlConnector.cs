@@ -11,9 +11,9 @@ namespace World_Editor.Database
     {
         private string ConnectionStr;
         private MySqlConnection Connection;
-        private Core Core;
+        private ICore Core;
 
-        public MySqlConnector(string host, string database, string user, string password, Core c)
+        public MySqlConnector(string host, string database, string user, string password, ICore c)
         {
             this.ConnectionStr = "SERVER=" + host + ";DATABASE=" + database + ";UID=" + user + ";PASSWORD=" + password + ";";
             this.Core = c;
