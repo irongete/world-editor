@@ -10,24 +10,16 @@ using System.Text;
 using System.Windows.Forms;
 using DBCLib.Structures335;
 using World_Editor.DBC;
+using World_Editor.Editors;
 
 namespace World_Editor.TitlesEditor
 {
-    public partial class MainForm : Form
+    public partial class MainForm : EditorForm
     {
         ResourceManager Loc = new ResourceManager("World_Editor.Editors.TitlesEditor.TitlesEditorLocal", System.Reflection.Assembly.GetExecutingAssembly());
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        public static TitlesEditor.MainForm m_titlesEditor;
-        public static TitlesEditor.MainForm GetChildInstance()
-        {
-            if (m_titlesEditor == null)
-                m_titlesEditor = new MainForm();
-
-            return m_titlesEditor;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -39,7 +31,7 @@ namespace World_Editor.TitlesEditor
             catch (Exception)
             {
                 MessageBox.Show(Loc.GetString("LoadDbcError"));
-                this.Close();
+                this.Hide();
             }
 
             listTitles.Items.Clear();
@@ -137,11 +129,6 @@ namespace World_Editor.TitlesEditor
 
             DBCStores.CharTitles.ReplaceEntry(t.Id, t);
             listTitles.Items[listTitles.SelectedIndex] = t;
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            m_titlesEditor = null;
         }
     }
 }

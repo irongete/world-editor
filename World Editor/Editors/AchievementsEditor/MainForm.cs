@@ -9,12 +9,13 @@ using System.Windows.Forms;
 using World_Editor.DBC;
 using DBCLib.Structures335;
 using System.Text.RegularExpressions;
+using World_Editor.Editors;
 using World_Editor.Editors.AchievementsEditor;
 using MDS.cBlp2;
 
 namespace World_Editor.AchievementsEditor
 {
-    public partial class MainForm : Form
+    public partial class MainForm : EditorForm
     {
         private Graphics g;
         private Dictionary<string, Bitmap> images = new Dictionary<string, Bitmap>();
@@ -63,15 +64,6 @@ namespace World_Editor.AchievementsEditor
         {
             InitializeComponent();
             this.g = panelRenderAchievement.CreateGraphics();
-        }
-
-        public static AchievementsEditor.MainForm m_achievementsEditor;
-        public static AchievementsEditor.MainForm GetChildInstance()
-        {
-            if (m_achievementsEditor == null)
-                m_achievementsEditor = new MainForm();
-
-            return m_achievementsEditor;
         }
 
         public void LoadSubCat(int id = -1)
@@ -246,10 +238,6 @@ namespace World_Editor.AchievementsEditor
             }
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            m_achievementsEditor = null;
-        }
 
         private void btnReconstructTree_Click(object sender, EventArgs e)
         {
@@ -779,5 +767,6 @@ namespace World_Editor.AchievementsEditor
                 txtIcon.Text = d.choosenIcon.ToString();
         }
         #endregion
+
     }
 }

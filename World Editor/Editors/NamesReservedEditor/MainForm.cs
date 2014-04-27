@@ -9,24 +9,16 @@ using System.Resources;
 using System.Text;
 using System.Windows.Forms;
 using World_Editor.DBC;
+using World_Editor.Editors;
 
 namespace World_Editor.NamesReservedEditor
 {
-    public partial class MainForm : Form
+    public partial class MainForm : EditorForm
     {
         ResourceManager Loc = new ResourceManager("World_Editor.Editors.NamesReservedEditor.NamesReservedEditorLocal", System.Reflection.Assembly.GetExecutingAssembly());
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        public static NamesReservedEditor.MainForm m_namesReservedEditor;
-        public static NamesReservedEditor.MainForm GetChildInstance()
-        {
-            if (m_namesReservedEditor == null)
-                m_namesReservedEditor = new MainForm();
-
-            return m_namesReservedEditor;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -38,7 +30,7 @@ namespace World_Editor.NamesReservedEditor
             catch (Exception)
             {
                 MessageBox.Show(Loc.GetString("LoadDbcError"));
-                this.Close();
+                Hide();
             }
 
             lstNamesReserved.Items.Clear();
@@ -51,11 +43,6 @@ namespace World_Editor.NamesReservedEditor
 
             lstNamesReserved.SelectedIndex = 0;
             lstNicknamesReserved.SelectedIndex = 0;
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            m_namesReservedEditor = null;
         }
 
         private void lstNamesReserved_SelectedIndexChanged(object sender, EventArgs e)

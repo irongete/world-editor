@@ -9,11 +9,12 @@ using System.Windows.Forms;
 using DBCLib.Structures335;
 using MDS.cBlp2;
 using World_Editor.DBC;
+using World_Editor.Editors;
 using World_Editor.Stormlib;
 
 namespace World_Editor.POIsEditor
 {
-    public partial class MainForm : Form
+    public partial class MainForm : EditorForm
     {
         private const int MAX_TEXTURE_SIZE = 256;
         private const int MAX_MAP_WIDTH = 1002;
@@ -21,7 +22,6 @@ namespace World_Editor.POIsEditor
         private uint NbLayerMap { get; set; }
         private Dictionary<string, Bitmap> images = new Dictionary<string, Bitmap>();
         private Dictionary<uint, Bitmap> iconsPoi = new Dictionary<uint, Bitmap>();
-        public static MainForm m_poisEditor;
         private Graphics g;
         private bool _clickIsDown = false;
         private AreaPOIEntry _poiSelected;
@@ -491,15 +491,7 @@ namespace World_Editor.POIsEditor
             return bmpCrop;
         }
 
-        public static POIsEditor.MainForm GetChildInstance()
-        {
-            return m_poisEditor ?? (m_poisEditor = new MainForm());
-        }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            m_poisEditor = null;
-        }
         #endregion
 
         #region TxtChanged

@@ -13,19 +13,13 @@ using System.Resources;
 
 namespace World_Editor.Editors.GameTipsEditor
 {
-    public partial class MainForm : Form
+    public partial class MainForm : EditorForm
     {
         ResourceManager Loc = new ResourceManager("World_Editor.Editors.GameTipsEditor.GameTipsEditorLocal", System.Reflection.Assembly.GetExecutingAssembly());
 
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        public static MainForm GameTipsEditor;
-        public static MainForm GetChildInstance()
-        {
-            return GameTipsEditor ?? (GameTipsEditor = new MainForm());
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -48,11 +42,6 @@ namespace World_Editor.Editors.GameTipsEditor
 
             if (listGameTips.Items.Count > 0)
                 listGameTips.SelectedIndex = 0;
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            GameTipsEditor = null;
         }
 
         private void listGameTips_SelectedIndexChanged(object sender, EventArgs e)

@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using AntiBrouillard;
 using World_Editor.Database;
 using World_Editor.Database.Emulators;
 using World_Editor.DBC;
+using World_Editor.Editors;
 using World_Editor.Model;
 using World_Editor.ProjectsEditor;
 
@@ -20,6 +22,7 @@ namespace World_Editor
         private readonly ProjectSettings _projConf = new ProjectSettings();
         private List<ProjectModel> _projects = new List<ProjectModel>();
         private ProjectModel _lastproject;
+        private readonly List<EditorForm> _editorList = new List<EditorForm>();
 
         public delegate void FinChargement();
 
@@ -44,7 +47,7 @@ namespace World_Editor
 
                 foreach (ProjectModel p in _projects)
                 {
-                    listProjects.Items.Add(p); 
+                    listProjects.Items.Add(p);
 
                     if (p.IsLast)
                         _lastproject = p;
@@ -52,64 +55,77 @@ namespace World_Editor
 
                 listProjects.SelectedItem = _lastproject;
             }
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+                Log.E(ex);
+            }
         }
 
         private void btnValidateProject_Click(object sender, EventArgs e)
         {
             if (btnValidateProject.Text == "Valider")
             {
-                ProjectModel selectedProject = null;
-                foreach (ProjectModel p in _projects)
-                {
-                    p.IsLast = false;
-
-                    if (listProjects.Items[listProjects.SelectedIndex] == p)
-                    {
-                        selectedProject = p;
-                    }
-                }
-
-                if (selectedProject != null)
-                {
-                    selectedProject.IsLast = true;
-                    ProjectManager.SelectedProject = selectedProject;
-                }
-
-                _projConf.Projects = _projects;
-                _projConf.Save();
-
-                try
-                {
-                    if (Properties.Settings.Default.OptionUseDatabase)
-                    {
-                        ProjectManager.SelectedProject.GetMysqlConnector();
-                    }
-
-                    DBCStores.InitFiles();
-
-                    Stormlib.MPQArchiveLoader.Instance.Init();
-
-                    ChangeEnableEditors(true);
-                    listProjects.Enabled = false;
-                    btnValidateProject.Text = "Modifier";
-                }
-                catch (Exception ex) 
-                { 
-                    MessageBox.Show(ex.Message);
-                }
+                EnterInEditionMode();
             }
             else if (btnValidateProject.Text == "Modifier")
             {
-                if (!AllEditorsClosed())
-                {
-                    MessageBox.Show("Vous devez fermer tous les éditeurs pour pouvoir changer de projet.");
-                    return;
-                }
-                ChangeEnableEditors(false);
-                listProjects.Enabled = true;
-                btnValidateProject.Text = "Valider";
+                EnterInProjectChoiceMode();
             }
+        }
+
+        private void EnterInEditionMode()
+        {
+            ProjectModel selectedProject = null;
+            foreach (ProjectModel p in _projects)
+            {
+                p.IsLast = false;
+
+                if (listProjects.Items[listProjects.SelectedIndex] == p)
+                {
+                    selectedProject = p;
+                }
+            }
+
+            if (selectedProject != null)
+            {
+                selectedProject.IsLast = true;
+                ProjectManager.SelectedProject = selectedProject;
+            }
+
+            _projConf.Projects = _projects;
+            _projConf.Save();
+
+            try
+            {
+                if (Properties.Settings.Default.OptionUseDatabase)
+                {
+                    ProjectManager.SelectedProject.GetMysqlConnector();
+                }
+
+                DBCStores.InitFiles();
+
+                Stormlib.MPQArchiveLoader.Instance.Init();
+
+                ChangeEnableEditors(true);
+                listProjects.Enabled = false;
+                btnValidateProject.Text = "Modifier";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void EnterInProjectChoiceMode()
+        {
+            if (!AllEditorsClosed())
+            {
+                MessageBox.Show("Vous devez fermer tous les éditeurs pour pouvoir changer de projet.");
+                return;
+            }
+            ChangeEnableEditors(false);
+            listProjects.Enabled = true;
+            btnValidateProject.Text = "Valider";
         }
 
         private void menuProjectsEditor_Click(object sender, EventArgs e)
@@ -135,7 +151,10 @@ namespace World_Editor
             {
                 listProjects.SelectedItem = _lastproject;
             }
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+                Log.E(ex);
+            }
         }
 
         private void menuTalentsEditor_Click(object sender, EventArgs e)
@@ -159,27 +178,16 @@ namespace World_Editor
 
         private void TalentsEditorFilesLoaded()
         {
-            TalentsEditor.MainForm d = TalentsEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
             lblInfos.Visible = false;
             lblInfos.Text = "";
             ChangeEnableEditors(true, true);
-            d.Show();
-            d.BringToFront();
+            ShowAndBringToFrontEditor<TalentsEditor.MainForm>();
         }
 
-        private void menuFactionsEditor_Click(object sender, EventArgs e)
-        {
-            FactionsEditor.MainForm d = FactionsEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
+
 
         private void menuProfessionsEditor_Click(object sender, EventArgs e)
         {
-            ProfessionEditor.MainForm d = ProfessionEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
             lblInfos.ForeColor = Color.Red;
             lblInfos.Visible = true;
             lblInfos.Text = "Chargement en cours, cela peut prendre un certain temps.";
@@ -187,56 +195,48 @@ namespace World_Editor
             DBCStores.LoadProfessionEditorFiles();
             lblInfos.Visible = false;
             lblInfos.Text = "";
-            d.Show();
-            d.BringToFront();
+
+            ShowAndBringToFrontEditor<ProfessionEditor.MainForm>();
         }
 
-        private void menuTitlesEditor_Click(object sender, EventArgs e)
+        private void StartEditor(object sender, EventArgs e)
         {
-            TitlesEditor.MainForm d = TitlesEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
-
-        private void menuAchievementsEditor_Click(object sender, EventArgs e)
-        {
-            AchievementsEditor.MainForm d = AchievementsEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
-
-        private void menuRacesEditor_Click(object sender, EventArgs e)
-        {
-            RacesEditor.MainForm d = RacesEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
-
-        private void menuClassesEditor_Click(object sender, EventArgs e)
-        {
-            ClassesEditor.MainForm d = ClassesEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
-
-        private void menuPOIsEditor_Click(object sender, EventArgs e)
-        {
-            POIsEditor.MainForm d = POIsEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
-
-        private void menuMapsEditor_Click(object sender, EventArgs e)
-        {
-            MapsEditor.MainForm d = MapsEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
+            if (sender == menuAchievementsEditor || sender == toolAchievementsEditor)
+            {
+                ShowAndBringToFrontEditor<AchievementsEditor.MainForm>();
+            }
+            else if (sender == menuTitlesEditor || sender == toolTitlesEditor)
+            {
+                ShowAndBringToFrontEditor<TitlesEditor.MainForm>();
+            }
+            else if (sender == menuFactionsEditor || sender == toolFactionsEditor)
+            {
+                ShowAndBringToFrontEditor<FactionsEditor.MainForm>();
+            }
+            else if (sender == menuGameTipsEditor || sender == toolGameTipsEditor)
+            {
+                ShowAndBringToFrontEditor<Editors.GameTipsEditor.MainForm>();
+            }
+            else if (/*sender == menuNamesReservedEditor ||*/ sender == toolNamesReservedEditor)
+            {
+                ShowAndBringToFrontEditor<NamesReservedEditor.MainForm>();
+            }
+            else if (sender == menuRacesEditor || sender == toolRacesEditor)
+            {
+                //ShowAndBringToFrontEditor<RacesEditor.MainForm>();
+            }
+            else if (sender == menuClassesEditor || sender == toolClassesEditor)
+            {
+                //ShowAndBringToFrontEditor<ClassesEditor.MainForm>();
+            }
+            else if (sender == menuPOIsEditor || sender == toolPOIsEditor)
+            {
+                ShowAndBringToFrontEditor<POIsEditor.MainForm>();
+            }
+            else if (sender == menuMapsEditor || sender == toolMapsEditor)
+            {
+                //ShowAndBringToFrontEditor<MapsEditor.MainForm>();
+            }
         }
 
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -250,16 +250,7 @@ namespace World_Editor
         /// <returns>Retourne true si tous les éditeurs sont fermés</returns>
         private bool AllEditorsClosed()
         {
-            return FactionsEditor.MainForm.m_factionsEditor == null &&
-                   ProfessionEditor.MainForm.m_professionsEditor == null &&
-                   TalentsEditor.MainForm.m_talentsEditor == null &&
-                   TitlesEditor.MainForm.m_titlesEditor == null &&
-                   AchievementsEditor.MainForm.m_achievementsEditor == null &&
-                   RacesEditor.MainForm.m_racesEditor == null &&
-                   ClassesEditor.MainForm.m_classesEditor == null &&
-                   POIsEditor.MainForm.m_poisEditor == null &&
-                   MapsEditor.MainForm.m_mapsEditor == null &&
-                   NamesReservedEditor.MainForm.m_namesReservedEditor == null;
+            return _editorList.All(editor => !editor.Visible);
         }
 
         /// <summary>
@@ -326,20 +317,33 @@ namespace World_Editor
             }
         }
 
-        private void menuGameTipsEditor_Click(object sender, EventArgs e)
+
+
+        private EditorForm GetEditorInstance<T>() where T : EditorForm, new()
         {
-            var d = Editors.GameTipsEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
+            if (_editorList.OfType<T>().Any())
+            {
+                return _editorList.OfType<T>().First();
+            }
+
+            EditorForm mainForm = new T
+            {
+                MdiParent = this
+            };
+            _editorList.Add(mainForm);
+
+            return mainForm;
         }
 
-        private void toolNamesReservedEditor_Click(object sender, EventArgs e)
+        private void ShowAndBringToFrontEditor<T>() where T : EditorForm, new()
         {
-            NamesReservedEditor.MainForm d = NamesReservedEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
+            EditorForm editor = GetEditorInstance<T>();
+            if (editor != null)
+            {
+                editor.Show();
+                editor.BringToFront();
+            }
         }
+
     }
 }
