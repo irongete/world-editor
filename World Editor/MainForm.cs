@@ -19,23 +19,28 @@ namespace World_Editor
 {
     public partial class MainForm : Form
     {
+        private const string Valider = "Valider";
+        private const string Modifier = "Modifier";
+
         private readonly ProjectSettings _projConf = new ProjectSettings();
         private List<ProjectModel> _projects = new List<ProjectModel>();
         private ProjectModel _lastproject;
         private readonly List<EditorForm> _editorList = new List<EditorForm>();
+        private readonly List<ToolStripItem> _controlsInEditMode = new List<ToolStripItem>();
 
         public delegate void FinChargement();
 
         public MainForm()
         {
             InitializeComponent();
+            InitializeControlsInEditMode();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             lblInfos.Text = "";
             lblInfos.Visible = false;
-            ChangeEnableEditors(false);
+            EnableEditorsMenuButtons(false);
             menuUseDB.Checked = Properties.Settings.Default.OptionUseDatabase;
 
             try
@@ -63,13 +68,14 @@ namespace World_Editor
 
         private void btnValidateProject_Click(object sender, EventArgs e)
         {
-            if (btnValidateProject.Text == "Valider")
+            switch (btnValidateProject.Text)
             {
-                EnterInEditionMode();
-            }
-            else if (btnValidateProject.Text == "Modifier")
-            {
-                EnterInProjectChoiceMode();
+                case Valider:
+                    EnterInEditionMode();
+                    break;
+                case Modifier:
+                    EnterInProjectChoiceMode();
+                    break;
             }
         }
 
@@ -106,26 +112,27 @@ namespace World_Editor
 
                 Stormlib.MPQArchiveLoader.Instance.Init();
 
-                ChangeEnableEditors(true);
+                EnableEditorsMenuButtons(true);
                 listProjects.Enabled = false;
-                btnValidateProject.Text = "Modifier";
+                btnValidateProject.Text = Modifier;
             }
             catch (Exception ex)
             {
+                Log.E(ex);
                 MessageBox.Show(ex.Message);
             }
         }
 
         private void EnterInProjectChoiceMode()
         {
-            if (!AllEditorsClosed())
+            if (!AreAllEditorsClosed())
             {
                 MessageBox.Show("Vous devez fermer tous les éditeurs pour pouvoir changer de projet.");
                 return;
             }
-            ChangeEnableEditors(false);
+            EnableEditorsMenuButtons(false);
             listProjects.Enabled = true;
-            btnValidateProject.Text = "Valider";
+            btnValidateProject.Text = Valider;
         }
 
         private void menuProjectsEditor_Click(object sender, EventArgs e)
@@ -155,48 +162,6 @@ namespace World_Editor
             {
                 Log.E(ex);
             }
-        }
-
-        private void menuTalentsEditor_Click(object sender, EventArgs e)
-        {
-            lblInfos.ForeColor = Color.Red;
-            lblInfos.Visible = true;
-            lblInfos.Text = "Chargement en cours, cela peut prendre un certain temps.";
-            ChangeEnableEditors(false, true);
-            Thread t = new Thread(LoadTalentsEditorFiles)
-                {
-                    IsBackground = true
-                };
-            t.Start();
-        }
-
-        private void LoadTalentsEditorFiles()
-        {
-            DBCStores.LoadTalentsEditorFiles();
-            Invoke((FinChargement)TalentsEditorFilesLoaded);
-        }
-
-        private void TalentsEditorFilesLoaded()
-        {
-            lblInfos.Visible = false;
-            lblInfos.Text = "";
-            ChangeEnableEditors(true, true);
-            ShowAndBringToFrontEditor<TalentsEditor.MainForm>();
-        }
-
-
-
-        private void menuProfessionsEditor_Click(object sender, EventArgs e)
-        {
-            lblInfos.ForeColor = Color.Red;
-            lblInfos.Visible = true;
-            lblInfos.Text = "Chargement en cours, cela peut prendre un certain temps.";
-            Refresh();
-            DBCStores.LoadProfessionEditorFiles();
-            lblInfos.Visible = false;
-            lblInfos.Text = "";
-
-            ShowAndBringToFrontEditor<ProfessionEditor.MainForm>();
         }
 
         private void StartEditor(object sender, EventArgs e)
@@ -237,6 +202,58 @@ namespace World_Editor
             {
                 //ShowAndBringToFrontEditor<MapsEditor.MainForm>();
             }
+            else if (sender == générerUnItemdbcToolStripMenuItem)
+            {
+                ItemDbcGenerator.MainForm d = new ItemDbcGenerator.MainForm();
+                d.ShowDialog();
+            }
+            else if (sender == menuTalentsEditor || sender == toolTalentsEditor)
+            {
+                EnableErrorMessage("Chargement en cours, cela peut prendre un certain temps.");
+                Thread t = new Thread(LoadTalentsEditorFiles)
+                {
+                    IsBackground = true
+                };
+                t.Start();
+            }
+            else if (sender == menuProfessionsEditor || sender == toolProfessionsEditor)
+            {
+                EnableErrorMessage("Chargement en cours, cela peut prendre un certain temps.");
+                Thread t = new Thread(LoadProfessionsEditorFiles)
+                {
+                    IsBackground = true
+                };
+                t.Start();
+            }
+        }
+
+        private void LoadTalentsEditorFiles()
+        {
+            DBCStores.LoadTalentsEditorFiles();
+            Invoke((FinChargement)DisableErrorMessage);
+            Invoke((FinChargement)ShowAndBringToFrontEditor<TalentsEditor.MainForm>);
+        }
+
+        private void LoadProfessionsEditorFiles()
+        {
+            DBCStores.LoadProfessionEditorFiles();
+            Invoke((FinChargement)DisableErrorMessage);
+            Invoke((FinChargement)ShowAndBringToFrontEditor<ProfessionEditor.MainForm>);
+        }
+
+        private void EnableErrorMessage(string content)
+        {
+            lblInfos.ForeColor = Color.Red;
+            lblInfos.Visible = true;
+            lblInfos.Text = content;
+            EnableEditorsMenuButtons(false, true);
+        }
+
+        private void DisableErrorMessage()
+        {
+            lblInfos.Visible = false;
+            lblInfos.Text = "";
+            EnableEditorsMenuButtons(true, true);
         }
 
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -244,47 +261,19 @@ namespace World_Editor
             Application.Exit();
         }
 
-        /// <summary>
-        /// Permet de tester si tous les éditeurs sont fermés
-        /// </summary>
-        /// <returns>Retourne true si tous les éditeurs sont fermés</returns>
-        private bool AllEditorsClosed()
+        private bool AreAllEditorsClosed()
         {
             return _editorList.All(editor => !editor.Visible);
         }
 
-        /// <summary>
-        /// Permet d'activer/désactiver tous les boutons des éditeurs selon la valeur de "value".
-        /// Utilisé lorsque le projet est chargé ou non.
-        /// </summary>
-        /// <param name="value">True pour activier, False pour les désactiver</param>
-        private void ChangeEnableEditors(bool value, bool all = false)
+        private void EnableEditorsMenuButtons(bool value, bool all = false)
         {
-            menuTalentsEditor.Enabled = value;
-            menuFactionsEditor.Enabled = value;
-            menuProfessionsEditor.Enabled = value;
-            menuTitlesEditor.Enabled = value;
-            menuAchievementsEditor.Enabled = value;
-            menuRacesEditor.Enabled = value;
-            menuClassesEditor.Enabled = value;
-            menuPOIsEditor.Enabled = value;
-            menuMapsEditor.Enabled = value;
-            menuGameTipsEditor.Enabled = value;
+            foreach (ToolStripItem component in _controlsInEditMode)
+            {
+                component.Enabled = value;
+            }
+
             menuUseDB.Enabled = !value;
-
-            toolTalentsEditor.Enabled = value;
-            toolFactionsEditor.Enabled = value;
-            toolTitlesEditor.Enabled = value;
-            toolAchievementsEditor.Enabled = value;
-            toolProfessionsEditor.Enabled = value;
-            toolRacesEditor.Enabled = value;
-            toolClassesEditor.Enabled = value;
-            toolPOIsEditor.Enabled = value;
-            toolMapsEditor.Enabled = value;
-            toolGameTipsEditor.Enabled = value;
-            toolNamesReservedEditor.Enabled = value;
-
-            générerUnItemdbcToolStripMenuItem.Enabled = value;
 
             if (all)
             {
@@ -297,27 +286,13 @@ namespace World_Editor
             }
         }
 
-        private void générerUnItemdbcToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ItemDbcGenerator.MainForm d = new ItemDbcGenerator.MainForm();
-            d.ShowDialog();
-        }
-
         private void menuUseDB_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.OptionUseDatabase)
-            {
-                Properties.Settings.Default.OptionUseDatabase = false;
-                menuUseDB.Checked = false;
-            }
-            else
-            {
-                Properties.Settings.Default.OptionUseDatabase = true;
-                menuUseDB.Checked = true;
-            }
+            bool actualUseDb = Properties.Settings.Default.OptionUseDatabase;
+
+            Properties.Settings.Default.OptionUseDatabase = !actualUseDb;
+            menuUseDB.Checked = !actualUseDb;
         }
-
-
 
         private EditorForm GetEditorInstance<T>() where T : EditorForm, new()
         {
@@ -345,5 +320,33 @@ namespace World_Editor
             }
         }
 
+        private void InitializeControlsInEditMode()
+        {
+            _controlsInEditMode.Add(menuTalentsEditor);
+            _controlsInEditMode.Add(menuFactionsEditor);
+            _controlsInEditMode.Add(menuTitlesEditor);
+            _controlsInEditMode.Add(menuAchievementsEditor);
+            _controlsInEditMode.Add(menuProfessionsEditor);
+            _controlsInEditMode.Add(menuRacesEditor);
+            _controlsInEditMode.Add(menuClassesEditor);
+            _controlsInEditMode.Add(menuPOIsEditor);
+            _controlsInEditMode.Add(menuMapsEditor);
+            _controlsInEditMode.Add(menuGameTipsEditor);
+            //_controlsInEditMode.Add(menuNamesReservedEditor);
+            _controlsInEditMode.Add(générerUnItemdbcToolStripMenuItem);
+
+            _controlsInEditMode.Add(toolTalentsEditor);
+            _controlsInEditMode.Add(toolFactionsEditor);
+            _controlsInEditMode.Add(toolTitlesEditor);
+            _controlsInEditMode.Add(toolAchievementsEditor);
+            _controlsInEditMode.Add(toolProfessionsEditor);
+            _controlsInEditMode.Add(toolRacesEditor);
+            _controlsInEditMode.Add(toolClassesEditor);
+            _controlsInEditMode.Add(toolPOIsEditor);
+            _controlsInEditMode.Add(toolMapsEditor);
+            _controlsInEditMode.Add(toolGameTipsEditor);
+            _controlsInEditMode.Add(toolNamesReservedEditor);
+            //_controlsInEditMode.Add(générerUnItemdbcToolStripMenuItem);
+        }
     }
 }

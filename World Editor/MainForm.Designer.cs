@@ -132,7 +132,7 @@
             this.menuTalentsEditor.Name = "menuTalentsEditor";
             this.menuTalentsEditor.Size = new System.Drawing.Size(215, 22);
             this.menuTalentsEditor.Text = "Editeur d\'arbres de talents";
-            this.menuTalentsEditor.Click += new System.EventHandler(this.menuTalentsEditor_Click);
+            this.menuTalentsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuMapsEditor
             // 
@@ -172,7 +172,7 @@
             this.menuProfessionsEditor.Name = "menuProfessionsEditor";
             this.menuProfessionsEditor.Size = new System.Drawing.Size(215, 22);
             this.menuProfessionsEditor.Text = "Editeur de métiers";
-            this.menuProfessionsEditor.Click += new System.EventHandler(this.menuProfessionsEditor_Click);
+            this.menuProfessionsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuPOIsEditor
             // 
@@ -215,7 +215,7 @@
             this.générerUnItemdbcToolStripMenuItem.Name = "générerUnItemdbcToolStripMenuItem";
             this.générerUnItemdbcToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.générerUnItemdbcToolStripMenuItem.Text = "Générer un Item.dbc";
-            this.générerUnItemdbcToolStripMenuItem.Click += new System.EventHandler(this.générerUnItemdbcToolStripMenuItem_Click);
+            this.générerUnItemdbcToolStripMenuItem.Click += new System.EventHandler(this.StartEditor);
             // 
             // optionsToolStripMenuItem
             // 
@@ -268,7 +268,7 @@
             this.toolTalentsEditor.Name = "toolTalentsEditor";
             this.toolTalentsEditor.Size = new System.Drawing.Size(23, 22);
             this.toolTalentsEditor.ToolTipText = "Editeur d\'arbres de talents";
-            this.toolTalentsEditor.Click += new System.EventHandler(this.menuTalentsEditor_Click);
+            this.toolTalentsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolMapsEditor
             // 
@@ -318,7 +318,7 @@
             this.toolProfessionsEditor.Name = "toolProfessionsEditor";
             this.toolProfessionsEditor.Size = new System.Drawing.Size(23, 22);
             this.toolProfessionsEditor.ToolTipText = "Editeur de métiers";
-            this.toolProfessionsEditor.Click += new System.EventHandler(this.menuProfessionsEditor_Click);
+            this.toolProfessionsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolPOIsEditor
             // 

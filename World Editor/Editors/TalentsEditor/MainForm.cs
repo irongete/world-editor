@@ -22,8 +22,8 @@ namespace World_Editor.TalentsEditor
         public MainForm()
         {
             InitializeComponent();
-            this.g = panelIn.CreateGraphics();
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
+            g = panelIn.CreateGraphics();
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace World_Editor.TalentsEditor
             foreach (TalentEntry t in DBCStores.Talent.Records.Where(th => th.TabId == tab.Id))
             {
                 listTalents.Items.Add(t);
-                if (DBCStores.Spell.ContainsKey(t.RankId[0]) && 
+                if (DBCStores.Spell.ContainsKey(t.RankId[0]) &&
                     DBCStores.SpellIcon.ContainsKey(DBCStores.Spell[t.RankId[0]].SpellIconID) &&
                     Stormlib.MPQFile.Exists(DBCStores.SpellIcon[DBCStores.Spell[t.RankId[0]].SpellIconID].IconPath + ".blp") &&
                     !icons.ContainsKey("SpellIcon." + t.Row.ToString() + "." + t.Col.ToString()))
@@ -562,7 +562,17 @@ namespace World_Editor.TalentsEditor
                 }
             }
 
-            this.g.DrawImage(_bitmapTemp, 0, 0);
+
+            // TODO Enlever ce hack permettant d'éviter un crash lors du réaffichage de l'éditeur
+            try
+            {
+                g.DrawImage(_bitmapTemp, 0, 0);
+            }
+            catch (Exception)
+            {
+                g = panelIn.CreateGraphics();
+                panelIn.Refresh();
+            }
             _bitmapTemp.Dispose();
             _bitmapTemp = null;
             int end = System.Environment.TickCount;

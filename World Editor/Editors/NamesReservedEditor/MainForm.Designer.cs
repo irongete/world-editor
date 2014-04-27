@@ -253,7 +253,6 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "MainForm";
             this.Text = "Réserver des pseudos";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
