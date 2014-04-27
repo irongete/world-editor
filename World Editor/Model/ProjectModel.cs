@@ -70,6 +70,7 @@ namespace World_Editor.Model
 
         public enum CoreType
         {
+            None = 0,
             Arcemu = 1,
             Mangos = 2,
             Trinity = 3
