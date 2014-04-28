@@ -207,7 +207,17 @@ namespace World_Editor.AchievementsEditor
 
         private void panelRenderAchievement_Paint(object sender, PaintEventArgs e)
         {
-            g.DrawImageUnscaled(images["Back"], 0, -1);
+            // TODO Enlever ce hack permettant d'éviter un crash lors du réaffichage de l'éditeur
+            try
+            {
+                g.DrawImageUnscaled(images["Back"], 0, -1);
+            }
+            catch (Exception)
+            {
+                g = panelRenderAchievement.CreateGraphics();
+                panelRenderAchievement.Refresh();
+                return;
+            }
 
             if (images.ContainsKey("SpellIcon"))
                 g.DrawImageUnscaled(images["SpellIcon"], 10, 20);

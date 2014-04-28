@@ -91,7 +91,18 @@ namespace World_Editor.POIsEditor
                 }
             }
 
-            this.g.DrawImage(bitmapTemp, 0, 0);
+            
+            // TODO Enlever ce hack permettant d'éviter un crash lors du réaffichage de l'éditeur
+            try
+            {
+                this.g.DrawImage(bitmapTemp, 0, 0);
+            }
+            catch (Exception)
+            {
+                g = panelIn.CreateGraphics();
+                panelIn.Refresh();
+                return;
+            }
             bitmapTemp.Dispose();
             bitmapTemp = null;
 
