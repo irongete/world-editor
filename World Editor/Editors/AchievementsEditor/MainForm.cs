@@ -1,61 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using World_Editor.DBC;
-using DBCLib.Structures335;
 using System.Text.RegularExpressions;
-using World_Editor.Editors;
-using World_Editor.Editors.AchievementsEditor;
-using MDS.cBlp2;
+using System.Windows.Forms;
+using DBCLib.Structures335;
+using World_Editor.DBC;
 
-namespace World_Editor.AchievementsEditor
+namespace World_Editor.Editors.AchievementsEditor
 {
     public partial class MainForm : EditorForm
     {
-        private Graphics g;
-        private Dictionary<string, Bitmap> images = new Dictionary<string, Bitmap>();
-
         #region Enums
 
         enum AchievementFlags
         {
-            FLAG_STATISTIC              = 1,    // Just count statistic (never stop and complete)
-            FLAG_HIDDEN                 = 2,
-            FLAG_HIDDEN_TILL_AWARDED    = 4,    // Store only max value? used only in "Reach level xx"
-            FLAG_CUMULATIVE             = 8,    // Use summ criteria value from all requirements (and calculate max value)
-            FLAG_DISPLAY_HIGHEST        = 16,   // Show max criteria (and calculate max value ??)
-            FLAG_CRITERIA_COUNT         = 32,   // Use not zero req count (and calculate max value)
-            FLAG_AVG_PER_DAY            = 64,   // Show as average value (value / time_in_days) depend from other flag (by def use last criteria value)
-            FLAG_HAS_PROGRESS_BAR       = 128,  // Show as progress bar (value / max vale) depend from other flag (by def use last criteria value)
-            FLAG_REALM_FIRST_REACH      = 256,
-            FLAG_REALM_FIRST_KILL       = 512,
+            FLAG_STATISTIC = 1,    // Just count statistic (never stop and complete)
+            FLAG_HIDDEN = 2,
+            FLAG_HIDDEN_TILL_AWARDED = 4,    // Store only max value? used only in "Reach level xx"
+            FLAG_CUMULATIVE = 8,    // Use summ criteria value from all requirements (and calculate max value)
+            FLAG_DISPLAY_HIGHEST = 16,   // Show max criteria (and calculate max value ??)
+            FLAG_CRITERIA_COUNT = 32,   // Use not zero req count (and calculate max value)
+            FLAG_AVG_PER_DAY = 64,   // Show as average value (value / time_in_days) depend from other flag (by def use last criteria value)
+            FLAG_HAS_PROGRESS_BAR = 128,  // Show as progress bar (value / max vale) depend from other flag (by def use last criteria value)
+            FLAG_REALM_FIRST_REACH = 256,
+            FLAG_REALM_FIRST_KILL = 512,
         }
 
         // /!\ Flags non cumulables
         enum AchievementCriteriaFlags
         {
-            CONDITION_NO_DEATH          = 1,
-            CONDITION_UNK1              = 2,    // only used in "Complete a daily quest every day for five consecutive days"
-            CONDITION_MAP               = 3,    // requires you to be on specific map
-            CONDITION_NO_LOOSE          = 4,    // only used in "Win 10 arenas without losing"
-            CONDITION_UNK2              = 9,    // unk
-            CONDITION_UNK3              = 13,   // unk
+            CONDITION_NO_DEATH = 1,
+            CONDITION_UNK1 = 2,    // only used in "Complete a daily quest every day for five consecutive days"
+            CONDITION_MAP = 3,    // requires you to be on specific map
+            CONDITION_NO_LOOSE = 4,    // only used in "Win 10 arenas without losing"
+            CONDITION_UNK2 = 9,    // unk
+            CONDITION_UNK3 = 13,   // unk
         }
 
         enum AchievementCriteriaCompletionFlags
         {
-            FLAG_PROGRESS_BAR           = 1,    // Show progress as bar
-            FLAG_HIDDEN                 = 2,    // Not show criteria in client
-            FLAG_FAIL_ACHIEVEMENT       = 4,    // BG related??
-            FLAG_RESET_ON_START         = 8,    //
-            FLAG_IS_DATE                = 16,   // not used
-            FLAG_IS_MONEY               = 32,   // Displays counter as money
-            FLAG_IS_ACHIEVEMENT_ID      = 64,
+            FLAG_PROGRESS_BAR = 1,    // Show progress as bar
+            FLAG_HIDDEN = 2,    // Not show criteria in client
+            FLAG_FAIL_ACHIEVEMENT = 4,    // BG related??
+            FLAG_RESET_ON_START = 8,    //
+            FLAG_IS_DATE = 16,   // not used
+            FLAG_IS_MONEY = 32,   // Displays counter as money
+            FLAG_IS_ACHIEVEMENT_ID = 64,
         }
 
         #endregion
@@ -63,7 +53,6 @@ namespace World_Editor.AchievementsEditor
         public MainForm()
         {
             InitializeComponent();
-            this.g = panelRenderAchievement.CreateGraphics();
         }
 
         public void LoadSubCat(int id = -1)
@@ -103,13 +92,6 @@ namespace World_Editor.AchievementsEditor
             listCriteriaType.Items.Clear();
             listCriteriaType.Items.AddRange(Criterias.criterias.Values.ToArray());
 
-            images.Clear();
-            images.Add("Back", Blp2.FromFile("Ressources\\UI-Achievement-Alert-Background.blp"));
-            images.Add("IconFrame", Blp2.FromFile("Ressources\\UI-Achievement-IconFrame.blp"));
-            images.Add("Shield", CropBitmap(Blp2.FromFile("Ressources\\UI-Achievement-Shields.blp"), new Rectangle(0, 0, 64, 64)));
-            images.Add("ShieldNoPoints", CropBitmap(Blp2.FromFile("Ressources\\UI-Achievement-Shields-NoPoints.blp"), new Rectangle(0, 0, 64, 64)));
-            images.Add("SpellIconDefault", Blp2.FromFile("Ressources\\DefaultTalentIcon.blp"));
-
             listMap.Items.Clear();
             listMap.Items.Add("None");
             listMap.Items.AddRange(DBCStores.Map.Records.ToArray());
@@ -134,6 +116,7 @@ namespace World_Editor.AchievementsEditor
             {
                 tabAchievement.SelectedIndex = 0;
                 AchievementEntry a = DBCStores.Achievement[UInt32.Parse(m.Groups[2].Value)];
+                panelRenderAchievement.SetAchievement(a);
 
                 txtId.Text = a.Id.ToString();
                 listFaction.SelectedIndex = (int)(a.FactionFlag + 1);
@@ -183,7 +166,7 @@ namespace World_Editor.AchievementsEditor
             if (listCriterias.SelectedItem == null)
                 return;
 
-            AchievementCriteriaEntry c = (AchievementCriteriaEntry) listCriterias.SelectedItem;
+            AchievementCriteriaEntry c = (AchievementCriteriaEntry)listCriterias.SelectedItem;
             txtCriteriaId.Text = c.Id.ToString();
             txtCriteriaAchievement.Text = c.ReferredAchievement.ToString();
             listCriteriaType.SelectedItem = Criterias.criterias[c.RequiredType];
@@ -202,52 +185,6 @@ namespace World_Editor.AchievementsEditor
             txtCriteriaOrder.Text = c.ShowOrder.ToString();
             txtTimedType.Text = c.TimedType.ToString();
         }
-
-        
-
-        private void panelRenderAchievement_Paint(object sender, PaintEventArgs e)
-        {
-            // TODO Enlever ce hack permettant d'éviter un crash lors du réaffichage de l'éditeur
-            try
-            {
-                g.DrawImageUnscaled(images["Back"], 0, -1);
-            }
-            catch (Exception)
-            {
-                g = panelRenderAchievement.CreateGraphics();
-                panelRenderAchievement.Refresh();
-                return;
-            }
-
-            if (images.ContainsKey("SpellIcon"))
-                g.DrawImageUnscaled(images["SpellIcon"], 10, 20);
-            else
-                g.DrawImageUnscaled(images["SpellIconDefault"], 5, 15);
-
-            StringFormat sf = new StringFormat();
-            sf.FormatFlags = StringFormatFlags.NoWrap;
-            sf.Trimming = StringTrimming.EllipsisWord;
-            sf.Alignment = StringAlignment.Center;
-            sf.LineAlignment = StringAlignment.Center;
-
-            g.DrawString(txtName.Text, new Font("Arial", 8.5f, FontStyle.Bold, GraphicsUnit.Point), Brushes.Black, new Rectangle(86, 35, 155, 18), sf);
-            g.DrawString(txtName.Text, new Font("Arial", 8.5f, FontStyle.Bold, GraphicsUnit.Point), Brushes.White, new Rectangle(85, 34, 155, 18), sf);
-
-            
-            g.DrawImageUnscaled(images["IconFrame"], 0, 8);
-
-            if (Misc.ParseToUInt(txtPoints.Text) == 0)
-            {
-                g.DrawImageUnscaled(images["ShieldNoPoints"], 241, 17);
-            }
-            else
-            {
-                g.DrawImageUnscaled(images["Shield"], 241, 17);
-                g.DrawString(txtPoints.Text, new Font("Arial", 10f, FontStyle.Bold, GraphicsUnit.Point), Brushes.Black, new Rectangle(259, 38, 29, 17), sf);
-                g.DrawString(txtPoints.Text, new Font("Arial", 10f, FontStyle.Bold, GraphicsUnit.Point), Brushes.White, new Rectangle(258, 37, 29, 17), sf);
-            }
-        }
-
 
         private void btnReconstructTree_Click(object sender, EventArgs e)
         {
@@ -429,13 +366,6 @@ namespace World_Editor.AchievementsEditor
                 !treeAchievements.SelectedNode.Name.Contains("a"))
                 return;
 
-            if (images.ContainsKey("SpellIcon"))
-                images.Remove("SpellIcon");
-
-            if (DBCStores.SpellIcon.ContainsKey(Misc.ParseToUInt(txtIcon.Text)) &&
-                Stormlib.MPQFile.Exists(DBCStores.SpellIcon[Misc.ParseToUInt(txtIcon.Text)].IconPath + ".blp"))
-                images.Add("SpellIcon", ResizeBitmap(Blp2.FromStream(new Stormlib.MPQFile(DBCStores.SpellIcon[Misc.ParseToUInt(txtIcon.Text)].IconPath + ".blp")), 50, 50));
-
             DBCStores.Achievement[Misc.ParseToUInt(txtId.Text)].Icon = Misc.ParseToUInt(txtIcon.Text);
 
             panelRenderAchievement.Invalidate();
@@ -452,7 +382,7 @@ namespace World_Editor.AchievementsEditor
 
         private void txtCategory_TextChanged(object sender, EventArgs e)
         {
-            if (treeAchievements.SelectedNode == null || 
+            if (treeAchievements.SelectedNode == null ||
                 !treeAchievements.SelectedNode.Name.Contains("a"))
                 return;
             if (DBCStores.AchievementCategory.ContainsKey(Misc.ParseToUInt(txtCategory.Text)))

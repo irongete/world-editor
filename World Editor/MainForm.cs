@@ -168,7 +168,7 @@ namespace World_Editor
         {
             if (sender == menuAchievementsEditor || sender == toolAchievementsEditor)
             {
-                ShowAndBringToFrontEditor<AchievementsEditor.MainForm>();
+                ShowAndBringToFrontEditor<Editors.AchievementsEditor.MainForm>();
             }
             else if (sender == menuTitlesEditor || sender == toolTitlesEditor)
             {

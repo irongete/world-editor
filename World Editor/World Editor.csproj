@@ -273,6 +273,12 @@
     <Compile Include="Editors\RacesEditor\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\AchievementPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils\AchievementPanel.Designer.cs">
+      <DependentUpon>AchievementPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Misc.cs" />
     <Compile Include="Utils\ProjectManager.cs" />
     <Compile Include="Utils\Singleton.cs" />
@@ -384,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\RacesEditor\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utils\AchievementPanel.resx">
+      <DependentUpon>AchievementPanel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
