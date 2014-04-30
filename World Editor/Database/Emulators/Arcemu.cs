@@ -5,7 +5,7 @@ using System.Text;
 
 namespace World_Editor.Database.Emulators
 {
-    public class Arcemu : Core
+    public class Arcemu : ICore
     {
         public string GetCreatureTemplate(uint entry)
         {

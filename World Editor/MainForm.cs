@@ -7,31 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using AntiBrouillard;
 using World_Editor.Database;
 using World_Editor.Database.Emulators;
 using World_Editor.DBC;
+using World_Editor.Editors;
+using World_Editor.Model;
 using World_Editor.ProjectsEditor;
 
 namespace World_Editor
 {
     public partial class MainForm : Form
     {
+        private const string Valider = "Valider";
+        private const string Modifier = "Modifier";
+
         private readonly ProjectSettings _projConf = new ProjectSettings();
-        private List<Project> _projects = new List<Project>();
-        private Project _lastproject;
+        private List<ProjectModel> _projects = new List<ProjectModel>();
+        private ProjectModel _lastproject;
+        private readonly List<EditorForm> _editorList = new List<EditorForm>();
+        private readonly List<ToolStripItem> _controlsInEditMode = new List<ToolStripItem>();
 
         public delegate void FinChargement();
 
         public MainForm()
         {
             InitializeComponent();
+            InitializeControlsInEditMode();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             lblInfos.Text = "";
             lblInfos.Visible = false;
-            ChangeEnableEditors(false);
+            EnableEditorsMenuButtons(false);
             menuUseDB.Checked = Properties.Settings.Default.OptionUseDatabase;
 
             try
@@ -41,9 +50,9 @@ namespace World_Editor
 
                 _projects = _projConf.Projects;
 
-                foreach (Project p in _projects)
+                foreach (ProjectModel p in _projects)
                 {
-                    listProjects.Items.Add(p); 
+                    listProjects.Items.Add(p);
 
                     if (p.IsLast)
                         _lastproject = p;
@@ -51,97 +60,93 @@ namespace World_Editor
 
                 listProjects.SelectedItem = _lastproject;
             }
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+                Log.E(ex);
+            }
         }
 
         private void btnValidateProject_Click(object sender, EventArgs e)
         {
-            if (btnValidateProject.Text == "Valider")
+            switch (btnValidateProject.Text)
             {
-                Project selectedProject = null;
-                foreach (Project p in _projects)
+                case Valider:
+                    EnterInEditionMode();
+                    break;
+                case Modifier:
+                    EnterInProjectChoiceMode();
+                    break;
+            }
+        }
+
+        private void EnterInEditionMode()
+        {
+            ProjectModel selectedProject = null;
+            foreach (ProjectModel p in _projects)
+            {
+                p.IsLast = false;
+
+                if (listProjects.Items[listProjects.SelectedIndex] == p)
                 {
-                    p.IsLast = false;
-
-                    if (listProjects.Items[listProjects.SelectedIndex] == p)
-                    {
-                        selectedProject = p;
-                    }
-                }
-
-                if (selectedProject != null)
-                {
-                    selectedProject.IsLast = true;
-                    ProjectManager.ProjectName = selectedProject.Name;
-                    ProjectManager.ProjectDirectory = selectedProject.Path;
-                    ProjectManager.WowDirectory = selectedProject.WowDir;
-                }
-
-                _projConf.Projects = _projects;
-                _projConf.Save();
-
-                try
-                {
-                    if (Properties.Settings.Default.OptionUseDatabase)
-                    {
-                        Core c;
-                        switch (selectedProject.Core)
-                        {
-                            case 1:
-                                c = new Arcemu();
-                                break;
-                            case 2:
-                                c = new Mangos();
-                                break;
-                            case 3:
-                                c = new Trinity();
-                                break;
-                            default:
-                                throw new Exception("No Core defined");
-                        }
-
-                        ProjectManager.Connection = new MySqlConnector(selectedProject.Host,
-                            selectedProject.Database, selectedProject.User, selectedProject.Password, c);
-                    }
-
-                    DBCStores.InitFiles();
-
-                    Stormlib.MPQArchiveLoader.Instance.Init();
-
-                    ChangeEnableEditors(true);
-                    listProjects.Enabled = false;
-                    btnValidateProject.Text = "Modifier";
-                }
-                catch (Exception ex) 
-                { 
-                    MessageBox.Show(ex.Message);
+                    selectedProject = p;
                 }
             }
-            else if (btnValidateProject.Text == "Modifier")
+
+            if (selectedProject != null)
             {
-                if (!AllEditorsClosed())
-                {
-                    MessageBox.Show("Vous devez fermer tous les éditeurs pour pouvoir changer de projet.");
-                    return;
-                }
-                ChangeEnableEditors(false);
-                listProjects.Enabled = true;
-                btnValidateProject.Text = "Valider";
+                selectedProject.IsLast = true;
+                ProjectManager.SelectedProject = selectedProject;
             }
+
+            _projConf.Projects = _projects;
+            _projConf.Save();
+
+            try
+            {
+                if (Properties.Settings.Default.OptionUseDatabase)
+                {
+                    ProjectManager.SelectedProject.GetMysqlConnector();
+                }
+
+                DBCStores.InitFiles();
+
+                Stormlib.MPQArchiveLoader.Instance.Init();
+
+                EnableEditorsMenuButtons(true);
+                listProjects.Enabled = false;
+                btnValidateProject.Text = Modifier;
+            }
+            catch (Exception ex)
+            {
+                Log.E(ex);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void EnterInProjectChoiceMode()
+        {
+            if (!AreAllEditorsClosed())
+            {
+                MessageBox.Show("Vous devez fermer tous les éditeurs pour pouvoir changer de projet.");
+                return;
+            }
+            EnableEditorsMenuButtons(false);
+            listProjects.Enabled = true;
+            btnValidateProject.Text = Valider;
         }
 
         private void menuProjectsEditor_Click(object sender, EventArgs e)
         {
             ProjectsEditor.MainForm d = new ProjectsEditor.MainForm();
             d.ShowDialog();
-            _projConf.Projects = d.Projects;
+            _projConf.Projects = d.GetProjectModels();
             _projConf.Save();
 
             listProjects.Items.Clear();
             _projects = _projConf.Projects;
 
 
-            foreach (Project p in _projects)
+            foreach (ProjectModel p in _projects)
             {
                 listProjects.Items.Add(p);
 
@@ -153,108 +158,102 @@ namespace World_Editor
             {
                 listProjects.SelectedItem = _lastproject;
             }
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+                Log.E(ex);
+            }
         }
 
-        private void menuTalentsEditor_Click(object sender, EventArgs e)
+        private void StartEditor(object sender, EventArgs e)
         {
-            lblInfos.ForeColor = Color.Red;
-            lblInfos.Visible = true;
-            lblInfos.Text = "Chargement en cours, cela peut prendre un certain temps.";
-            ChangeEnableEditors(false, true);
-            Thread t = new Thread(LoadTalentsEditorFiles)
+            if (sender == menuAchievementsEditor || sender == toolAchievementsEditor)
+            {
+                ShowAndBringToFrontEditor<Editors.AchievementsEditor.MainForm>();
+            }
+            else if (sender == menuTitlesEditor || sender == toolTitlesEditor)
+            {
+                ShowAndBringToFrontEditor<TitlesEditor.MainForm>();
+            }
+            else if (sender == menuFactionsEditor || sender == toolFactionsEditor)
+            {
+                ShowAndBringToFrontEditor<FactionsEditor.MainForm>();
+            }
+            else if (sender == menuGameTipsEditor || sender == toolGameTipsEditor)
+            {
+                ShowAndBringToFrontEditor<Editors.GameTipsEditor.MainForm>();
+            }
+            else if (/*sender == menuNamesReservedEditor ||*/ sender == toolNamesReservedEditor)
+            {
+                ShowAndBringToFrontEditor<NamesReservedEditor.MainForm>();
+            }
+            else if (sender == menuRacesEditor || sender == toolRacesEditor)
+            {
+                //ShowAndBringToFrontEditor<RacesEditor.MainForm>();
+            }
+            else if (sender == menuClassesEditor || sender == toolClassesEditor)
+            {
+                //ShowAndBringToFrontEditor<ClassesEditor.MainForm>();
+            }
+            else if (sender == menuPOIsEditor || sender == toolPOIsEditor)
+            {
+                ShowAndBringToFrontEditor<POIsEditor.MainForm>();
+            }
+            else if (sender == menuMapsEditor || sender == toolMapsEditor)
+            {
+                //ShowAndBringToFrontEditor<MapsEditor.MainForm>();
+            }
+            else if (sender == générerUnItemdbcToolStripMenuItem)
+            {
+                ItemDbcGenerator.MainForm d = new ItemDbcGenerator.MainForm();
+                d.ShowDialog();
+            }
+            else if (sender == menuTalentsEditor || sender == toolTalentsEditor)
+            {
+                EnableErrorMessage("Chargement en cours, cela peut prendre un certain temps.");
+                Thread t = new Thread(LoadTalentsEditorFiles)
                 {
                     IsBackground = true
                 };
-            t.Start();
+                t.Start();
+            }
+            else if (sender == menuProfessionsEditor || sender == toolProfessionsEditor)
+            {
+                EnableErrorMessage("Chargement en cours, cela peut prendre un certain temps.");
+                Thread t = new Thread(LoadProfessionsEditorFiles)
+                {
+                    IsBackground = true
+                };
+                t.Start();
+            }
         }
 
         private void LoadTalentsEditorFiles()
         {
             DBCStores.LoadTalentsEditorFiles();
-            Invoke((FinChargement)TalentsEditorFilesLoaded);
+            Invoke((FinChargement)DisableErrorMessage);
+            Invoke((FinChargement)ShowAndBringToFrontEditor<TalentsEditor.MainForm>);
         }
 
-        private void TalentsEditorFilesLoaded()
+        private void LoadProfessionsEditorFiles()
         {
-            TalentsEditor.MainForm d = TalentsEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            lblInfos.Visible = false;
-            lblInfos.Text = "";
-            ChangeEnableEditors(true, true);
-            d.Show();
-            d.BringToFront();
+            DBCStores.LoadProfessionEditorFiles();
+            Invoke((FinChargement)DisableErrorMessage);
+            Invoke((FinChargement)ShowAndBringToFrontEditor<ProfessionEditor.MainForm>);
         }
 
-        private void menuFactionsEditor_Click(object sender, EventArgs e)
+        private void EnableErrorMessage(string content)
         {
-            FactionsEditor.MainForm d = FactionsEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
-
-        private void menuProfessionsEditor_Click(object sender, EventArgs e)
-        {
-            ProfessionEditor.MainForm d = ProfessionEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
             lblInfos.ForeColor = Color.Red;
             lblInfos.Visible = true;
-            lblInfos.Text = "Chargement en cours, cela peut prendre un certain temps.";
-            Refresh();
-            DBCStores.LoadProfessionEditorFiles();
+            lblInfos.Text = content;
+            EnableEditorsMenuButtons(false, true);
+        }
+
+        private void DisableErrorMessage()
+        {
             lblInfos.Visible = false;
             lblInfos.Text = "";
-            d.Show();
-            d.BringToFront();
-        }
-
-        private void menuTitlesEditor_Click(object sender, EventArgs e)
-        {
-            TitlesEditor.MainForm d = TitlesEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
-
-        private void menuAchievementsEditor_Click(object sender, EventArgs e)
-        {
-            AchievementsEditor.MainForm d = AchievementsEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
-
-        private void menuRacesEditor_Click(object sender, EventArgs e)
-        {
-            RacesEditor.MainForm d = RacesEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
-
-        private void menuClassesEditor_Click(object sender, EventArgs e)
-        {
-            ClassesEditor.MainForm d = ClassesEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
-
-        private void menuPOIsEditor_Click(object sender, EventArgs e)
-        {
-            POIsEditor.MainForm d = POIsEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
-
-        private void menuMapsEditor_Click(object sender, EventArgs e)
-        {
-            MapsEditor.MainForm d = MapsEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
+            EnableEditorsMenuButtons(true, true);
         }
 
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -262,56 +261,19 @@ namespace World_Editor
             Application.Exit();
         }
 
-        /// <summary>
-        /// Permet de tester si tous les éditeurs sont fermés
-        /// </summary>
-        /// <returns>Retourne true si tous les éditeurs sont fermés</returns>
-        private bool AllEditorsClosed()
+        private bool AreAllEditorsClosed()
         {
-            return FactionsEditor.MainForm.m_factionsEditor == null &&
-                   ProfessionEditor.MainForm.m_professionsEditor == null &&
-                   TalentsEditor.MainForm.m_talentsEditor == null &&
-                   TitlesEditor.MainForm.m_titlesEditor == null &&
-                   AchievementsEditor.MainForm.m_achievementsEditor == null &&
-                   RacesEditor.MainForm.m_racesEditor == null &&
-                   ClassesEditor.MainForm.m_classesEditor == null &&
-                   POIsEditor.MainForm.m_poisEditor == null &&
-                   MapsEditor.MainForm.m_mapsEditor == null &&
-                   NamesReservedEditor.MainForm.m_namesReservedEditor == null;
+            return _editorList.All(editor => !editor.Visible);
         }
 
-        /// <summary>
-        /// Permet d'activer/désactiver tous les boutons des éditeurs selon la valeur de "value".
-        /// Utilisé lorsque le projet est chargé ou non.
-        /// </summary>
-        /// <param name="value">True pour activier, False pour les désactiver</param>
-        private void ChangeEnableEditors(bool value, bool all = false)
+        private void EnableEditorsMenuButtons(bool value, bool all = false)
         {
-            menuTalentsEditor.Enabled = value;
-            menuFactionsEditor.Enabled = value;
-            menuProfessionsEditor.Enabled = value;
-            menuTitlesEditor.Enabled = value;
-            menuAchievementsEditor.Enabled = value;
-            menuRacesEditor.Enabled = value;
-            menuClassesEditor.Enabled = value;
-            menuPOIsEditor.Enabled = value;
-            menuMapsEditor.Enabled = value;
-            menuGameTipsEditor.Enabled = value;
+            foreach (ToolStripItem component in _controlsInEditMode)
+            {
+                component.Enabled = value;
+            }
+
             menuUseDB.Enabled = !value;
-
-            toolTalentsEditor.Enabled = value;
-            toolFactionsEditor.Enabled = value;
-            toolTitlesEditor.Enabled = value;
-            toolAchievementsEditor.Enabled = value;
-            toolProfessionsEditor.Enabled = value;
-            toolRacesEditor.Enabled = value;
-            toolClassesEditor.Enabled = value;
-            toolPOIsEditor.Enabled = value;
-            toolMapsEditor.Enabled = value;
-            toolGameTipsEditor.Enabled = value;
-            toolNamesReservedEditor.Enabled = value;
-
-            générerUnItemdbcToolStripMenuItem.Enabled = value;
 
             if (all)
             {
@@ -324,40 +286,67 @@ namespace World_Editor
             }
         }
 
-        private void générerUnItemdbcToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ItemDbcGenerator.MainForm d = new ItemDbcGenerator.MainForm();
-            d.ShowDialog();
-        }
-
         private void menuUseDB_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.OptionUseDatabase)
+            bool actualUseDb = Properties.Settings.Default.OptionUseDatabase;
+
+            Properties.Settings.Default.OptionUseDatabase = !actualUseDb;
+            menuUseDB.Checked = !actualUseDb;
+        }
+
+        private EditorForm GetEditorInstance<T>() where T : EditorForm, new()
+        {
+            if (_editorList.OfType<T>().Any())
             {
-                Properties.Settings.Default.OptionUseDatabase = false;
-                menuUseDB.Checked = false;
+                return _editorList.OfType<T>().First();
             }
-            else
+
+            EditorForm mainForm = new T
             {
-                Properties.Settings.Default.OptionUseDatabase = true;
-                menuUseDB.Checked = true;
+                MdiParent = this
+            };
+            _editorList.Add(mainForm);
+
+            return mainForm;
+        }
+
+        private void ShowAndBringToFrontEditor<T>() where T : EditorForm, new()
+        {
+            EditorForm editor = GetEditorInstance<T>();
+            if (editor != null)
+            {
+                editor.Show();
+                editor.BringToFront();
             }
         }
 
-        private void menuGameTipsEditor_Click(object sender, EventArgs e)
+        private void InitializeControlsInEditMode()
         {
-            var d = Editors.GameTipsEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
-        }
+            _controlsInEditMode.Add(menuTalentsEditor);
+            _controlsInEditMode.Add(menuFactionsEditor);
+            _controlsInEditMode.Add(menuTitlesEditor);
+            _controlsInEditMode.Add(menuAchievementsEditor);
+            _controlsInEditMode.Add(menuProfessionsEditor);
+            _controlsInEditMode.Add(menuRacesEditor);
+            _controlsInEditMode.Add(menuClassesEditor);
+            _controlsInEditMode.Add(menuPOIsEditor);
+            _controlsInEditMode.Add(menuMapsEditor);
+            _controlsInEditMode.Add(menuGameTipsEditor);
+            //_controlsInEditMode.Add(menuNamesReservedEditor);
+            _controlsInEditMode.Add(générerUnItemdbcToolStripMenuItem);
 
-        private void toolNamesReservedEditor_Click(object sender, EventArgs e)
-        {
-            NamesReservedEditor.MainForm d = NamesReservedEditor.MainForm.GetChildInstance();
-            d.MdiParent = this;
-            d.Show();
-            d.BringToFront();
+            _controlsInEditMode.Add(toolTalentsEditor);
+            _controlsInEditMode.Add(toolFactionsEditor);
+            _controlsInEditMode.Add(toolTitlesEditor);
+            _controlsInEditMode.Add(toolAchievementsEditor);
+            _controlsInEditMode.Add(toolProfessionsEditor);
+            _controlsInEditMode.Add(toolRacesEditor);
+            _controlsInEditMode.Add(toolClassesEditor);
+            _controlsInEditMode.Add(toolPOIsEditor);
+            _controlsInEditMode.Add(toolMapsEditor);
+            _controlsInEditMode.Add(toolGameTipsEditor);
+            _controlsInEditMode.Add(toolNamesReservedEditor);
+            //_controlsInEditMode.Add(générerUnItemdbcToolStripMenuItem);
         }
     }
 }

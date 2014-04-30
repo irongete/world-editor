@@ -71,7 +71,7 @@
             this.txtProjectName.Name = "txtProjectName";
             this.txtProjectName.Size = new System.Drawing.Size(243, 20);
             this.txtProjectName.TabIndex = 1;
-            this.txtProjectName.TextChanged += new System.EventHandler(this.txtProjectName_TextChanged);
+            this.txtProjectName.TextChanged += new System.EventHandler(this.UpdateProjectWhenTextChanged);
             // 
             // txtProjectPath
             // 
@@ -79,7 +79,7 @@
             this.txtProjectPath.Name = "txtProjectPath";
             this.txtProjectPath.Size = new System.Drawing.Size(248, 20);
             this.txtProjectPath.TabIndex = 2;
-            this.txtProjectPath.TextChanged += new System.EventHandler(this.txtProjectPath_TextChanged);
+            this.txtProjectPath.TextChanged += new System.EventHandler(this.UpdateProjectWhenTextChanged);
             // 
             // btnAdd
             // 
@@ -127,7 +127,7 @@
             this.btnBrowse.TabIndex = 3;
             this.btnBrowse.Text = "Parcourir";
             this.btnBrowse.UseVisualStyleBackColor = true;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            this.btnBrowse.Click += new System.EventHandler(this.OpenFolderBrowserWhenClick);
             // 
             // txtWowFolder
             // 
@@ -135,7 +135,7 @@
             this.txtWowFolder.Name = "txtWowFolder";
             this.txtWowFolder.Size = new System.Drawing.Size(248, 20);
             this.txtWowFolder.TabIndex = 4;
-            this.txtWowFolder.TextChanged += new System.EventHandler(this.txtWowFolder_TextChanged);
+            this.txtWowFolder.TextChanged += new System.EventHandler(this.UpdateProjectWhenTextChanged);
             // 
             // label3
             // 
@@ -154,7 +154,7 @@
             this.btnWowFolder.TabIndex = 5;
             this.btnWowFolder.Text = "Parcourir";
             this.btnWowFolder.UseVisualStyleBackColor = true;
-            this.btnWowFolder.Click += new System.EventHandler(this.btnWowFolder_Click);
+            this.btnWowFolder.Click += new System.EventHandler(this.OpenFolderBrowserWhenClick);
             // 
             // btnExtractDbc
             // 
@@ -189,7 +189,7 @@
             this.txtDbHost.Name = "txtDbHost";
             this.txtDbHost.Size = new System.Drawing.Size(247, 20);
             this.txtDbHost.TabIndex = 8;
-            this.txtDbHost.TextChanged += new System.EventHandler(this.txtDbHost_TextChanged);
+            this.txtDbHost.TextChanged += new System.EventHandler(this.UpdateProjectWhenTextChanged);
             // 
             // txtDbDatabase
             // 
@@ -197,7 +197,7 @@
             this.txtDbDatabase.Name = "txtDbDatabase";
             this.txtDbDatabase.Size = new System.Drawing.Size(247, 20);
             this.txtDbDatabase.TabIndex = 9;
-            this.txtDbDatabase.TextChanged += new System.EventHandler(this.txtDbDatabase_TextChanged);
+            this.txtDbDatabase.TextChanged += new System.EventHandler(this.UpdateProjectWhenTextChanged);
             // 
             // txtDbUser
             // 
@@ -205,7 +205,7 @@
             this.txtDbUser.Name = "txtDbUser";
             this.txtDbUser.Size = new System.Drawing.Size(247, 20);
             this.txtDbUser.TabIndex = 10;
-            this.txtDbUser.TextChanged += new System.EventHandler(this.txtDbUser_TextChanged);
+            this.txtDbUser.TextChanged += new System.EventHandler(this.UpdateProjectWhenTextChanged);
             // 
             // label7
             // 
@@ -241,7 +241,7 @@
             this.txtDbPassword.Size = new System.Drawing.Size(247, 20);
             this.txtDbPassword.TabIndex = 11;
             this.txtDbPassword.UseSystemPasswordChar = true;
-            this.txtDbPassword.TextChanged += new System.EventHandler(this.txtDbPassword_TextChanged);
+            this.txtDbPassword.TextChanged += new System.EventHandler(this.UpdateProjectWhenTextChanged);
             // 
             // label4
             // 

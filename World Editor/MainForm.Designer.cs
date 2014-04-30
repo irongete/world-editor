@@ -132,7 +132,7 @@
             this.menuTalentsEditor.Name = "menuTalentsEditor";
             this.menuTalentsEditor.Size = new System.Drawing.Size(215, 22);
             this.menuTalentsEditor.Text = "Editeur d\'arbres de talents";
-            this.menuTalentsEditor.Click += new System.EventHandler(this.menuTalentsEditor_Click);
+            this.menuTalentsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuMapsEditor
             // 
@@ -140,7 +140,7 @@
             this.menuMapsEditor.Name = "menuMapsEditor";
             this.menuMapsEditor.Size = new System.Drawing.Size(215, 22);
             this.menuMapsEditor.Text = "Editeur de cartes";
-            this.menuMapsEditor.Click += new System.EventHandler(this.menuMapsEditor_Click);
+            this.menuMapsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuClassesEditor
             // 
@@ -148,7 +148,7 @@
             this.menuClassesEditor.Name = "menuClassesEditor";
             this.menuClassesEditor.Size = new System.Drawing.Size(215, 22);
             this.menuClassesEditor.Text = "Editeur de classes";
-            this.menuClassesEditor.Click += new System.EventHandler(this.menuClassesEditor_Click);
+            this.menuClassesEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuFactionsEditor
             // 
@@ -156,7 +156,7 @@
             this.menuFactionsEditor.Name = "menuFactionsEditor";
             this.menuFactionsEditor.Size = new System.Drawing.Size(215, 22);
             this.menuFactionsEditor.Text = "Editeur de factions";
-            this.menuFactionsEditor.Click += new System.EventHandler(this.menuFactionsEditor_Click);
+            this.menuFactionsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuAchievementsEditor
             // 
@@ -164,7 +164,7 @@
             this.menuAchievementsEditor.Name = "menuAchievementsEditor";
             this.menuAchievementsEditor.Size = new System.Drawing.Size(215, 22);
             this.menuAchievementsEditor.Text = "Editeur de haut-faits";
-            this.menuAchievementsEditor.Click += new System.EventHandler(this.menuAchievementsEditor_Click);
+            this.menuAchievementsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuProfessionsEditor
             // 
@@ -172,7 +172,7 @@
             this.menuProfessionsEditor.Name = "menuProfessionsEditor";
             this.menuProfessionsEditor.Size = new System.Drawing.Size(215, 22);
             this.menuProfessionsEditor.Text = "Editeur de métiers";
-            this.menuProfessionsEditor.Click += new System.EventHandler(this.menuProfessionsEditor_Click);
+            this.menuProfessionsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuPOIsEditor
             // 
@@ -180,7 +180,7 @@
             this.menuPOIsEditor.Name = "menuPOIsEditor";
             this.menuPOIsEditor.Size = new System.Drawing.Size(215, 22);
             this.menuPOIsEditor.Text = "Editeur de points d\'intérêts";
-            this.menuPOIsEditor.Click += new System.EventHandler(this.menuPOIsEditor_Click);
+            this.menuPOIsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuRacesEditor
             // 
@@ -188,14 +188,14 @@
             this.menuRacesEditor.Name = "menuRacesEditor";
             this.menuRacesEditor.Size = new System.Drawing.Size(215, 22);
             this.menuRacesEditor.Text = "Editeur de races";
-            this.menuRacesEditor.Click += new System.EventHandler(this.menuRacesEditor_Click);
+            this.menuRacesEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuGameTipsEditor
             // 
             this.menuGameTipsEditor.Name = "menuGameTipsEditor";
             this.menuGameTipsEditor.Size = new System.Drawing.Size(215, 22);
             this.menuGameTipsEditor.Text = "Editeur de tips";
-            this.menuGameTipsEditor.Click += new System.EventHandler(this.menuGameTipsEditor_Click);
+            this.menuGameTipsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuTitlesEditor
             // 
@@ -203,7 +203,7 @@
             this.menuTitlesEditor.Name = "menuTitlesEditor";
             this.menuTitlesEditor.Size = new System.Drawing.Size(215, 22);
             this.menuTitlesEditor.Text = "Editeur de titres";
-            this.menuTitlesEditor.Click += new System.EventHandler(this.menuTitlesEditor_Click);
+            this.menuTitlesEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolStripSeparator1
             // 
@@ -215,7 +215,7 @@
             this.générerUnItemdbcToolStripMenuItem.Name = "générerUnItemdbcToolStripMenuItem";
             this.générerUnItemdbcToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.générerUnItemdbcToolStripMenuItem.Text = "Générer un Item.dbc";
-            this.générerUnItemdbcToolStripMenuItem.Click += new System.EventHandler(this.générerUnItemdbcToolStripMenuItem_Click);
+            this.générerUnItemdbcToolStripMenuItem.Click += new System.EventHandler(this.StartEditor);
             // 
             // optionsToolStripMenuItem
             // 
@@ -268,7 +268,7 @@
             this.toolTalentsEditor.Name = "toolTalentsEditor";
             this.toolTalentsEditor.Size = new System.Drawing.Size(23, 22);
             this.toolTalentsEditor.ToolTipText = "Editeur d\'arbres de talents";
-            this.toolTalentsEditor.Click += new System.EventHandler(this.menuTalentsEditor_Click);
+            this.toolTalentsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolMapsEditor
             // 
@@ -278,7 +278,7 @@
             this.toolMapsEditor.Name = "toolMapsEditor";
             this.toolMapsEditor.Size = new System.Drawing.Size(23, 22);
             this.toolMapsEditor.ToolTipText = "Editeur de cartes";
-            this.toolMapsEditor.Click += new System.EventHandler(this.menuMapsEditor_Click);
+            this.toolMapsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolClassesEditor
             // 
@@ -288,7 +288,7 @@
             this.toolClassesEditor.Name = "toolClassesEditor";
             this.toolClassesEditor.Size = new System.Drawing.Size(23, 22);
             this.toolClassesEditor.ToolTipText = "Editeur de classes";
-            this.toolClassesEditor.Click += new System.EventHandler(this.menuClassesEditor_Click);
+            this.toolClassesEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolFactionsEditor
             // 
@@ -298,7 +298,7 @@
             this.toolFactionsEditor.Name = "toolFactionsEditor";
             this.toolFactionsEditor.Size = new System.Drawing.Size(23, 22);
             this.toolFactionsEditor.ToolTipText = "Editeur de factions";
-            this.toolFactionsEditor.Click += new System.EventHandler(this.menuFactionsEditor_Click);
+            this.toolFactionsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolAchievementsEditor
             // 
@@ -308,7 +308,7 @@
             this.toolAchievementsEditor.Name = "toolAchievementsEditor";
             this.toolAchievementsEditor.Size = new System.Drawing.Size(23, 22);
             this.toolAchievementsEditor.ToolTipText = "Editeur de haut-faits";
-            this.toolAchievementsEditor.Click += new System.EventHandler(this.menuAchievementsEditor_Click);
+            this.toolAchievementsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolProfessionsEditor
             // 
@@ -318,7 +318,7 @@
             this.toolProfessionsEditor.Name = "toolProfessionsEditor";
             this.toolProfessionsEditor.Size = new System.Drawing.Size(23, 22);
             this.toolProfessionsEditor.ToolTipText = "Editeur de métiers";
-            this.toolProfessionsEditor.Click += new System.EventHandler(this.menuProfessionsEditor_Click);
+            this.toolProfessionsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolPOIsEditor
             // 
@@ -328,7 +328,7 @@
             this.toolPOIsEditor.Name = "toolPOIsEditor";
             this.toolPOIsEditor.Size = new System.Drawing.Size(23, 22);
             this.toolPOIsEditor.ToolTipText = "Editeur de points d\'intérêts";
-            this.toolPOIsEditor.Click += new System.EventHandler(this.menuPOIsEditor_Click);
+            this.toolPOIsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolRacesEditor
             // 
@@ -338,7 +338,7 @@
             this.toolRacesEditor.Name = "toolRacesEditor";
             this.toolRacesEditor.Size = new System.Drawing.Size(23, 22);
             this.toolRacesEditor.ToolTipText = "Editeur de races";
-            this.toolRacesEditor.Click += new System.EventHandler(this.menuRacesEditor_Click);
+            this.toolRacesEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolTitlesEditor
             // 
@@ -348,7 +348,7 @@
             this.toolTitlesEditor.Name = "toolTitlesEditor";
             this.toolTitlesEditor.Size = new System.Drawing.Size(23, 22);
             this.toolTitlesEditor.ToolTipText = "Editeur de titres";
-            this.toolTitlesEditor.Click += new System.EventHandler(this.menuTitlesEditor_Click);
+            this.toolTitlesEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolGameTipsEditor
             // 
@@ -358,7 +358,7 @@
             this.toolGameTipsEditor.Name = "toolGameTipsEditor";
             this.toolGameTipsEditor.Size = new System.Drawing.Size(23, 22);
             this.toolGameTipsEditor.Text = "Editeur de GameTips";
-            this.toolGameTipsEditor.Click += new System.EventHandler(this.menuGameTipsEditor_Click);
+            this.toolGameTipsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolNamesReservedEditor
             // 
@@ -368,7 +368,7 @@
             this.toolNamesReservedEditor.Name = "toolNamesReservedEditor";
             this.toolNamesReservedEditor.Size = new System.Drawing.Size(23, 22);
             this.toolNamesReservedEditor.Text = "Editeur de noms réservés";
-            this.toolNamesReservedEditor.Click += new System.EventHandler(this.toolNamesReservedEditor_Click);
+            this.toolNamesReservedEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // btnValidateProject
             // 

@@ -260,7 +260,7 @@ namespace World_Editor.DBC
 
         public static void InitFiles()
         {
-            string dbcFolder = ProjectManager.ProjectDirectory + "\\dbc\\";
+            string dbcFolder = ProjectManager.SelectedProject.Path + "\\dbc\\";
 
             #region Initialisation des DBCs
             Achievement = new DBCFile<AchievementEntry>(dbcFolder + "Achievement.dbc");

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace World_Editor.Database
 {
-    public interface Core
+    public interface ICore
     {
         string GetCreatureTemplate(uint entry);
 

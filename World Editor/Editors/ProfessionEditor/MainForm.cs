@@ -9,10 +9,11 @@ using System.Text;
 using System.Windows.Forms;
 using DBCLib.Structures335;
 using World_Editor.DBC;
+using World_Editor.Editors;
 
 namespace World_Editor.ProfessionEditor
 {
-    public partial class MainForm : Form
+    public partial class MainForm : EditorForm
     {
         public static MainForm m_professionEditor;
         List<String> rangsDeMetiers = new List<string> 
@@ -40,15 +41,6 @@ namespace World_Editor.ProfessionEditor
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        public static ProfessionEditor.MainForm m_professionsEditor;
-        public static ProfessionEditor.MainForm GetChildInstance()
-        {
-            if (m_professionsEditor == null)
-                m_professionsEditor = new MainForm();
-
-            return m_professionsEditor;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -582,11 +574,6 @@ namespace World_Editor.ProfessionEditor
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            m_professionsEditor = null;
         }
 
         private void btnNewProf_Click(object sender, EventArgs e)

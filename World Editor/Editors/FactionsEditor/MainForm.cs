@@ -8,10 +8,11 @@ using System.Text;
 using System.Windows.Forms;
 using DBCLib.Structures335;
 using World_Editor.DBC;
+using World_Editor.Editors;
 
 namespace World_Editor.FactionsEditor
 {
-    public partial class MainForm : Form
+    public partial class MainForm : EditorForm
     {
         #region Enums
         enum FlagFactionTemplateEnums
@@ -49,12 +50,6 @@ namespace World_Editor.FactionsEditor
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        public static MainForm m_factionsEditor;
-        public static MainForm GetChildInstance()
-        {
-            return m_factionsEditor ?? (m_factionsEditor = new MainForm());
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -881,11 +876,6 @@ namespace World_Editor.FactionsEditor
             {
                 MessageBox.Show("Erreur lors de la sauvegarde des fichiers DBCs : " + ex.Message);
             }
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            m_factionsEditor = null;
         }
     }
 }

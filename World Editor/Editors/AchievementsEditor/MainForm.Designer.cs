@@ -1,4 +1,6 @@
-﻿namespace World_Editor.AchievementsEditor
+﻿using World_Editor.Utils;
+
+namespace World_Editor.Editors.AchievementsEditor
 {
     partial class MainForm
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.treeAchievements = new System.Windows.Forms.TreeView();
             this.lblTimeRender = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
@@ -40,7 +43,7 @@
             this.txtAchievementRef = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.panelRenderAchievement = new System.Windows.Forms.Panel();
+            this.panelRenderAchievement = new World_Editor.Utils.AchievementPanel();
             this.groupBoxCriterias = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -268,11 +271,10 @@
             // 
             // panelRenderAchievement
             // 
-            this.panelRenderAchievement.Location = new System.Drawing.Point(90, 400);
+            this.panelRenderAchievement.Location = new System.Drawing.Point(84, 400);
             this.panelRenderAchievement.Name = "panelRenderAchievement";
             this.panelRenderAchievement.Size = new System.Drawing.Size(310, 87);
             this.panelRenderAchievement.TabIndex = 30;
-            this.panelRenderAchievement.Paint += new System.Windows.Forms.PaintEventHandler(this.panelRenderAchievement_Paint);
             // 
             // groupBoxCriterias
             // 
@@ -989,7 +991,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Achievements Editor";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabAchievement.ResumeLayout(false);
             this.tabPageAchievement.ResumeLayout(false);
@@ -1074,7 +1075,7 @@
         private System.Windows.Forms.TextBox txtTimedType;
         private System.Windows.Forms.TextBox txtTimerStartEvent;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Panel panelRenderAchievement;
+        private AchievementPanel panelRenderAchievement;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtCount;
