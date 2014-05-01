@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using AntiBrouillard;
 using DBCLib.Structures335;
 using MDS.cBlp2;
 using World_Editor.DBC;
 
-namespace World_Editor.Utils
+namespace World_Editor.Control
 {
     public partial class AchievementPanel : Panel
     {

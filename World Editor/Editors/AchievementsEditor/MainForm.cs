@@ -1,50 +1,58 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using AntiBrouillard;
 using DBCLib.Structures335;
 using World_Editor.DBC;
+using World_Editor.Dialogs;
 
 namespace World_Editor.Editors.AchievementsEditor
 {
     public partial class MainForm : EditorForm
     {
+        private const int DefaultGeneralCategoryId = 92;
+        private readonly Regex _typeOfNodeRegex = new Regex(@"^([ac])([\d]+)$");
+
         #region Enums
 
         enum AchievementFlags
         {
-            FLAG_STATISTIC = 1,    // Just count statistic (never stop and complete)
-            FLAG_HIDDEN = 2,
-            FLAG_HIDDEN_TILL_AWARDED = 4,    // Store only max value? used only in "Reach level xx"
-            FLAG_CUMULATIVE = 8,    // Use summ criteria value from all requirements (and calculate max value)
-            FLAG_DISPLAY_HIGHEST = 16,   // Show max criteria (and calculate max value ??)
-            FLAG_CRITERIA_COUNT = 32,   // Use not zero req count (and calculate max value)
-            FLAG_AVG_PER_DAY = 64,   // Show as average value (value / time_in_days) depend from other flag (by def use last criteria value)
-            FLAG_HAS_PROGRESS_BAR = 128,  // Show as progress bar (value / max vale) depend from other flag (by def use last criteria value)
-            FLAG_REALM_FIRST_REACH = 256,
-            FLAG_REALM_FIRST_KILL = 512,
+            FLAG_COUNTER = 1,               // Just count statistic (never stop and complete)
+            FLAG_HIDDEN = 2,                // Not sent to client - internal use only
+            FLAG_STORE_MAX_VALUE = 4,       // Store only max value? used only in "Reach level xx"
+            FLAG_CUMULATIVE = 8,            // Use summ criteria value from all requirements (and calculate max value)
+            FLAG_DISPLAY_HIGHEST = 16,      // Show max criteria (and calculate max value ??)
+            FLAG_CRITERIA_COUNT = 32,       // Use not zero req count (and calculate max value)
+            FLAG_AVG_PER_DAY = 64,          // Show as average value (value / time_in_days) depend from other flag (by def use last criteria value)
+            FLAG_HAS_PROGRESS_BAR = 128,    // Show as progress bar (value / max vale) depend from other flag (by def use last criteria value)
+            FLAG_REALM_FIRST_REACH = 256,   //
+            FLAG_REALM_FIRST_KILL = 512     //
         }
 
         // /!\ Flags non cumulables
-        enum AchievementCriteriaFlags
+        enum AchievementCriteriaCondition
         {
-            CONDITION_NO_DEATH = 1,
-            CONDITION_UNK1 = 2,    // only used in "Complete a daily quest every day for five consecutive days"
-            CONDITION_MAP = 3,    // requires you to be on specific map
-            CONDITION_NO_LOOSE = 4,    // only used in "Win 10 arenas without losing"
-            CONDITION_UNK2 = 9,    // unk
-            CONDITION_UNK3 = 13,   // unk
+            CONDITION_NONE = 0,
+            CONDITION_NO_DEATH = 1,         // reset progress on death
+            CONDITION_UNK2 = 2,             // only used in "Complete a daily quest every day for five consecutive days"
+            CONDITION_BG_MAP = 3,           // requires you to be on specific map, reset at change
+            CONDITION_NO_LOSE = 4,          // only used in "Win 10 arenas without losing"
+            CONDITION_NO_SPELL_HIT = 9,     // requires the player not to be hit by specific spell
+            CONDITION_NOT_IN_GROUP = 10,    // requires the player not to be in group
+            CONDITION_UNK13 = 13            // unk
         }
 
-        enum AchievementCriteriaCompletionFlags
+        enum AchievementCriteriaFlags
         {
-            FLAG_PROGRESS_BAR = 1,    // Show progress as bar
-            FLAG_HIDDEN = 2,    // Not show criteria in client
-            FLAG_FAIL_ACHIEVEMENT = 4,    // BG related??
-            FLAG_RESET_ON_START = 8,    //
-            FLAG_IS_DATE = 16,   // not used
-            FLAG_IS_MONEY = 32,   // Displays counter as money
+            FLAG_SHOW_PROGRESS_BAR = 1,     // Show progress as bar
+            FLAG_HIDDEN = 2,                // Not show criteria in client
+            FLAG_FAIL_ACHIEVEMENT = 4,      // BG related??
+            FLAG_RESET_ON_START = 8,        //
+            FLAG_IS_DATE = 16,              // not used
+            FLAG_MONEY_COUNTER = 32,        // Displays counter as money
             FLAG_IS_ACHIEVEMENT_ID = 64,
         }
 
@@ -61,18 +69,18 @@ namespace World_Editor.Editors.AchievementsEditor
             {
                 if (id == -1)
                 {
-                    treeAchievements.Nodes.Add("c" + c.Id.ToString(), c.Name);
+                    treeAchievements.Nodes.Add("c" + c.Id, c.Name);
                     LoadSubCat((int)c.Id);
                     foreach (AchievementEntry a in DBCStores.Achievement.Records.Where(ta => ta.CategoryId == c.Id).OrderBy(ta => ta.OrderInCategory))
-                        treeAchievements.Nodes["c" + c.Id.ToString()].Nodes.Add("a" + a.Id.ToString(), a.Name);
+                        treeAchievements.Nodes["c" + c.Id].Nodes.Add("a" + a.Id, a.Name);
                 }
                 else
                 {
-                    TreeNode parent = treeAchievements.Nodes.Find("c" + c.ParentCategory.ToString(), true).First();
-                    parent.Nodes.Add("c" + c.Id.ToString(), c.Name);
+                    TreeNode parent = treeAchievements.Nodes.Find("c" + c.ParentCategory, true).First();
+                    parent.Nodes.Add("c" + c.Id, c.Name);
                     LoadSubCat((int)c.Id);
                     foreach (AchievementEntry a in DBCStores.Achievement.Records.Where(ta => ta.CategoryId == c.Id).OrderBy(ta => ta.OrderInCategory))
-                        parent.Nodes["c" + c.Id.ToString()].Nodes.Add("a" + a.Id.ToString(), a.Name);
+                        parent.Nodes["c" + c.Id].Nodes.Add("a" + a.Id, a.Name);
                 }
             }
         }
@@ -81,28 +89,20 @@ namespace World_Editor.Editors.AchievementsEditor
         {
             DBCStores.LoadAchievementsEditor();
 
-            int start = System.Environment.TickCount;
+            int start = Environment.TickCount;
 
             LoadSubCat();
 
-            int end = System.Environment.TickCount;
-            lblTimeRender.Text = (end - start).ToString() + " ms";
+            int end = Environment.TickCount;
+            lblTimeRender.Text = (end - start) + " ms";
 
             Criterias.Init();
             listCriteriaType.Items.Clear();
-            listCriteriaType.Items.AddRange(Criterias.criterias.Values.ToArray());
+            listCriteriaType.Items.AddRange(Criterias.GetCriterias().Values.ToArray());
 
             listMap.Items.Clear();
             listMap.Items.Add("None");
             listMap.Items.AddRange(DBCStores.Map.Records.ToArray());
-        }
-
-        private static Bitmap CropBitmap(Bitmap bitmap, Rectangle cropArea)
-        {
-            Bitmap bmpImage = new Bitmap(bitmap);
-            Bitmap bmpCrop = bmpImage.Clone(cropArea, bmpImage.PixelFormat);
-
-            return bmpCrop;
         }
 
         private void treeAchievements_AfterSelect(object sender, TreeViewEventArgs e)
@@ -110,55 +110,65 @@ namespace World_Editor.Editors.AchievementsEditor
             if (treeAchievements.SelectedNode == null)
                 return;
 
-            Regex myRegex = new Regex(@"^([ac])([\d]+)$");
-            Match m = myRegex.Match(treeAchievements.SelectedNode.Name);
-            if (m.Groups[1].Value == "a")
+            Match m = _typeOfNodeRegex.Match(treeAchievements.SelectedNode.Name);
+            string categoryOrAchievementNode = m.Groups[1].Value;
+            uint categoryOrAchievementId = UInt32.Parse(m.Groups[2].Value);
+
+            switch (categoryOrAchievementNode)
             {
-                tabAchievement.SelectedIndex = 0;
-                AchievementEntry a = DBCStores.Achievement[UInt32.Parse(m.Groups[2].Value)];
-                panelRenderAchievement.SetAchievement(a);
-
-                txtId.Text = a.Id.ToString();
-                listFaction.SelectedIndex = (int)(a.FactionFlag + 1);
-                txtMap.Text = a.MapId.ToString();
-                txtName.Text = a.Name;
-                txtDescription.Text = a.Description;
-                txtParentAchievement.Text = a.ParentAchievement.ToString();
-                txtPoints.Text = a.Points.ToString();
-                txtOrder.Text = a.OrderInCategory.ToString();
-                txtFlags.Text = a.Flags.ToString();
-                txtIcon.Text = a.Icon.ToString();
-                txtReward.Text = a.TitleReward;
-                txtCategory.Text = a.CategoryId.ToString();
-                txtCount.Text = a.Count.ToString();
-                txtAchievementRef.Text = a.RefAchievement.ToString();
-
-                listCriterias.Items.Clear();
-                listCriterias.Items.AddRange(DBCStores.AchievementCriteria.Records.Where(c => c.ReferredAchievement == a.Id).ToArray());
-                if (listCriterias.Items.Count > 0)
-                    listCriterias.SelectedIndex = 0;
-            }
-            else
-            {
-                tabAchievement.SelectedIndex = 1;
-                AchievementCategoryEntry c = DBCStores.AchievementCategory[UInt32.Parse(m.Groups[2].Value)];
-
-                txtCatId.Text = c.Id.ToString();
-                txtCatParentId.Text = c.ParentCategory.ToString();
-                txtCatName.Text = c.Name;
-                txtCatOrder.Text = c.SortOrder.ToString();
+                case "a":
+                    UpdateAchievement(categoryOrAchievementId);
+                    break;
+                case "c":
+                    UpdateCategory(categoryOrAchievementId);
+                    break;
+                default:
+                    Log.W("Impossible de déterminer le node");
+                    break;
             }
         }
 
-        private Bitmap ResizeBitmap(Bitmap bitmap, uint x, uint y)
+        private void UpdateAchievement(uint achievementId)
         {
-            Bitmap b = new Bitmap((int)x, (int)y);
-            Graphics graphic = Graphics.FromImage((Image)b);
-            graphic.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            graphic.DrawImage((Image)bitmap, 0, 0, x, y);
-            graphic.Dispose();
+            tabAchievement.TabPages[0].Enabled = true;
+            tabAchievement.TabPages[1].Enabled = false;
+            tabAchievement.SelectedIndex = 0;
+            AchievementEntry a = DBCStores.Achievement[achievementId];
+            panelRenderAchievement.SetAchievement(a);
 
-            return b;
+            txtId.Text = a.Id.ToString();
+            listFaction.SelectedIndex = a.FactionFlag + 1;
+            txtMap.Text = a.MapId.ToString();
+            txtName.Text = a.Name;
+            txtDescription.Text = a.Description;
+            txtParentAchievement.Text = a.ParentAchievement.ToString();
+            txtPoints.Text = a.Points.ToString();
+            txtOrder.Text = a.OrderInCategory.ToString();
+            txtFlags.Text = a.Flags.ToString();
+            txtIcon.Text = a.Icon.ToString();
+            txtReward.Text = a.TitleReward;
+            txtCategory.Text = a.CategoryId.ToString();
+            txtCount.Text = a.Count.ToString();
+            txtAchievementRef.Text = a.RefAchievement.ToString();
+
+            listCriterias.Items.Clear();
+            listCriterias.Items.AddRange(DBCStores.AchievementCriteria.Records.Where(c => c.ReferredAchievement == a.Id).ToArray());
+            if (listCriterias.Items.Count > 0)
+                listCriterias.SelectedIndex = 0;
+        }
+
+        private void UpdateCategory(uint categoryId)
+        {
+            tabAchievement.TabPages[0].Enabled = false;
+            tabAchievement.TabPages[1].Enabled = true;
+            tabAchievement.SelectedIndex = 1;
+            
+            AchievementCategoryEntry c = DBCStores.AchievementCategory[categoryId];
+
+            txtCatId.Text = c.Id.ToString();
+            txtCatParentId.Text = c.ParentCategory.ToString();
+            txtCatName.Text = c.Name;
+            txtCatOrder.Text = c.SortOrder.ToString();
         }
 
         private void listCriterias_SelectedIndexChanged(object sender, EventArgs e)
@@ -169,7 +179,7 @@ namespace World_Editor.Editors.AchievementsEditor
             AchievementCriteriaEntry c = (AchievementCriteriaEntry)listCriterias.SelectedItem;
             txtCriteriaId.Text = c.Id.ToString();
             txtCriteriaAchievement.Text = c.ReferredAchievement.ToString();
-            listCriteriaType.SelectedItem = Criterias.criterias[c.RequiredType];
+            listCriteriaType.SelectedItem = Criterias.GetCriterias()[c.RequiredType];
 
             txtReqType0.Text = c.ReqType0.ToString();
             txtReqValue0.Text = c.ReqValue0.ToString();
@@ -197,29 +207,6 @@ namespace World_Editor.Editors.AchievementsEditor
 
             if (nodeName != null)
                 treeAchievements.SelectedNode = treeAchievements.Nodes.Find(nodeName, true).First();
-        }
-
-        private void tabAchievement_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (treeAchievements.SelectedNode == null)
-                return;
-
-            if (treeAchievements.SelectedNode.Name.Contains("a"))
-            {
-                if (tabAchievement.SelectedIndex == 1)
-                {
-                    tabAchievement.SelectedIndex = 0;
-                    return;
-                }
-            }
-            else
-            {
-                if (tabAchievement.SelectedIndex == 0)
-                {
-                    tabAchievement.SelectedIndex = 1;
-                    return;
-                }
-            }
         }
 
         #region TextChanged Category
@@ -584,28 +571,28 @@ namespace World_Editor.Editors.AchievementsEditor
             if (treeAchievements.SelectedNode == null)
                 return;
 
-            if (treeAchievements.SelectedNode.Name == "c92")
+            if (treeAchievements.SelectedNode.Name == "c" + DefaultGeneralCategoryId)
             {
-                MessageBox.Show("Vous ne pouvez supprimer cette catégorie !");
+                MessageBox.Show("Vous ne pouvez pas supprimer cette catégorie !");
                 return;
             }
 
             if (treeAchievements.SelectedNode.Name.Contains("a"))
             {
-                if (DBCStores.Achievement.ContainsKey(Misc.ParseToUInt(txtId.Text)))
-                    DBCStores.Achievement.RemoveEntry(Misc.ParseToUInt(txtId.Text));
+                DBCStores.Achievement.TryRemoveEntry(Misc.ParseToUInt(txtId.Text));
             }
-            else
+            else if (treeAchievements.SelectedNode.Name.Contains("c"))
             {
-                if (DBCStores.AchievementCategory.ContainsKey(Misc.ParseToUInt(txtCatId.Text)))
+                uint categoryId = Misc.ParseToUInt(txtCatId.Text);
+                if (DBCStores.AchievementCategory.ContainsKey(categoryId))
                 {
                     if (MessageBox.Show("Toutes les sous-catégories et haut-faits seront déplacés dans la catégorie Général", "Confirmer la suppression", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
-                        foreach (AchievementCategoryEntry c in DBCStores.AchievementCategory.Records.Where(cp => cp.ParentCategory == Misc.ParseToUInt(txtCatId.Text)))
-                            c.ParentCategory = 92;
-                        foreach (AchievementEntry a in DBCStores.Achievement.Records.Where(ap => ap.CategoryId == Misc.ParseToUInt(txtCatId.Text)))
-                            a.CategoryId = 92;
-                        DBCStores.AchievementCategory.RemoveEntry(Misc.ParseToUInt(txtCatId.Text));
+                        foreach (AchievementCategoryEntry c in DBCStores.AchievementCategory.Records.Where(cp => cp.ParentCategory == categoryId))
+                            c.ParentCategory = DefaultGeneralCategoryId;
+                        foreach (AchievementEntry a in DBCStores.Achievement.Records.Where(ap => ap.CategoryId == categoryId))
+                            a.CategoryId = DefaultGeneralCategoryId;
+                        DBCStores.AchievementCategory.RemoveEntry(categoryId);
                     }
                 }
             }
@@ -621,7 +608,7 @@ namespace World_Editor.Editors.AchievementsEditor
                 Id = DBCStores.AchievementCategory.MaxKey + 1,
                 ParentCategory = -1,
                 Name = "Nouvelle catégorie",
-                SortOrder = (uint)DBCStores.AchievementCategory.Records.Where(cp => cp.ParentCategory == -1).Max(cp => cp.SortOrder) + 1,
+                SortOrder = DBCStores.AchievementCategory.Records.Where(cp => cp.ParentCategory == -1).Max(cp => cp.SortOrder) + 1,
             };
 
             DBCStores.AchievementCategory.AddEntry(c.Id, c);
@@ -629,7 +616,7 @@ namespace World_Editor.Editors.AchievementsEditor
             treeAchievements.Nodes.Clear();
             LoadSubCat();
 
-            treeAchievements.SelectedNode = treeAchievements.Nodes.Find("c" + c.Id.ToString(), true).First();
+            treeAchievements.SelectedNode = treeAchievements.Nodes.Find("c" + c.Id, true).First();
         }
 
         private void btnAchAdd_Click(object sender, EventArgs e)
@@ -641,7 +628,7 @@ namespace World_Editor.Editors.AchievementsEditor
                 MapId = -1,
                 Name = "Nouveau haut-fait",
                 Description = "",
-                CategoryId = 92,
+                CategoryId = DefaultGeneralCategoryId,
                 TitleReward = "",
             };
 
@@ -650,7 +637,7 @@ namespace World_Editor.Editors.AchievementsEditor
             treeAchievements.Nodes.Clear();
             LoadSubCat();
 
-            treeAchievements.SelectedNode = treeAchievements.Nodes.Find("a" + a.Id.ToString(), true).First();
+            treeAchievements.SelectedNode = treeAchievements.Nodes.Find("a" + a.Id, true).First();
         }
 
         private void btnAddCriteria_Click(object sender, EventArgs e)
@@ -693,7 +680,7 @@ namespace World_Editor.Editors.AchievementsEditor
 
         private void btnFlags_Click(object sender, EventArgs e)
         {
-            World_Editor.Dialogs.FlagDialog d = new World_Editor.Dialogs.FlagDialog(typeof(AchievementFlags), Misc.ParseToUInt(txtFlags.Text));
+            FlagDialog d = new FlagDialog(typeof(AchievementFlags), Misc.ParseToUInt(txtFlags.Text));
             d.ShowDialog();
             if (d.DialogResult == DialogResult.OK)
                 txtFlags.Text = d.Bitmask.ToString();
@@ -701,12 +688,17 @@ namespace World_Editor.Editors.AchievementsEditor
 
         private void btnIcon_Click(object sender, EventArgs e)
         {
-            World_Editor.Dialogs.SpellIconDialog d = new Dialogs.SpellIconDialog(Misc.ParseToUInt(txtIcon.Text));
+            SpellIconDialog d = new SpellIconDialog(Misc.ParseToUInt(txtIcon.Text));
             d.ShowDialog();
             if (d.DialogResult == DialogResult.OK)
                 txtIcon.Text = d.choosenIcon.ToString();
         }
         #endregion
+
+        private void tabAchievement_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            e.Cancel = !e.TabPage.Enabled;
+        }
 
     }
 }

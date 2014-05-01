@@ -215,6 +215,15 @@ namespace DBCLib
             mRecords.Remove(id);
         }
 
+        public bool TryRemoveEntry(uint id)
+        {
+            bool isRemoved = mRecords.Remove(id);
+
+            IsEdited &= isRemoved;
+
+            return isRemoved;
+        }
+
         public void SaveDBC()
         {
             //if (!IsEdited)

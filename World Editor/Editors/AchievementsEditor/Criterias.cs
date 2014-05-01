@@ -9,12 +9,12 @@ namespace World_Editor.Editors.AchievementsEditor
 {
     public static class Criterias
     {
-        public static Dictionary<uint, Criteria> criterias = new Dictionary<uint, Criteria>();
-        private static bool loaded = false;
+        private static readonly Dictionary<uint, Criteria> criterias = new Dictionary<uint, Criteria>();
+        private static bool _loaded = false;
 
         public static void Init()
         {
-            if (loaded)
+            if (_loaded)
                 return;
 
             XmlSerializer deserializer = new XmlSerializer(typeof(List<Criteria>));
@@ -25,7 +25,12 @@ namespace World_Editor.Editors.AchievementsEditor
             foreach (Criteria c in listCriterias)
                 criterias.Add(c.TypeId, c);
 
-            loaded = true;
+            _loaded = true;
+        }
+
+        public static Dictionary<uint, Criteria> GetCriterias()
+        {
+            return criterias;
         }
     }
 
