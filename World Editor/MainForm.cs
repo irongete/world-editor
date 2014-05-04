@@ -182,7 +182,7 @@ namespace World_Editor
             {
                 ShowAndBringToFrontEditor<Editors.GameTipsEditor.MainForm>();
             }
-            else if (/*sender == menuNamesReservedEditor ||*/ sender == toolNamesReservedEditor)
+            else if (sender == menuNamesReservedEditor || sender == toolNamesReservedEditor)
             {
                 ShowAndBringToFrontEditor<NamesReservedEditor.MainForm>();
             }
@@ -332,7 +332,7 @@ namespace World_Editor
             _controlsInEditMode.Add(menuPOIsEditor);
             _controlsInEditMode.Add(menuMapsEditor);
             _controlsInEditMode.Add(menuGameTipsEditor);
-            //_controlsInEditMode.Add(menuNamesReservedEditor);
+            _controlsInEditMode.Add(menuNamesReservedEditor);
             _controlsInEditMode.Add(générerUnItemdbcToolStripMenuItem);
 
             _controlsInEditMode.Add(toolTalentsEditor);

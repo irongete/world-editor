@@ -165,6 +165,7 @@ namespace World_Editor.Database
             string itemName;
             while (Reader.Read())
             {
+                //Actuellement plutôt laid, modifier la méthode qui récupère les données en base ?
                 for (int i = 0; i < Reader.FieldCount; ++i)
                 {
                     if (itemId == "")

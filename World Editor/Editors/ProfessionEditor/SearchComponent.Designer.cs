@@ -59,7 +59,6 @@
             this.txtComponentID.Name = "txtComponentID";
             this.txtComponentID.Size = new System.Drawing.Size(67, 20);
             this.txtComponentID.TabIndex = 2;
-            this.txtComponentID.TextChanged += new System.EventHandler(this.txtComponentID_TextChanged);
             // 
             // label1
             // 
