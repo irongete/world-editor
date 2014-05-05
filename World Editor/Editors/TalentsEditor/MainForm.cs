@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DBCLib;
 using DBCLib.Structures335;
 using MDS.cBlp2;
 using World_Editor.DBC;
@@ -276,11 +277,23 @@ namespace World_Editor.TalentsEditor
             listTalentTab.SelectedIndex = 0;
         }
 
+        class TalentComparer : IComparer<TalentEntry>
+        {
+            public int Compare(TalentEntry x, TalentEntry y)
+            {
+                if (x == null || y == null)
+                    return 0;
+
+                return x.TabId.CompareTo(y.TabId);
+            }
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                DBCStores.SaveTalentsEditorFiles();
+                DBCStores.Talent.SaveDBC(new TalentComparer());
+                DBCStores.TalentTab.SaveDBC();
                 MessageBox.Show("Sauvegarde terminée !", "Réussite", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

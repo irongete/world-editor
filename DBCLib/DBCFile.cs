@@ -224,7 +224,7 @@ namespace DBCLib
             return isRemoved;
         }
 
-        public void SaveDBC()
+        public void SaveDBC(IComparer<T> comparison)
         {
             //if (!IsEdited)
             //    return;
@@ -232,7 +232,12 @@ namespace DBCLib
             string path = FileName;
 
             DBCWriter<T> wr = new DBCWriter<T>();
-            wr.WriteDBC(this, path);
+            wr.WriteDBC(this, path, comparison);
+        }
+
+        public void SaveDBC()
+        {
+            SaveDBC(null);
         }
 
         public T this[uint id]
