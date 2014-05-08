@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DBCLib.Structures335;
 
 namespace World_Editor.DBC
 {
@@ -33,9 +34,9 @@ namespace World_Editor.DBC
             //Console.WriteLine("SpellFocusObject.dbc : ok");
         }
 
-        public static void SaveTalentsEditorFiles()
+        public static void SaveTalentsEditorFiles(IComparer<TalentEntry> comparator)
         {
-            Talent.SaveDBC();
+            Talent.SaveDBC(comparator);
             TalentTab.SaveDBC();
         }
 
