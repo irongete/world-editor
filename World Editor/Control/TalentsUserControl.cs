@@ -45,6 +45,11 @@ namespace World_Editor.Control
             panelIn.Refresh();
         }
 
+        public void SelectTalent(TalentEntry talent)
+        {
+            _selectedTalent = _listTalents.Find(t => t.Id == talent.Id);
+        }
+
         private void RefreshSpellIcons(IEnumerable<TalentEntry> talents)
         {
             _icons.Clear();
@@ -274,13 +279,13 @@ namespace World_Editor.Control
                     {
                         if (IsInTalentCrossButton(e.X, e.Y, t.Row, t.Col))
                         {
-                            RemoveTalent(t);
+                            ProcessRemoveTalent(t);
                             return;
                         }
 
                         if (IsInTalentEmplacement(e.X, e.Y, t.Row, t.Col))
                         {
-                            SelectTalent(t);
+                            ProcessSelectTalent(t);
                             return;
                         }
                     }
@@ -290,11 +295,11 @@ namespace World_Editor.Control
                         {
                             if (_talentMouseDown != null)
                             {
-                                MoveSelectedTalentTo(j, i);
+                                ProcessMoveSelectedTalentTo(j, i);
                             }
                             else
                             {
-                                AddNewTalent(j, i);
+                                ProcessAddNewTalent(j, i);
                             }
                             return;
                         }
@@ -307,7 +312,7 @@ namespace World_Editor.Control
         // CLICK ACTIONS
         //--------------------
 
-        private void SelectTalent(TalentEntry t)
+        private void ProcessSelectTalent(TalentEntry t)
         {
             _talentMouseDown = null;
             _selectedTalent = t;
@@ -317,7 +322,7 @@ namespace World_Editor.Control
             }
         }
 
-        private void RemoveTalent(TalentEntry t)
+        private void ProcessRemoveTalent(TalentEntry t)
         {
             _talentMouseDown = null;
 
@@ -334,7 +339,7 @@ namespace World_Editor.Control
             }
         }
 
-        private void AddNewTalent(uint j, uint i)
+        private void ProcessAddNewTalent(uint j, uint i)
         {
             if (_talentTab != null)
             {
@@ -358,7 +363,7 @@ namespace World_Editor.Control
             }
         }
 
-        private void MoveSelectedTalentTo(uint j, uint i)
+        private void ProcessMoveSelectedTalentTo(uint j, uint i)
         {
             if (_icons.ContainsKey("SpellIcon." + _talentMouseDown.Row + "." + _talentMouseDown.Col) &&
                 (_talentMouseDown.Row != j || _talentMouseDown.Col != i))

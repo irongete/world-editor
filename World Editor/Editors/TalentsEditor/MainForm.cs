@@ -68,6 +68,8 @@ namespace World_Editor.Editors.TalentsEditor
             checkFlags.Checked = Convert.ToBoolean(t.Flags);
             txtPetFlags0.Text = t.AllowForPetFlags[0].ToString();
             txtPetFlags1.Text = t.AllowForPetFlags[1].ToString();
+
+            talentsUserControl.SelectTalent(t);
         }
 
         private void btnEditTalentTab_Click(object sender, EventArgs e)
@@ -200,7 +202,7 @@ namespace World_Editor.Editors.TalentsEditor
             if (talentArgs == null)
                 return;
 
-            lblRenderTime.Text = "Render time : " + talentArgs.GetTime() + " ms";
+            lblRenderTime.Text = talentArgs.GetTime() + " ms";
         }
 
 
