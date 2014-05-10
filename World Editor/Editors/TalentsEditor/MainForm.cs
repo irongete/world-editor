@@ -45,7 +45,7 @@ namespace World_Editor.Editors.TalentsEditor
         private void LoadTalentTab()
         {
             TalentTabEntry tb = (TalentTabEntry) listTalentTab.SelectedItem;
-            talentsUserControl.SetTalents(listTalents.Items.Cast<TalentEntry>().ToList(), tb.Id);
+            talentsUserControl.SetTalents(listTalents.Items.Cast<TalentEntry>().ToList(), tb);
         }
 
         private void listTalents_SelectedIndexChanged(object sender, EventArgs e)
