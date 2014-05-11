@@ -86,6 +86,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\TalentsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\TalentsUserControl.Designer.cs">
+      <DependentUpon>TalentsUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\ICore.cs" />
     <Compile Include="Database\Emulators\Arcemu.cs" />
     <Compile Include="Database\Emulators\Mangos.cs" />
@@ -273,16 +279,19 @@
     <Compile Include="Editors\RacesEditor\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\AchievementPanel.cs">
+    <Compile Include="Control\AchievementPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Utils\AchievementPanel.Designer.cs">
+    <Compile Include="Control\AchievementPanel.Designer.cs">
       <DependentUpon>AchievementPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\Misc.cs" />
     <Compile Include="Utils\ProjectManager.cs" />
     <Compile Include="Utils\Singleton.cs" />
     <Compile Include="Utils\StreamedMpq.cs" />
+    <EmbeddedResource Include="Control\TalentsUserControl.resx">
+      <DependentUpon>TalentsUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editors\ClassesEditor\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -391,7 +400,7 @@
     <EmbeddedResource Include="Editors\RacesEditor\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utils\AchievementPanel.resx">
+    <EmbeddedResource Include="Control\AchievementPanel.resx">
       <DependentUpon>AchievementPanel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />

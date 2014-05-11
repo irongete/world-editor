@@ -8,7 +8,7 @@ namespace DBCLib
 {
     internal class DBCWriter<T> where T : new()
     {
-        internal void WriteDBC(DBCFile<T> file, string path)
+        internal void WriteDBC(DBCFile<T> file, string path, IComparer<T> comparison)
         {
             var dirName = Path.GetDirectoryName(path);
             if (!string.IsNullOrEmpty(dirName))
@@ -32,8 +32,14 @@ namespace DBCLib
                 // Ajout d'une string vide afin d'obtenir un format blizzlike
                 AddStringToTable("");
 
+                List<T> valueCollection = file.Records.ToList();
+                if (comparison != null)
+                {
+                    valueCollection.Sort(comparison);
+                }
+
                 // Ecriture de chaque champ de chaque enregistrement
-                foreach (var rec in file.Records)
+                foreach (var rec in valueCollection)
                 {
                     foreach (var field in fields)
                     {

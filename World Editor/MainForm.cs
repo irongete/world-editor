@@ -231,7 +231,7 @@ namespace World_Editor
         {
             DBCStores.LoadTalentsEditorFiles();
             Invoke((FinChargement)DisableErrorMessage);
-            Invoke((FinChargement)ShowAndBringToFrontEditor<TalentsEditor.MainForm>);
+            Invoke((FinChargement)ShowAndBringToFrontEditor<Editors.TalentsEditor.MainForm>);
         }
 
         private void LoadProfessionsEditorFiles()

@@ -1,4 +1,4 @@
-﻿namespace World_Editor.Utils
+﻿namespace World_Editor.Control
 {
     partial class AchievementPanel
     {

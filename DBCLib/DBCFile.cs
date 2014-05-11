@@ -215,7 +215,16 @@ namespace DBCLib
             mRecords.Remove(id);
         }
 
-        public void SaveDBC()
+        public bool TryRemoveEntry(uint id)
+        {
+            bool isRemoved = mRecords.Remove(id);
+
+            IsEdited &= isRemoved;
+
+            return isRemoved;
+        }
+
+        public void SaveDBC(IComparer<T> comparison)
         {
             //if (!IsEdited)
             //    return;
@@ -223,7 +232,12 @@ namespace DBCLib
             string path = FileName;
 
             DBCWriter<T> wr = new DBCWriter<T>();
-            wr.WriteDBC(this, path);
+            wr.WriteDBC(this, path, comparison);
+        }
+
+        public void SaveDBC()
+        {
+            SaveDBC(null);
         }
 
         public T this[uint id]

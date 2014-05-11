@@ -1,4 +1,5 @@
-﻿using World_Editor.Utils;
+﻿using World_Editor.Control;
+using World_Editor.Utils;
 
 namespace World_Editor.Editors.AchievementsEditor
 {
@@ -43,7 +44,7 @@ namespace World_Editor.Editors.AchievementsEditor
             this.txtAchievementRef = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.panelRenderAchievement = new World_Editor.Utils.AchievementPanel();
+            this.panelRenderAchievement = new World_Editor.Control.AchievementPanel(this.components);
             this.groupBoxCriterias = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -179,7 +180,7 @@ namespace World_Editor.Editors.AchievementsEditor
             this.tabAchievement.SelectedIndex = 0;
             this.tabAchievement.Size = new System.Drawing.Size(488, 519);
             this.tabAchievement.TabIndex = 5;
-            this.tabAchievement.SelectedIndexChanged += new System.EventHandler(this.tabAchievement_SelectedIndexChanged);
+            this.tabAchievement.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabAchievement_Selecting);
             // 
             // tabPageAchievement
             // 
