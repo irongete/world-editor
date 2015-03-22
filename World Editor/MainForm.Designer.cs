@@ -44,6 +44,7 @@
             this.menuRacesEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuGameTipsEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuTitlesEditor = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuNamesReservedEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.générerUnItemdbcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,6 @@
             this.btnValidateProject = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.listProjects = new System.Windows.Forms.ComboBox();
-            this.menuNamesReservedEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.topMenu.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -119,8 +119,8 @@
             this.menuProfessionsEditor,
             this.menuPOIsEditor,
             this.menuRacesEditor,
-            this.menuGameTipsEditor,
             this.menuTitlesEditor,
+            this.menuGameTipsEditor,
             this.menuNamesReservedEditor,
             this.toolStripSeparator1,
             this.générerUnItemdbcToolStripMenuItem});
@@ -196,15 +196,8 @@
             // 
             this.menuGameTipsEditor.Name = "menuGameTipsEditor";
             this.menuGameTipsEditor.Size = new System.Drawing.Size(215, 22);
-            this.menuGameTipsEditor.Text = "Editeur de tips";
+            this.menuGameTipsEditor.Text = "Editeur de game tips";
             this.menuGameTipsEditor.Click += new System.EventHandler(this.StartEditor);
-            // 
-            // menuNamesReservedEditor
-            // 
-            this.menuNamesReservedEditor.Name = "menuNamesReservedEditor";
-            this.menuNamesReservedEditor.Size = new System.Drawing.Size(215, 22);
-            this.menuNamesReservedEditor.Text = "Editeur de noms réservés";
-            this.menuNamesReservedEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuTitlesEditor
             // 
@@ -213,6 +206,13 @@
             this.menuTitlesEditor.Size = new System.Drawing.Size(215, 22);
             this.menuTitlesEditor.Text = "Editeur de titres";
             this.menuTitlesEditor.Click += new System.EventHandler(this.StartEditor);
+            // 
+            // menuNamesReservedEditor
+            // 
+            this.menuNamesReservedEditor.Name = "menuNamesReservedEditor";
+            this.menuNamesReservedEditor.Size = new System.Drawing.Size(215, 22);
+            this.menuNamesReservedEditor.Text = "Editeur de noms réservés";
+            this.menuNamesReservedEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolStripSeparator1
             // 
@@ -367,6 +367,7 @@
             this.toolGameTipsEditor.Name = "toolGameTipsEditor";
             this.toolGameTipsEditor.Size = new System.Drawing.Size(23, 22);
             this.toolGameTipsEditor.Text = "Editeur de GameTips";
+            this.toolGameTipsEditor.ToolTipText = "Editeur de game tips";
             this.toolGameTipsEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // toolNamesReservedEditor
@@ -409,12 +410,6 @@
             this.listProjects.Name = "listProjects";
             this.listProjects.Size = new System.Drawing.Size(180, 21);
             this.listProjects.TabIndex = 18;
-            // 
-            // menuNamesReservedEditor
-            // 
-            this.menuNamesReservedEditor.Name = "menuNamesReservedEditor";
-            this.menuNamesReservedEditor.Size = new System.Drawing.Size(215, 22);
-            this.menuNamesReservedEditor.Text = "Editeur de noms réservés";
             // 
             // MainForm
             // 
