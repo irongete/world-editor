@@ -64,6 +64,18 @@ namespace World_Editor.ProfessionEditor
             if (lstRecipes.Items.Count == 0)
                 activateComposants(false);
             lstSkills.SelectedIndex = lstSkills.Items.Count - 1;
+            if (!Properties.Settings.Default.OptionUseDatabase)
+            {
+                btnSearchRecipe1.Enabled = false;
+                btnSearchRecipe2.Enabled = false;
+                btnSearchRecipe3.Enabled = false;
+                btnSearchRecipe4.Enabled = false;
+                btnSearchRecipe5.Enabled = false;
+                btnSearchRecipe6.Enabled = false;
+                btnSearchRecipe7.Enabled = false;
+                btnSearchRecipe8.Enabled = false;
+                btnSearchResultRecipe.Enabled = false;
+            }
         }
 
         private void lstSkills_SelectedIndexChanged(object sender, EventArgs e)
