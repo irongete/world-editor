@@ -64,6 +64,7 @@
             this.btnValidateProject = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.listProjects = new System.Windows.Forms.ComboBox();
+            this.menuNamesReservedEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.topMenu.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -120,6 +121,7 @@
             this.menuRacesEditor,
             this.menuGameTipsEditor,
             this.menuTitlesEditor,
+            this.menuNamesReservedEditor,
             this.toolStripSeparator1,
             this.générerUnItemdbcToolStripMenuItem});
             this.editeursToolStripMenuItem.Name = "editeursToolStripMenuItem";
@@ -196,6 +198,13 @@
             this.menuGameTipsEditor.Size = new System.Drawing.Size(215, 22);
             this.menuGameTipsEditor.Text = "Editeur de tips";
             this.menuGameTipsEditor.Click += new System.EventHandler(this.StartEditor);
+            // 
+            // menuNamesReservedEditor
+            // 
+            this.menuNamesReservedEditor.Name = "menuNamesReservedEditor";
+            this.menuNamesReservedEditor.Size = new System.Drawing.Size(215, 22);
+            this.menuNamesReservedEditor.Text = "Editeur de noms réservés";
+            this.menuNamesReservedEditor.Click += new System.EventHandler(this.StartEditor);
             // 
             // menuTitlesEditor
             // 
@@ -401,6 +410,12 @@
             this.listProjects.Size = new System.Drawing.Size(180, 21);
             this.listProjects.TabIndex = 18;
             // 
+            // menuNamesReservedEditor
+            // 
+            this.menuNamesReservedEditor.Name = "menuNamesReservedEditor";
+            this.menuNamesReservedEditor.Size = new System.Drawing.Size(215, 22);
+            this.menuNamesReservedEditor.Text = "Editeur de noms réservés";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,6 +480,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuGameTipsEditor;
         private System.Windows.Forms.ToolStripButton toolGameTipsEditor;
         private System.Windows.Forms.ToolStripButton toolNamesReservedEditor;
+        private System.Windows.Forms.ToolStripMenuItem menuNamesReservedEditor;
     }
 }
 
