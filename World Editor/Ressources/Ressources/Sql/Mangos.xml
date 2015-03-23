@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSqlRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SqlRequest Name="GetItemTemplateFromTo">
+    <Request>SELECT entry, class, subclass, displayid, InventoryType, Material, sheath FROM `item_template` WHERE `entry` BETWEEN {0} AND {1};</Request>
+  </SqlRequest>
+  <SqlRequest Name="GetItemTemplate">
+    <Request>SELECT entry, class, subclass, displayid, InventoryType, Material, sheath FROM `item_template`;</Request>
+  </SqlRequest>
+  <SqlRequest Name="GetCreatureTemplateEntry">
+    <Request>SELECT * FROM `creature_template` WHERE `entry` = {0};</Request>
+  </SqlRequest>
+</ArrayOfSqlRequest>

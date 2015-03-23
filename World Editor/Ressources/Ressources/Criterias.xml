@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCriteria xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Criteria Id="0" Name="KILL_CREATURE">
+    <ReqType0>creatureID</ReqType0>
+    <ReqValue0>creatureCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="1" Name="WIN_BG">
+    <ReqType0>bgMapID</ReqType0>
+    <ReqValue0>winCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="5" Name="REACH_LEVEL">
+    <ReqValue0>level</ReqValue0>
+  </Criteria>
+  <Criteria Id="7" Name="REACH_SKILL_LEVEL">
+    <ReqType0>skillID</ReqType0>
+    <ReqValue0>skillLevel</ReqValue0>
+  </Criteria>
+  <Criteria Id="8" Name="COMPLETE_ACHIEVEMENT">
+    <ReqType0>linkedAchievement</ReqType0>
+  </Criteria>
+  <Criteria Id="9" Name="COMPLETE_QUEST_COUNT">
+    <ReqValue0>totalQuestCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="10" Name="COMPLETE_DAILY_QUEST_DAILY">
+    <ReqValue0>numberOfDays</ReqValue0>
+  </Criteria>
+  <Criteria Id="11" Name="COMPLETE_QUESTS_IN_ZONE">
+    <ReqType0>zoneID</ReqType0>
+    <ReqValue0>questCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="13" Name="DAMAGE_DONE">
+    <ReqValue0>count</ReqValue0>
+  </Criteria>
+  <Criteria Id="14" Name="COMPLETE_DAILY_QUEST">
+    <ReqValue0>questCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="15" Name="COMPLETE_BATTLEGROUND">
+    <ReqType0>mapID</ReqType0>
+  </Criteria>
+  <Criteria Id="16" Name="DEATH_AT_MAP">
+    <ReqType0>mapID</ReqType0>
+  </Criteria>
+  <Criteria Id="17" Name="DEATH" />
+  <Criteria Id="18" Name="DEATH_IN_DUNGEON">
+    <ReqType0>manLimit</ReqType0>
+  </Criteria>
+  <Criteria Id="19" Name="COMPLETE_RAID">
+    <ReqType0>groupSize</ReqType0>
+  </Criteria>
+  <Criteria Id="20" Name="KILLED_BY_CREATURE">
+    <ReqType0>creatureEntry</ReqType0>
+  </Criteria>
+  <Criteria Id="23" Name="KILLED_BY_PLAYER" />
+  <Criteria Id="24" Name="FALL_WITHOUT_DYING">
+    <ReqValue0>fallHeight</ReqValue0>
+  </Criteria>
+  <Criteria Id="26" Name="DEATHS_FROM">
+    <ReqType0>type</ReqType0>
+  </Criteria>
+  <Criteria Id="27" Name="COMPLETE_QUEST">
+    <ReqType0>questID</ReqType0>
+    <ReqValue0>questCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="28" Name="BE_SPELL_TARGET">
+    <ReqType0>spellID</ReqType0>
+    <ReqValue0>spellCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="29" Name="CAST_SPELL">
+    <ReqType0>spellID</ReqType0>
+    <ReqValue0>castCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="30" Name="BG_OBJECTIVE_CAPTURE">
+    <ReqType0>objectiveId</ReqType0>
+    <ReqValue0>completeCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="31" Name="HONORABLE_KILL_AT_AREA">
+    <ReqType0>areaID</ReqType0>
+    <ReqValue0>killCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="32" Name="WIN_ARENA">
+    <ReqType0>mapID</ReqType0>
+  </Criteria>
+  <Criteria Id="33" Name="PLAY_ARENA">
+    <ReqType0>mapID</ReqType0>
+  </Criteria>
+  <Criteria Id="34" Name="LEARN_SPELL">
+    <ReqType0>spellID</ReqType0>
+  </Criteria>
+  <Criteria Id="35" Name="HONORABLE_KILL" />
+  <Criteria Id="36" Name="OWN_ITEM">
+    <ReqType0>itemID</ReqType0>
+    <ReqValue0>itemCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="37" Name="WIN_RATED_ARENA">
+    <ReqValue0>count</ReqValue0>
+    <ReqType1>flag</ReqType1>
+  </Criteria>
+  <Criteria Id="38" Name="HIGHEST_TEAM_RATING">
+    <ReqType0>teamtype</ReqType0>
+  </Criteria>
+  <Criteria Id="39" Name="REACH_TEAM_RATING">
+    <ReqType0>teamtype</ReqType0>
+    <ReqValue0>PersonalRating</ReqValue0>
+  </Criteria>
+  <Criteria Id="40" Name="LEARN_SKILL_LEVEL">
+    <ReqType0>skillID</ReqType0>
+    <ReqValue0>skillLevel</ReqValue0>
+  </Criteria>
+  <Criteria Id="41" Name="USE_ITEM">
+    <ReqType0>itemID</ReqType0>
+    <ReqValue0>itemCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="42" Name="LOOT_ITEM">
+    <ReqType0>itemID</ReqType0>
+    <ReqValue0>itemCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="43" Name="EXPLORE_AREA">
+    <ReqType0>areaReference</ReqType0>
+  </Criteria>
+  <Criteria Id="44" Name="OWN_RANK">
+    <ReqType0>rank</ReqType0>
+  </Criteria>
+  <Criteria Id="45" Name="BUY_BANK_SLOT">
+    <ReqValue0>numberOfSlots</ReqValue0>
+  </Criteria>
+  <Criteria Id="46" Name="GAIN_REPUTATION">
+    <ReqType0>factionID</ReqType0>
+    <ReqValue0>reputationAmount</ReqValue0>
+  </Criteria>
+  <Criteria Id="47" Name="GAIN_EXALTED_REPUTATION">
+    <ReqValue0>numberOfExaltedFactions</ReqValue0>
+  </Criteria>
+  <Criteria Id="48" Name="VISIT_BARBER_SHOP">
+    <ReqValue0>numberOfVisits</ReqValue0>
+  </Criteria>
+  <Criteria Id="49" Name="EQUIP_EPIC_ITEM">
+    <ReqType0>itemSlot</ReqType0>
+    <ReqValue0>count</ReqValue0>
+  </Criteria>
+  <Criteria Id="50" Name="ROLL_NEED_ON_LOOT">
+    <ReqType0>rollValue</ReqType0>
+    <ReqValue0>count</ReqValue0>
+  </Criteria>
+  <Criteria Id="51" Name="ROLL_GREED_ON_LOOT">
+    <ReqType0>rollValue</ReqType0>
+    <ReqValue0>count</ReqValue0>
+  </Criteria>
+  <Criteria Id="52" Name="HK_CLASS">
+    <ReqType0>classID</ReqType0>
+    <ReqValue0>count</ReqValue0>
+  </Criteria>
+  <Criteria Id="53" Name="HK_RACE">
+    <ReqType0>raceID</ReqType0>
+    <ReqValue0>count</ReqValue0>
+  </Criteria>
+  <Criteria Id="54" Name="DO_EMOTE">
+    <ReqType0>emoteID</ReqType0>
+    <ReqValue0>count</ReqValue0>
+  </Criteria>
+  <Criteria Id="55" Name="HEALING_DONE">
+    <ReqValue0>count</ReqValue0>
+  </Criteria>
+  <Criteria Id="56" Name="GET_KILLING_BLOWS">
+    <ReqValue0>killCount</ReqValue0>
+    <ReqType1>flag</ReqType1>
+    <ReqValue1>Map</ReqValue1>
+  </Criteria>
+  <Criteria Id="57" Name="EQUIP_ITEM">
+    <ReqType0>itemID</ReqType0>
+    <ReqValue0>count</ReqValue0>
+  </Criteria>
+  <Criteria Id="59" Name="MONEY_FROM_VENDORS" />
+  <Criteria Id="60" Name="GOLD_SPENT_FOR_TALENTS" />
+  <Criteria Id="61" Name="NUMBER_OF_TALENT_RESETS" />
+  <Criteria Id="62" Name="MONEY_FROM_QUEST_REWARD">
+    <ReqValue0>goldInCopper</ReqValue0>
+  </Criteria>
+  <Criteria Id="63" Name="GOLD_SPENT_FOR_TRAVELLING" />
+  <Criteria Id="65" Name="GOLD_SPENT_AT_BARBER" />
+  <Criteria Id="66" Name="GOLD_SPENT_FOR_MAIL" />
+  <Criteria Id="67" Name="LOOT_MONEY">
+    <ReqValue0>goldInCopper</ReqValue0>
+  </Criteria>
+  <Criteria Id="68" Name="USE_GAMEOBJECT">
+    <ReqType0>goEntry</ReqType0>
+    <ReqValue0>useCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="69" Name="BE_SPELL_TARGET2">
+    <ReqType0>spellID</ReqType0>
+    <ReqValue0>spellCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="70" Name="SPECIAL_PVP_KILL">
+    <ReqValue0>killCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="72" Name="FISH_IN_GAMEOBJECT">
+    <ReqType0>goEntry</ReqType0>
+    <ReqValue0>lootCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="74" Name="ON_LOGIN" />
+  <Criteria Id="75" Name="LEARN_SKILLLINE_SPELLS">
+    <ReqType0>skillLine</ReqType0>
+    <ReqValue0>spellCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="76" Name="WIN_DUEL">
+    <ReqValue0>duelCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="77" Name="LOSE_DUEL" />
+  <Criteria Id="78" Name="KILL_CREATURE_TYPE" />
+  <Criteria Id="80" Name="GOLD_EARNED_BY_AUCTIONS" />
+  <Criteria Id="82" Name="CREATE_AUCTION" />
+  <Criteria Id="83" Name="HIGHEST_AUCTION_BID" />
+  <Criteria Id="84" Name="WON_AUCTIONS" />
+  <Criteria Id="85" Name="HIGHEST_AUCTION_SOLD" />
+  <Criteria Id="86" Name="HIGHEST_GOLD_VALUE_OWNED" />
+  <Criteria Id="87" Name="GAIN_REVERED_REPUTATION" />
+  <Criteria Id="88" Name="GAIN_HONORED_REPUTATION" />
+  <Criteria Id="89" Name="KNOWN_FACTIONS" />
+  <Criteria Id="90" Name="LOOT_EPIC_ITEM" />
+  <Criteria Id="91" Name="RECEIVE_EPIC_ITEM" />
+  <Criteria Id="93" Name="ROLL_NEED" />
+  <Criteria Id="94" Name="ROLL_GREED" />
+  <Criteria Id="95" Name="HIGHEST_HEALTH" />
+  <Criteria Id="96" Name="HIGHEST_POWER">
+    <ReqType0>powerType</ReqType0>
+  </Criteria>
+  <Criteria Id="97" Name="HIGHEST_STAT">
+    <ReqType0>statType</ReqType0>
+  </Criteria>
+  <Criteria Id="98" Name="HIGHEST_SPELLPOWER">
+    <ReqType0>spellSchool</ReqType0>
+  </Criteria>
+  <Criteria Id="99" Name="HIGHEST_ARMOR" />
+  <Criteria Id="100" Name="HIGHEST_RATING">
+    <ReqType0>ratingType</ReqType0>
+  </Criteria>
+  <Criteria Id="101" Name="HIGHEST_HIT_DEALT" />
+  <Criteria Id="102" Name="HIGHEST_HIT_RECEIVED" />
+  <Criteria Id="103" Name="TOTAL_DAMAGE_RECEIVED" />
+  <Criteria Id="104" Name="HIGHEST_HEAL_CASTED" />
+  <Criteria Id="105" Name="TOTAL_HEALING_RECEIVED" />
+  <Criteria Id="106" Name="HIGHEST_HEALING_RECEIVED" />
+  <Criteria Id="107" Name="QUEST_ABANDONED" />
+  <Criteria Id="108" Name="FLIGHT_PATHS_TAKEN" />
+  <Criteria Id="109" Name="LOOT_TYPE">
+    <ReqType0>lootType</ReqType0>
+    <ReqValue0>lootTypeCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="110" Name="CAST_SPELL2">
+    <ReqType0>spellID</ReqType0>
+    <ReqValue0>castCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="112" Name="LEARN_SKILL_LINE">
+    <ReqType0>skillLine</ReqType0>
+    <ReqValue0>spellCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="113" Name="EARN_HONORABLE_KILL">
+    <ReqValue0>killCount</ReqValue0>
+  </Criteria>
+  <Criteria Id="114" Name="ACCEPTED_SUMMONS" />
+  <Criteria Id="115" Name="ACHIVEMENTPOINTS_REACHED" />
+  <Criteria Id="119" Name="RANDOM_DUNGEON_PLAYERCOUNT">
+    <ReqValue0>PlayerCount</ReqValue0>
+  </Criteria>
+</ArrayOfCriteria>

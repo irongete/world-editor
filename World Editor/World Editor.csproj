@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3353D523-2AEA-43AF-B84B-FD8752B90B2A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>World_Editor</RootNamespace>
+    <AssemblyName>World Editor</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|x86'">
+    <OutputPath>bin\x86\Test\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>Ressources\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Control\TalentsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\TalentsUserControl.Designer.cs">
+      <DependentUpon>TalentsUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ICore.cs" />
+    <Compile Include="Database\Emulators\Arcemu.cs" />
+    <Compile Include="Database\Emulators\Mangos.cs" />
+    <Compile Include="Database\Emulators\Trinity.cs" />
+    <Compile Include="Database\MySqlConnector.cs" />
+    <Compile Include="Database\Structures.cs" />
+    <Compile Include="Editors\ClassesEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\ClassesEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\AchievementsEditor\Criterias.cs" />
+    <Compile Include="Editors\AchievementsEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\AchievementsEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\EditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\GameTipsEditor\GameTipsEditorLocal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GameTipsEditorLocal.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\GameTipsEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\GameTipsEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\NamesReservedEditor\NamesReservedEditorLocal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NamesReservedEditorLocal.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\POIsEditor\Icons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\POIsEditor\Icons.Designer.cs">
+      <DependentUpon>Icons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\ProfessionEditor\Icons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\ProfessionEditor\Icons.Designer.cs">
+      <DependentUpon>Icons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\ProfessionEditor\ProfessionEditorLocal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProfessionEditorLocal.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\ProfessionEditor\SearchComponent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\ProfessionEditor\SearchComponent.Designer.cs">
+      <DependentUpon>SearchComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\NamesReservedEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\NamesReservedEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\TitlesEditor\TitlesEditorLocal.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TitlesEditorLocal.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemDbcGenerator\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemDbcGenerator\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Libs\DBCStores.cs" />
+    <Compile Include="Dialogs\FlagDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FlagDialog.Designer.cs">
+      <DependentUpon>FlagDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MaskClasses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MaskClasses.Designer.cs">
+      <DependentUpon>MaskClasses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MaskRaces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MaskRaces.Designer.cs">
+      <DependentUpon>MaskRaces.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SpellIconDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SpellIconDialog.Designer.cs">
+      <DependentUpon>SpellIconDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\FactionsEditor\Dialogs\FactionGroupsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\FactionsEditor\Dialogs\FactionGroupsEditor.Designer.cs">
+      <DependentUpon>FactionGroupsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\FactionsEditor\Dialogs\FactionGroupsMask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\FactionsEditor\Dialogs\FactionGroupsMask.Designer.cs">
+      <DependentUpon>FactionGroupsMask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\FactionsEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\FactionsEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\TitlesEditor\TitlesEditorLocal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TitlesEditorLocal.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Libs\DBCStores.Load.cs" />
+    <Compile Include="Libs\DBCStores.Save.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\ProfessionEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\ProfessionEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\ProfessionEditor\Skill.cs" />
+    <Compile Include="Editors\POIsEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\POIsEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\MapsEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\MapsEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ProjectModel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProjectsEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectsEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Libs\StormLib.cs" />
+    <Compile Include="Editors\TalentsEditor\Dialogs\TalentTabsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\TalentsEditor\Dialogs\TalentTabsEditor.Designer.cs">
+      <DependentUpon>TalentTabsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\TalentsEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\TalentsEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\TitlesEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\TitlesEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\RacesEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\RacesEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\AchievementPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\AchievementPanel.Designer.cs">
+      <DependentUpon>AchievementPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Misc.cs" />
+    <Compile Include="Utils\ProjectManager.cs" />
+    <Compile Include="Utils\Singleton.cs" />
+    <Compile Include="Utils\StreamedMpq.cs" />
+    <EmbeddedResource Include="Control\TalentsUserControl.resx">
+      <DependentUpon>TalentsUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\ClassesEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FlagDialog.resx">
+      <DependentUpon>FlagDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MaskClasses.resx">
+      <DependentUpon>MaskClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MaskRaces.resx">
+      <DependentUpon>MaskRaces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SpellIconDialog.resx">
+      <DependentUpon>SpellIconDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\AchievementsEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\FactionsEditor\Dialogs\FactionGroupsEditor.resx">
+      <DependentUpon>FactionGroupsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\FactionsEditor\Dialogs\FactionGroupsMask.resx">
+      <DependentUpon>FactionGroupsMask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\FactionsEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\GameTipsEditor\GameTipsEditorLocal.fr.resx" />
+    <EmbeddedResource Include="Editors\GameTipsEditor\GameTipsEditorLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GameTipsEditorLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\GameTipsEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\NamesReservedEditor\NamesReservedEditorLocal.fr.resx" />
+    <EmbeddedResource Include="Editors\NamesReservedEditor\NamesReservedEditorLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NamesReservedEditorLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\POIsEditor\Icons.resx">
+      <DependentUpon>Icons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\ProfessionEditor\Icons.resx">
+      <DependentUpon>Icons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\ProfessionEditor\ProfessionEditorLocal.fr.resx" />
+    <EmbeddedResource Include="Editors\ProfessionEditor\ProfessionEditorLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProfessionEditorLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\ProfessionEditor\SearchComponent.resx">
+      <DependentUpon>SearchComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\NamesReservedEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TitlesEditor\MainForm.fr.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TitlesEditor\TitlesEditorLocal.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TitlesEditorLocal.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TitlesEditor\TitlesEditorLocal.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TitlesEditorLocal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemDbcGenerator\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\ProfessionEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\POIsEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\MapsEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectsEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Editors\TalentsEditor\Dialogs\TalentTabsEditor.resx">
+      <DependentUpon>TalentTabsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TalentsEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TitlesEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\RacesEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\AchievementPanel.resx">
+      <DependentUpon>AchievementPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AntiBrouillard\AntiBrouillard.csproj">
+      <Project>{48387975-c62b-4c34-9c51-0d083c525801}</Project>
+      <Name>AntiBrouillard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBCLib\DBCLib.csproj">
+      <Project>{6001c66b-b64c-4507-a9c6-5118e51f683a}</Project>
+      <Name>DBCLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDS.cBlp2\BLPLib.csproj">
+      <Project>{3c2e2307-dbff-46ad-b36f-672eacafd581}</Project>
+      <Name>BLPLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.achievements.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.professions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.factions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.talents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.titles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.races.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.classes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.poi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.maps.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.delete.little.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no.icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select.square.18.18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MiniArrow-Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="StormLib.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
