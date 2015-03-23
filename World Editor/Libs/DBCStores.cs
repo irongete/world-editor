@@ -78,7 +78,7 @@ namespace World_Editor.DBC
         //public static DBCFile<GameObjectDisplayInfoEntry> GameObjectDisplayInfo { get; private set; }
         //public static DBCFile<GameTablesEntry> GameTables { get; private set; }
         public static DBCFile<GameTipsEntry> GameTips { get; private set; }
-        //public static DBCFile<GemPropertiesEntry> GemProperties { get; private set; }
+        public static DBCFile<GemPropertiesEntry> GemProperties { get; private set; }
         //public static DBCFile<GlyphPropertiesEntry> GlyphProperties { get; private set; }
         //public static DBCFile<GlyphSlotEntry> GlyphSlot { get; private set; }
         //public static DBCFile<GMSurveyAnswersEntry> GMSurveyAnswers { get; private set; }
@@ -200,7 +200,7 @@ namespace World_Editor.DBC
         //public static DBCFile<SpellEffectCameraShakesEntry> SpellEffectCameraShakes { get; private set; }
         public static DBCFile<SpellFocusObjectEntry> SpellFocusObject { get; private set; }
         public static DBCFile<SpellIconEntry> SpellIcon { get; private set; }
-        //public static DBCFile<SpellItemEnchantmentEntry> SpellItemEnchantment { get; private set; }
+        public static DBCFile<SpellItemEnchantmentEntry> SpellItemEnchantment { get; private set; }
         //public static DBCFile<SpellItemEnchantmentConditionEntry> SpellItemEnchantmentCondition { get; private set; }
         //public static DBCFile<SpellMechanicEntry> SpellMechanic { get; private set; }
         //public static DBCFile<SpellMissileEntry> SpellMissile { get; private set; }
@@ -331,7 +331,7 @@ namespace World_Editor.DBC
             //GameObjectDisplayInfo = new DBCFile<GameObjectDisplayInfoEntry>(dbcFolder + "GameObjectDisplayInfo.dbc");
             //GameTables = new DBCFile<GameTablesEntry>(dbcFolder + "GameTables.dbc");
             GameTips = new DBCFile<GameTipsEntry>(dbcFolder + "GameTips.dbc");
-            //GemProperties = new DBCFile<GemPropertiesEntry>(dbcFolder + "GemProperties.dbc");
+            GemProperties = new DBCFile<GemPropertiesEntry>(dbcFolder + "GemProperties.dbc");
             //GlyphProperties = new DBCFile<GlyphPropertiesEntry>(dbcFolder + "GlyphProperties.dbc");
             //GlyphSlot = new DBCFile<GlyphSlotEntry>(dbcFolder + "GlyphSlot.dbc");
             //GMSurveyAnswers = new DBCFile<GMSurveyAnswersEntry>(dbcFolder + "GMSurveyAnswers.dbc");
@@ -453,7 +453,7 @@ namespace World_Editor.DBC
             //SpellEffectCameraShakes = new DBCFile<SpellEffectCameraShakesEntry>(dbcFolder + "SpellEffectCameraShakes.dbc");
             SpellFocusObject = new DBCFile<SpellFocusObjectEntry>(dbcFolder + "SpellFocusObject.dbc");
             SpellIcon = new DBCFile<SpellIconEntry>(dbcFolder + "SpellIcon.dbc");
-            //SpellItemEnchantment = new DBCFile<SpellItemEnchantmentEntry>(dbcFolder + "SpellItemEnchantment.dbc");
+            SpellItemEnchantment = new DBCFile<SpellItemEnchantmentEntry>(dbcFolder + "SpellItemEnchantment.dbc");
             //SpellItemEnchantmentCondition = new DBCFile<SpellItemEnchantmentConditionEntry>(dbcFolder + "SpellItemEnchantmentCondition.dbc");
             //SpellMechanic = new DBCFile<SpellMechanicEntry>(dbcFolder + "SpellMechanic.dbc");
             //SpellMissile = new DBCFile<SpellMissileEntry>(dbcFolder + "SpellMissile.dbc");

@@ -686,7 +686,11 @@ namespace DBCLib.Structures335
 
     public class GemPropertiesEntry
     {
-
+        public uint Id;
+        public uint iRefID_SpellItemEnchantment1;
+        public uint MaxcountInv;
+        public uint MaxcountItem;
+        public uint Type;
     }
 
     public class GlyphPropertiesEntry
@@ -1673,7 +1677,33 @@ namespace DBCLib.Structures335
 
     public class SpellItemEnchantmentEntry
     {
+        public uint Id;
+        public uint Charges;                // Mostly unused. Added 3.x?
+        public uint SpellDispelType1;       // Enchantment Type of effect 1
+        public uint SpellDispelType2;       // Enchantment Type of effect 2
+        public uint SpellDispelType3;       // Enchantment Type of effect 3
+        public uint MinAmount1;             // Amount of damage/armor/apply/spell for effect 1
+        public uint MinAmount2;             // Amount of damage/armor/apply/spell for effect 2
+        public uint MinAmount3;             // Amount of damage/armor/apply/spell for effect 3
+        public uint MaxAmount1;             // Mostly dupe
+        public uint MaxAmount2;             // Mostly dupe
+        public uint MaxAmount3;             // Mostly dupe
+        public uint ObjectId1;              // if type1 == 5, then Stat Types, else Spell.dbc 
+        public uint ObjectId2;              // if type1 == 5, then Stat Types, else Spell.dbc 
+        public uint ObjectId3;              // if type1 == 5, then Stat Types, else Spell.dbc 
+        public LocalizedString SRefName;    // 15-31 The name of the enchantment
+        public uint ItemVisuals;            // The glow to add to the items that has this enchant
+        public uint Flags;                  
+        public uint ItemCache;              // Reference to the Gem that has this ability (Added in 2.0.0.5610) 
+        public uint SpellItemEnchantmentCondition; // Conditions for the effect to take place (Added in 2.0.0.5610)
+        public uint SkillLine;              // A required profession.
+        public uint Skilllevel;             // And the level for that profession.
+        public uint requiredLevel;          // Required level to use the enchant
 
+        public override string ToString()
+        {
+            return SRefName;
+        }
     }
 
     public class SpellItemEnchantmentConditionEntry

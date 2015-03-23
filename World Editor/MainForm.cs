@@ -186,6 +186,10 @@ namespace World_Editor
             {
                 ShowAndBringToFrontEditor<NamesReservedEditor.MainForm>();
             }
+            else if (sender == menuGemsEditor || sender == toolGemsEditor)
+            {
+                ShowAndBringToFrontEditor<GemsEditor.MainForm>();
+            }
             else if (sender == menuRacesEditor || sender == toolRacesEditor)
             {
                 //ShowAndBringToFrontEditor<RacesEditor.MainForm>();
@@ -333,6 +337,7 @@ namespace World_Editor
             _controlsInEditMode.Add(menuMapsEditor);
             _controlsInEditMode.Add(menuGameTipsEditor);
             _controlsInEditMode.Add(menuNamesReservedEditor);
+            _controlsInEditMode.Add(menuGemsEditor);
             _controlsInEditMode.Add(générerUnItemdbcToolStripMenuItem);
 
             _controlsInEditMode.Add(toolTalentsEditor);
@@ -345,7 +350,7 @@ namespace World_Editor
             _controlsInEditMode.Add(toolPOIsEditor);
             _controlsInEditMode.Add(toolMapsEditor);
             _controlsInEditMode.Add(toolGameTipsEditor);
-            _controlsInEditMode.Add(toolNamesReservedEditor);
+            _controlsInEditMode.Add(toolGemsEditor);
             //_controlsInEditMode.Add(générerUnItemdbcToolStripMenuItem);
         }
     }

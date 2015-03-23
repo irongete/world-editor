@@ -92,5 +92,12 @@ namespace World_Editor.DBC
         {
             GameTips.LoadData();
         }
+
+        public static void LoadGemsEditorFiles()
+        {
+            Item.LoadData();
+            GemProperties.LoadData();
+            SpellItemEnchantment.LoadData();
+        }
     }
 }
