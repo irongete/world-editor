@@ -59,6 +59,35 @@ namespace World_Editor.GemsEditor
             txtEffect1.Text = spellItemEnchant.ObjectId1.ToString();
             txtEffect2.Text = spellItemEnchant.ObjectId2.ToString();
             txtEffect3.Text = spellItemEnchant.ObjectId3.ToString();
+
+            txtRequiredLevel.Text = spellItemEnchant.requiredLevel.ToString();
+        }
+
+        private void btnSaveEnchant_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DBCStores.SaveGemsEditorFiles();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la sauvegarde des fichiers DBCs : " + ex.Message);
+            }
+        }
+
+        private void btnDelEnchant_Click(object sender, EventArgs e)
+        {
+            DialogResult choix = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cet enchantement ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
+            if (choix == System.Windows.Forms.DialogResult.OK)
+            {
+                if (lstGems.SelectedItem == null)
+                    return;
+                SpellItemEnchantmentEntry spellItemEnchant = (SpellItemEnchantmentEntry)lstGems.SelectedItem;
+                DBCStores.SpellItemEnchantment.RemoveEntry(spellItemEnchant.Id);
+
+                lstGems.Items.Remove(spellItemEnchant);
+            }
+            lstGems.SelectedIndex = lstGems.Items.Count - 1;
         }
     }
 }

@@ -35,6 +35,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtRequiredLevel = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -53,6 +55,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtMinStatEnchant1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnNewEnchant = new System.Windows.Forms.Button();
+            this.btnDelEnchant = new System.Windows.Forms.Button();
+            this.btnSaveEnchant = new System.Windows.Forms.Button();
             this.grpInfos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -115,6 +120,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtRequiredLevel);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label7);
@@ -135,10 +142,26 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(225, 81);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(394, 203);
+            this.groupBox1.Size = new System.Drawing.Size(394, 230);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Caractéristiques";
+            // 
+            // txtRequiredLevel
+            // 
+            this.txtRequiredLevel.Location = new System.Drawing.Point(96, 190);
+            this.txtRequiredLevel.Name = "txtRequiredLevel";
+            this.txtRequiredLevel.Size = new System.Drawing.Size(59, 20);
+            this.txtRequiredLevel.TabIndex = 20;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(12, 193);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(78, 13);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "Niveau requis :";
             // 
             // label11
             // 
@@ -284,11 +307,43 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Min stat 1 :";
             // 
+            // btnNewEnchant
+            // 
+            this.btnNewEnchant.Location = new System.Drawing.Point(225, 348);
+            this.btnNewEnchant.Name = "btnNewEnchant";
+            this.btnNewEnchant.Size = new System.Drawing.Size(104, 23);
+            this.btnNewEnchant.TabIndex = 9;
+            this.btnNewEnchant.Text = "Nouvel enchant";
+            this.btnNewEnchant.UseVisualStyleBackColor = true;
+            // 
+            // btnDelEnchant
+            // 
+            this.btnDelEnchant.Location = new System.Drawing.Point(347, 348);
+            this.btnDelEnchant.Name = "btnDelEnchant";
+            this.btnDelEnchant.Size = new System.Drawing.Size(104, 23);
+            this.btnDelEnchant.TabIndex = 10;
+            this.btnDelEnchant.Text = "Supprimer enchant";
+            this.btnDelEnchant.UseVisualStyleBackColor = true;
+            this.btnDelEnchant.Click += new System.EventHandler(this.btnDelEnchant_Click);
+            // 
+            // btnSaveEnchant
+            // 
+            this.btnSaveEnchant.Location = new System.Drawing.Point(469, 348);
+            this.btnSaveEnchant.Name = "btnSaveEnchant";
+            this.btnSaveEnchant.Size = new System.Drawing.Size(126, 23);
+            this.btnSaveEnchant.TabIndex = 11;
+            this.btnSaveEnchant.Text = "Sauvegarder enchant";
+            this.btnSaveEnchant.UseVisualStyleBackColor = true;
+            this.btnSaveEnchant.Click += new System.EventHandler(this.btnSaveEnchant_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 339);
+            this.ClientSize = new System.Drawing.Size(633, 383);
+            this.Controls.Add(this.btnSaveEnchant);
+            this.Controls.Add(this.btnDelEnchant);
+            this.Controls.Add(this.btnNewEnchant);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grpInfos);
             this.Controls.Add(this.lstGems);
@@ -330,5 +385,10 @@
         private System.Windows.Forms.TextBox txtEffect3;
         private System.Windows.Forms.TextBox txtEffect2;
         private System.Windows.Forms.TextBox txtEffect1;
+        private System.Windows.Forms.TextBox txtRequiredLevel;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnNewEnchant;
+        private System.Windows.Forms.Button btnDelEnchant;
+        private System.Windows.Forms.Button btnSaveEnchant;
     }
 }
