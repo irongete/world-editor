@@ -35,6 +35,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtEffect3 = new System.Windows.Forms.TextBox();
+            this.txtEffect2 = new System.Windows.Forms.TextBox();
+            this.txtEffect1 = new System.Windows.Forms.TextBox();
             this.txtMaxStatEnchant3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtMinStatEnchant3 = new System.Windows.Forms.TextBox();
@@ -47,12 +53,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtMinStatEnchant1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtEffect1 = new System.Windows.Forms.TextBox();
-            this.txtEffect2 = new System.Windows.Forms.TextBox();
-            this.txtEffect3 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.grpInfos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -140,9 +140,57 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Caractéristiques";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(12, 167);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(44, 13);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "Effet 3 :";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(12, 104);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(44, 13);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Effet 2 :";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 46);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Effet 1 :";
+            // 
+            // txtEffect3
+            // 
+            this.txtEffect3.Location = new System.Drawing.Point(77, 164);
+            this.txtEffect3.Name = "txtEffect3";
+            this.txtEffect3.Size = new System.Drawing.Size(215, 20);
+            this.txtEffect3.TabIndex = 15;
+            // 
+            // txtEffect2
+            // 
+            this.txtEffect2.Location = new System.Drawing.Point(77, 101);
+            this.txtEffect2.Name = "txtEffect2";
+            this.txtEffect2.Size = new System.Drawing.Size(215, 20);
+            this.txtEffect2.TabIndex = 14;
+            // 
+            // txtEffect1
+            // 
+            this.txtEffect1.Location = new System.Drawing.Point(77, 43);
+            this.txtEffect1.Name = "txtEffect1";
+            this.txtEffect1.Size = new System.Drawing.Size(215, 20);
+            this.txtEffect1.TabIndex = 13;
+            // 
             // txtMaxStatEnchant3
             // 
-            this.txtMaxStatEnchant3.Location = new System.Drawing.Point(298, 138);
+            this.txtMaxStatEnchant3.Location = new System.Drawing.Point(232, 138);
             this.txtMaxStatEnchant3.Name = "txtMaxStatEnchant3";
             this.txtMaxStatEnchant3.Size = new System.Drawing.Size(59, 20);
             this.txtMaxStatEnchant3.TabIndex = 11;
@@ -150,7 +198,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(230, 141);
+            this.label5.Location = new System.Drawing.Point(164, 141);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 13);
             this.label5.TabIndex = 12;
@@ -174,7 +222,7 @@
             // 
             // txtMaxStatEnchant2
             // 
-            this.txtMaxStatEnchant2.Location = new System.Drawing.Point(298, 75);
+            this.txtMaxStatEnchant2.Location = new System.Drawing.Point(232, 75);
             this.txtMaxStatEnchant2.Name = "txtMaxStatEnchant2";
             this.txtMaxStatEnchant2.Size = new System.Drawing.Size(59, 20);
             this.txtMaxStatEnchant2.TabIndex = 7;
@@ -182,7 +230,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(230, 78);
+            this.label3.Location = new System.Drawing.Point(164, 78);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 13);
             this.label3.TabIndex = 8;
@@ -206,7 +254,7 @@
             // 
             // txtMaxStatEnchant1
             // 
-            this.txtMaxStatEnchant1.Location = new System.Drawing.Point(298, 17);
+            this.txtMaxStatEnchant1.Location = new System.Drawing.Point(232, 17);
             this.txtMaxStatEnchant1.Name = "txtMaxStatEnchant1";
             this.txtMaxStatEnchant1.Size = new System.Drawing.Size(59, 20);
             this.txtMaxStatEnchant1.TabIndex = 3;
@@ -214,7 +262,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(230, 20);
+            this.label2.Location = new System.Drawing.Point(164, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 4;
@@ -235,54 +283,6 @@
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Min stat 1 :";
-            // 
-            // txtEffect1
-            // 
-            this.txtEffect1.Location = new System.Drawing.Point(77, 43);
-            this.txtEffect1.Name = "txtEffect1";
-            this.txtEffect1.Size = new System.Drawing.Size(215, 20);
-            this.txtEffect1.TabIndex = 13;
-            // 
-            // txtEffect2
-            // 
-            this.txtEffect2.Location = new System.Drawing.Point(77, 101);
-            this.txtEffect2.Name = "txtEffect2";
-            this.txtEffect2.Size = new System.Drawing.Size(215, 20);
-            this.txtEffect2.TabIndex = 14;
-            // 
-            // txtEffect3
-            // 
-            this.txtEffect3.Location = new System.Drawing.Point(77, 164);
-            this.txtEffect3.Name = "txtEffect3";
-            this.txtEffect3.Size = new System.Drawing.Size(215, 20);
-            this.txtEffect3.TabIndex = 15;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 46);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(44, 13);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Effet 1 :";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 104);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(44, 13);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "Effet 2 :";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 167);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(44, 13);
-            this.label11.TabIndex = 18;
-            this.label11.Text = "Effet 3 :";
             // 
             // MainForm
             // 

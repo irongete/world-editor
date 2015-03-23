@@ -83,5 +83,12 @@ namespace World_Editor.DBC
             NamesReserved.SaveDBC();
             NamesProfanity.SaveDBC();
         }
+
+        public static void SaveGemsEditorFiles()
+        {
+            Item.SaveDBC();
+            GemProperties.SaveDBC();
+            SpellItemEnchantment.SaveDBC();
+        }
     }
 }
