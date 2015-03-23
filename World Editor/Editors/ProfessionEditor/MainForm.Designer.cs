@@ -54,6 +54,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lstSkills = new System.Windows.Forms.ListBox();
             this.tpRecipe = new System.Windows.Forms.TabPage();
+            this.btnSaveRecipe = new System.Windows.Forms.Button();
             this.btnDelRecipe = new System.Windows.Forms.Button();
             this.btnNewRecipe = new System.Windows.Forms.Button();
             this.grpFacultatif = new System.Windows.Forms.GroupBox();
@@ -101,6 +102,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.grpInfos = new System.Windows.Forms.GroupBox();
+            this.btnSearchResultRecipe = new System.Windows.Forms.Button();
             this.txtRecipeResult = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.chbBase = new System.Windows.Forms.CheckBox();
@@ -114,7 +116,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lstRecipes = new System.Windows.Forms.ListBox();
-            this.btnSearchResultRecipe = new System.Windows.Forms.Button();
             this.tcMain.SuspendLayout();
             this.tpSkill.SuspendLayout();
             this.tpRecipe.SuspendLayout();
@@ -366,6 +367,7 @@
             // 
             // tpRecipe
             // 
+            this.tpRecipe.Controls.Add(this.btnSaveRecipe);
             this.tpRecipe.Controls.Add(this.btnDelRecipe);
             this.tpRecipe.Controls.Add(this.btnNewRecipe);
             this.tpRecipe.Controls.Add(this.grpFacultatif);
@@ -379,6 +381,16 @@
             this.tpRecipe.TabIndex = 1;
             this.tpRecipe.Text = "Recettes";
             this.tpRecipe.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveRecipe
+            // 
+            this.btnSaveRecipe.Location = new System.Drawing.Point(398, 361);
+            this.btnSaveRecipe.Name = "btnSaveRecipe";
+            this.btnSaveRecipe.Size = new System.Drawing.Size(121, 20);
+            this.btnSaveRecipe.TabIndex = 31;
+            this.btnSaveRecipe.Text = "Sauvegarder recette";
+            this.btnSaveRecipe.UseVisualStyleBackColor = true;
+            this.btnSaveRecipe.Click += new System.EventHandler(this.btnSaveRecipe_Click);
             // 
             // btnDelRecipe
             // 
@@ -851,6 +863,16 @@
             this.grpInfos.TabStop = false;
             this.grpInfos.Text = "Informations";
             // 
+            // btnSearchResultRecipe
+            // 
+            this.btnSearchResultRecipe.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchResultRecipe.Image")));
+            this.btnSearchResultRecipe.Location = new System.Drawing.Point(186, 93);
+            this.btnSearchResultRecipe.Name = "btnSearchResultRecipe";
+            this.btnSearchResultRecipe.Size = new System.Drawing.Size(20, 20);
+            this.btnSearchResultRecipe.TabIndex = 12;
+            this.btnSearchResultRecipe.UseVisualStyleBackColor = true;
+            this.btnSearchResultRecipe.Click += new System.EventHandler(this.btnSearchResultRecipe_Click);
+            // 
             // txtRecipeResult
             // 
             this.txtRecipeResult.Location = new System.Drawing.Point(80, 94);
@@ -968,16 +990,6 @@
             this.lstRecipes.TabIndex = 0;
             this.lstRecipes.SelectedIndexChanged += new System.EventHandler(this.lstRecipes_SelectedIndexChanged);
             // 
-            // btnSearchResultRecipe
-            // 
-            this.btnSearchResultRecipe.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchResultRecipe.Image")));
-            this.btnSearchResultRecipe.Location = new System.Drawing.Point(186, 93);
-            this.btnSearchResultRecipe.Name = "btnSearchResultRecipe";
-            this.btnSearchResultRecipe.Size = new System.Drawing.Size(20, 20);
-            this.btnSearchResultRecipe.TabIndex = 12;
-            this.btnSearchResultRecipe.UseVisualStyleBackColor = true;
-            this.btnSearchResultRecipe.Click += new System.EventHandler(this.btnSearchResultRecipe_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1092,5 +1104,6 @@
         private System.Windows.Forms.Button btnSearchRecipe2;
         private System.Windows.Forms.Button btnSearchRecipe1;
         private System.Windows.Forms.Button btnSearchResultRecipe;
+        private System.Windows.Forms.Button btnSaveRecipe;
     }
 }

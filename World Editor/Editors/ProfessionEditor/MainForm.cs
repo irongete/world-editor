@@ -786,5 +786,17 @@ namespace World_Editor.ProfessionEditor
             Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtRecipeResult);
             s.Show(this);
         }
+
+        private void btnSaveRecipe_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DBCStores.SaveProfessionEditorFiles();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la sauvegarde des fichiers DBCs : " + ex.Message);
+            }
+        }
     }
 }
