@@ -1379,7 +1379,7 @@
             this.groupBox9.Size = new System.Drawing.Size(302, 115);
             this.groupBox9.TabIndex = 2;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Modifiers les masques de groupes";
+            this.groupBox9.Text = "Modifier les masques de groupes";
             // 
             // btnReplaceGroupMask
             // 
