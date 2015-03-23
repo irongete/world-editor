@@ -361,7 +361,9 @@ namespace DBCLib.Structures335
 
     public class ChatProfanityEntry
     {
-
+        public uint Id;
+        public String DirtyWord;
+        public uint LanguageID;                     // Col Added in 2.0.0.5849. English = 0, AsianLang = 1, French=2, German = 3, etc...?
     }
 
     public class ChrClassesEntry
@@ -687,7 +689,7 @@ namespace DBCLib.Structures335
     public class GemPropertiesEntry
     {
         public uint Id;
-        public uint iRefID_SpellItemEnchantment1;
+        public uint iRefID_SpellItemEnchantment;
         public uint MaxcountInv;
         public uint MaxcountItem;
         public uint Type;
@@ -1689,8 +1691,8 @@ namespace DBCLib.Structures335
         public uint MaxAmount2;             // Mostly dupe
         public uint MaxAmount3;             // Mostly dupe
         public uint ObjectId1;              // if type1 == 5, then Stat Types, else Spell.dbc 
-        public uint ObjectId2;              // if type1 == 5, then Stat Types, else Spell.dbc 
-        public uint ObjectId3;              // if type1 == 5, then Stat Types, else Spell.dbc 
+        public uint ObjectId2;              // if type2 == 5, then Stat Types, else Spell.dbc 
+        public uint ObjectId3;              // if type3 == 5, then Stat Types, else Spell.dbc 
         public LocalizedString SRefName;    // 15-31 The name of the enchantment
         public uint ItemVisuals;            // The glow to add to the items that has this enchant
         public uint Flags;                  
