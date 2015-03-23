@@ -61,6 +61,15 @@ namespace World_Editor.Editors.GemsEditor {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error while adding a new enchant.
+        /// </summary>
+        internal static string AddEnchantError {
+            get {
+                return ResourceManager.GetString("AddEnchantError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Error when loading DBCs.
         /// </summary>
         internal static string LoadDbcError {
@@ -70,11 +79,11 @@ namespace World_Editor.Editors.GemsEditor {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à New Profession.
+        ///   Recherche une chaîne localisée semblable à New Enchant.
         /// </summary>
-        internal static string NewProfession {
+        internal static string NewEnchant {
             get {
-                return ResourceManager.GetString("NewProfession", resourceCulture);
+                return ResourceManager.GetString("NewEnchant", resourceCulture);
             }
         }
         

@@ -35,6 +35,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.txtRequiredLevel = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -58,6 +60,10 @@
             this.btnNewEnchant = new System.Windows.Forms.Button();
             this.btnDelEnchant = new System.Windows.Forms.Button();
             this.btnSaveEnchant = new System.Windows.Forms.Button();
+            this.txtSearchEnchant = new System.Windows.Forms.TextBox();
+            this.btnEffect1Mask = new System.Windows.Forms.Button();
+            this.btnEffect2Mask = new System.Windows.Forms.Button();
+            this.btnEffect3Mask = new System.Windows.Forms.Button();
             this.grpInfos.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +74,7 @@
             this.lstGems.HorizontalScrollbar = true;
             this.lstGems.Location = new System.Drawing.Point(12, 12);
             this.lstGems.Name = "lstGems";
-            this.lstGems.Size = new System.Drawing.Size(207, 316);
+            this.lstGems.Size = new System.Drawing.Size(207, 368);
             this.lstGems.TabIndex = 0;
             this.lstGems.SelectedIndexChanged += new System.EventHandler(this.lstGems_SelectedIndexChanged);
             // 
@@ -88,16 +94,16 @@
             // txtEnchantEntry
             // 
             this.txtEnchantEntry.Enabled = false;
-            this.txtEnchantEntry.Location = new System.Drawing.Point(288, 19);
+            this.txtEnchantEntry.Location = new System.Drawing.Point(332, 19);
             this.txtEnchantEntry.Name = "txtEnchantEntry";
-            this.txtEnchantEntry.Size = new System.Drawing.Size(69, 20);
+            this.txtEnchantEntry.Size = new System.Drawing.Size(50, 20);
             this.txtEnchantEntry.TabIndex = 9;
             // 
             // txtEnchantName
             // 
             this.txtEnchantName.Location = new System.Drawing.Point(53, 19);
             this.txtEnchantName.Name = "txtEnchantName";
-            this.txtEnchantName.Size = new System.Drawing.Size(196, 20);
+            this.txtEnchantName.Size = new System.Drawing.Size(238, 20);
             this.txtEnchantName.TabIndex = 1;
             // 
             // label9
@@ -112,7 +118,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(255, 22);
+            this.label8.Location = new System.Drawing.Point(302, 22);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(24, 13);
             this.label8.TabIndex = 1;
@@ -120,6 +126,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnEffect3Mask);
+            this.groupBox1.Controls.Add(this.btnEffect2Mask);
+            this.groupBox1.Controls.Add(this.btnEffect1Mask);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.txtRequiredLevel);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
@@ -145,14 +156,36 @@
             this.groupBox1.Size = new System.Drawing.Size(394, 230);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Caractéristiques";
+            this.groupBox1.Text = "Caractéristiques de l\'enchantement";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Meta",
+            "Rouge",
+            "Jaune",
+            "Bleue"});
+            this.comboBox1.Location = new System.Drawing.Point(232, 190);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(79, 21);
+            this.comboBox1.TabIndex = 21;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(164, 193);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(48, 13);
+            this.label13.TabIndex = 20;
+            this.label13.Text = "Chasse :";
             // 
             // txtRequiredLevel
             // 
             this.txtRequiredLevel.Location = new System.Drawing.Point(96, 190);
             this.txtRequiredLevel.Name = "txtRequiredLevel";
             this.txtRequiredLevel.Size = new System.Drawing.Size(59, 20);
-            this.txtRequiredLevel.TabIndex = 20;
+            this.txtRequiredLevel.TabIndex = 10;
             // 
             // label12
             // 
@@ -192,31 +225,31 @@
             // 
             // txtEffect3
             // 
-            this.txtEffect3.Location = new System.Drawing.Point(77, 164);
+            this.txtEffect3.Location = new System.Drawing.Point(96, 164);
             this.txtEffect3.Name = "txtEffect3";
             this.txtEffect3.Size = new System.Drawing.Size(215, 20);
-            this.txtEffect3.TabIndex = 15;
+            this.txtEffect3.TabIndex = 9;
             // 
             // txtEffect2
             // 
-            this.txtEffect2.Location = new System.Drawing.Point(77, 101);
+            this.txtEffect2.Location = new System.Drawing.Point(96, 103);
             this.txtEffect2.Name = "txtEffect2";
             this.txtEffect2.Size = new System.Drawing.Size(215, 20);
-            this.txtEffect2.TabIndex = 14;
+            this.txtEffect2.TabIndex = 6;
             // 
             // txtEffect1
             // 
-            this.txtEffect1.Location = new System.Drawing.Point(77, 43);
+            this.txtEffect1.Location = new System.Drawing.Point(96, 43);
             this.txtEffect1.Name = "txtEffect1";
             this.txtEffect1.Size = new System.Drawing.Size(215, 20);
-            this.txtEffect1.TabIndex = 13;
+            this.txtEffect1.TabIndex = 3;
             // 
             // txtMaxStatEnchant3
             // 
             this.txtMaxStatEnchant3.Location = new System.Drawing.Point(232, 138);
             this.txtMaxStatEnchant3.Name = "txtMaxStatEnchant3";
             this.txtMaxStatEnchant3.Size = new System.Drawing.Size(59, 20);
-            this.txtMaxStatEnchant3.TabIndex = 11;
+            this.txtMaxStatEnchant3.TabIndex = 8;
             // 
             // label5
             // 
@@ -229,10 +262,10 @@
             // 
             // txtMinStatEnchant3
             // 
-            this.txtMinStatEnchant3.Location = new System.Drawing.Point(77, 138);
+            this.txtMinStatEnchant3.Location = new System.Drawing.Point(96, 138);
             this.txtMinStatEnchant3.Name = "txtMinStatEnchant3";
             this.txtMinStatEnchant3.Size = new System.Drawing.Size(59, 20);
-            this.txtMinStatEnchant3.TabIndex = 9;
+            this.txtMinStatEnchant3.TabIndex = 7;
             // 
             // label6
             // 
@@ -248,7 +281,7 @@
             this.txtMaxStatEnchant2.Location = new System.Drawing.Point(232, 75);
             this.txtMaxStatEnchant2.Name = "txtMaxStatEnchant2";
             this.txtMaxStatEnchant2.Size = new System.Drawing.Size(59, 20);
-            this.txtMaxStatEnchant2.TabIndex = 7;
+            this.txtMaxStatEnchant2.TabIndex = 5;
             // 
             // label3
             // 
@@ -261,10 +294,10 @@
             // 
             // txtMinStatEnchant2
             // 
-            this.txtMinStatEnchant2.Location = new System.Drawing.Point(77, 75);
+            this.txtMinStatEnchant2.Location = new System.Drawing.Point(96, 75);
             this.txtMinStatEnchant2.Name = "txtMinStatEnchant2";
             this.txtMinStatEnchant2.Size = new System.Drawing.Size(59, 20);
-            this.txtMinStatEnchant2.TabIndex = 5;
+            this.txtMinStatEnchant2.TabIndex = 4;
             // 
             // label4
             // 
@@ -280,7 +313,7 @@
             this.txtMaxStatEnchant1.Location = new System.Drawing.Point(232, 17);
             this.txtMaxStatEnchant1.Name = "txtMaxStatEnchant1";
             this.txtMaxStatEnchant1.Size = new System.Drawing.Size(59, 20);
-            this.txtMaxStatEnchant1.TabIndex = 3;
+            this.txtMaxStatEnchant1.TabIndex = 2;
             // 
             // label2
             // 
@@ -293,7 +326,7 @@
             // 
             // txtMinStatEnchant1
             // 
-            this.txtMinStatEnchant1.Location = new System.Drawing.Point(77, 17);
+            this.txtMinStatEnchant1.Location = new System.Drawing.Point(96, 17);
             this.txtMinStatEnchant1.Name = "txtMinStatEnchant1";
             this.txtMinStatEnchant1.Size = new System.Drawing.Size(59, 20);
             this.txtMinStatEnchant1.TabIndex = 1;
@@ -309,38 +342,75 @@
             // 
             // btnNewEnchant
             // 
-            this.btnNewEnchant.Location = new System.Drawing.Point(225, 348);
+            this.btnNewEnchant.Location = new System.Drawing.Point(240, 394);
             this.btnNewEnchant.Name = "btnNewEnchant";
-            this.btnNewEnchant.Size = new System.Drawing.Size(104, 23);
+            this.btnNewEnchant.Size = new System.Drawing.Size(139, 23);
             this.btnNewEnchant.TabIndex = 9;
-            this.btnNewEnchant.Text = "Nouvel enchant";
+            this.btnNewEnchant.Text = "Nouvel enchantement";
             this.btnNewEnchant.UseVisualStyleBackColor = true;
+            this.btnNewEnchant.Click += new System.EventHandler(this.btnNewEnchant_Click);
             // 
             // btnDelEnchant
             // 
-            this.btnDelEnchant.Location = new System.Drawing.Point(347, 348);
+            this.btnDelEnchant.Location = new System.Drawing.Point(503, 395);
             this.btnDelEnchant.Name = "btnDelEnchant";
             this.btnDelEnchant.Size = new System.Drawing.Size(104, 23);
             this.btnDelEnchant.TabIndex = 10;
-            this.btnDelEnchant.Text = "Supprimer enchant";
+            this.btnDelEnchant.Text = "Supprimer";
             this.btnDelEnchant.UseVisualStyleBackColor = true;
             this.btnDelEnchant.Click += new System.EventHandler(this.btnDelEnchant_Click);
             // 
             // btnSaveEnchant
             // 
-            this.btnSaveEnchant.Location = new System.Drawing.Point(469, 348);
+            this.btnSaveEnchant.Location = new System.Drawing.Point(392, 395);
             this.btnSaveEnchant.Name = "btnSaveEnchant";
-            this.btnSaveEnchant.Size = new System.Drawing.Size(126, 23);
+            this.btnSaveEnchant.Size = new System.Drawing.Size(98, 23);
             this.btnSaveEnchant.TabIndex = 11;
-            this.btnSaveEnchant.Text = "Sauvegarder enchant";
+            this.btnSaveEnchant.Text = "Sauvegarder";
             this.btnSaveEnchant.UseVisualStyleBackColor = true;
             this.btnSaveEnchant.Click += new System.EventHandler(this.btnSaveEnchant_Click);
+            // 
+            // txtSearchEnchant
+            // 
+            this.txtSearchEnchant.Location = new System.Drawing.Point(47, 394);
+            this.txtSearchEnchant.Name = "txtSearchEnchant";
+            this.txtSearchEnchant.Size = new System.Drawing.Size(172, 20);
+            this.txtSearchEnchant.TabIndex = 12;
+            this.txtSearchEnchant.TextChanged += new System.EventHandler(this.txtSearchEnchant_TextChanged);
+            // 
+            // btnEffect1Mask
+            // 
+            this.btnEffect1Mask.Location = new System.Drawing.Point(332, 43);
+            this.btnEffect1Mask.Name = "btnEffect1Mask";
+            this.btnEffect1Mask.Size = new System.Drawing.Size(21, 20);
+            this.btnEffect1Mask.TabIndex = 22;
+            this.btnEffect1Mask.Text = "+";
+            this.btnEffect1Mask.UseVisualStyleBackColor = true;
+            // 
+            // btnEffect2Mask
+            // 
+            this.btnEffect2Mask.Location = new System.Drawing.Point(332, 103);
+            this.btnEffect2Mask.Name = "btnEffect2Mask";
+            this.btnEffect2Mask.Size = new System.Drawing.Size(21, 20);
+            this.btnEffect2Mask.TabIndex = 23;
+            this.btnEffect2Mask.Text = "+";
+            this.btnEffect2Mask.UseVisualStyleBackColor = true;
+            // 
+            // btnEffect3Mask
+            // 
+            this.btnEffect3Mask.Location = new System.Drawing.Point(332, 164);
+            this.btnEffect3Mask.Name = "btnEffect3Mask";
+            this.btnEffect3Mask.Size = new System.Drawing.Size(21, 20);
+            this.btnEffect3Mask.TabIndex = 24;
+            this.btnEffect3Mask.Text = "+";
+            this.btnEffect3Mask.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 383);
+            this.ClientSize = new System.Drawing.Size(633, 429);
+            this.Controls.Add(this.txtSearchEnchant);
             this.Controls.Add(this.btnSaveEnchant);
             this.Controls.Add(this.btnDelEnchant);
             this.Controls.Add(this.btnNewEnchant);
@@ -355,6 +425,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -390,5 +461,11 @@
         private System.Windows.Forms.Button btnNewEnchant;
         private System.Windows.Forms.Button btnDelEnchant;
         private System.Windows.Forms.Button btnSaveEnchant;
+        private System.Windows.Forms.TextBox txtSearchEnchant;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnEffect3Mask;
+        private System.Windows.Forms.Button btnEffect2Mask;
+        private System.Windows.Forms.Button btnEffect1Mask;
     }
 }

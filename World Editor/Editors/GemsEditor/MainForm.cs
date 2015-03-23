@@ -65,6 +65,18 @@ namespace World_Editor.GemsEditor
 
         private void btnSaveEnchant_Click(object sender, EventArgs e)
         {
+            SpellItemEnchantmentEntry spellItemEcht = (SpellItemEnchantmentEntry)lstGems.Items[lstGems.SelectedIndex];
+            spellItemEcht.SRefName = txtEnchantName.Text;
+            spellItemEcht.MinAmount1 = Misc.ParseToUInt(txtMinStatEnchant1.Text);
+            spellItemEcht.MinAmount2 = Misc.ParseToUInt(txtMinStatEnchant2.Text);
+            spellItemEcht.MinAmount3 = Misc.ParseToUInt(txtMinStatEnchant3.Text);
+            spellItemEcht.MaxAmount1 = Misc.ParseToUInt(txtMaxStatEnchant1.Text);
+            spellItemEcht.MaxAmount2 = Misc.ParseToUInt(txtMaxStatEnchant2.Text);
+            spellItemEcht.MaxAmount3 = Misc.ParseToUInt(txtMaxStatEnchant3.Text);
+            spellItemEcht.ObjectId1 = Misc.ParseToUInt(txtEffect1.Text);
+            spellItemEcht.ObjectId2 = Misc.ParseToUInt(txtEffect2.Text);
+            spellItemEcht.ObjectId3 = Misc.ParseToUInt(txtEffect3.Text);
+            spellItemEcht.requiredLevel = Misc.ParseToUInt(txtRequiredLevel.Text);
             try
             {
                 DBCStores.SaveGemsEditorFiles();
@@ -88,6 +100,59 @@ namespace World_Editor.GemsEditor
                 lstGems.Items.Remove(spellItemEnchant);
             }
             lstGems.SelectedIndex = lstGems.Items.Count - 1;
+        }
+
+        private void btnNewEnchant_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SpellItemEnchantmentEntry sie = new SpellItemEnchantmentEntry
+                {
+                    Id = DBCStores.SpellItemEnchantment.MaxKey + 1,
+                    Charges = 0,
+                    SpellDispelType1 = 0,
+                    SpellDispelType2 = 0,
+                    SpellDispelType3 = 0,
+                    MinAmount1 = 0,
+                    MinAmount2 = 0,
+                    MinAmount3 = 0,
+                    MaxAmount1 = 0,
+                    MaxAmount2 = 0,
+                    MaxAmount3 = 0,
+                    ObjectId1 = 0,
+                    ObjectId2 = 0,
+                    ObjectId3 = 0,
+                    SRefName = Loc.GetString("NewEnchant"),
+                    ItemVisuals = 0,
+                    Flags = 0,
+                    ItemCache = 0,
+                    SpellItemEnchantmentCondition = 0,
+                    SkillLine = 0,
+                    Skilllevel = 0,
+                    requiredLevel = 0
+                };
+                lstGems.Items.Add(sie);
+                DBCStores.SpellItemEnchantment.AddEntry(sie.Id, sie);
+                lstGems.SelectedItem = sie;
+
+                GemPropertiesEntry gpe = new GemPropertiesEntry
+                {
+                    Id = DBCStores.GemProperties.MaxKey + 1,
+                    iRefID_SpellItemEnchantment = sie.Id,
+                    MaxcountInv = 0,
+                    MaxcountItem = 0,
+                    Type = 0x01
+                };
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(Loc.GetString("AddEnchantError") + "\n" + error.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtSearchEnchant_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
