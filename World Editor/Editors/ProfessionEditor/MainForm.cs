@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DBCLib.Structures335;
 using World_Editor.DBC;
 using World_Editor.Editors;
+using World_Editor.Dialogs;
 
 namespace World_Editor.ProfessionEditor
 {
@@ -576,6 +577,18 @@ namespace World_Editor.ProfessionEditor
             if (lstRecipes.Items.Count == 0)
                 activateComposants(false);
         }
+
+        private void btnSaveRecipe_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DBCStores.SaveProfessionEditorFiles();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la sauvegarde des fichiers DBCs : " + ex.Message);
+            }
+        }
         #endregion
 
         private void tpSpell_Click(object sender, EventArgs e)
@@ -720,17 +733,10 @@ namespace World_Editor.ProfessionEditor
 
         private void btnIcons_Click(object sender, EventArgs e)
         {
-            //if (Editors.ProfessionEditor.Icons.m_professionIconsEditor == null)
-            //{
-                Editors.ProfessionEditor.Icons d = new Editors.ProfessionEditor.Icons();
-                Editors.ProfessionEditor.Icons.m_professionIconsEditor = d;
-                d.Show(this);
-            /*}
-            else
-            {
-                Editors.ProfessionEditor.Icons d = Editors.ProfessionEditor.Icons.m_professionIconsEditor;
-                d.BringToFront();
-            }*/
+            SpellIconDialog d = new SpellIconDialog(Misc.ParseToUInt(txtIcon.Text));
+            d.ShowDialog();
+            if (d.DialogResult == DialogResult.OK)
+                txtIcon.Text = d.choosenIcon.ToString();
         }
 
         private void btnSearchRecipe1_Click(object sender, EventArgs e)
@@ -785,18 +791,6 @@ namespace World_Editor.ProfessionEditor
         {
             Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtRecipeResult);
             s.Show(this);
-        }
-
-        private void btnSaveRecipe_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DBCStores.SaveProfessionEditorFiles();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors de la sauvegarde des fichiers DBCs : " + ex.Message);
-            }
         }
     }
 }

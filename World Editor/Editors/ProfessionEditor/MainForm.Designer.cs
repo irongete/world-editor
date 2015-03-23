@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tpSkill = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtIcon = new System.Windows.Forms.TextBox();
             this.btnIcons = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelProf = new System.Windows.Forms.Button();
@@ -136,7 +136,7 @@
             // 
             // tpSkill
             // 
-            this.tpSkill.Controls.Add(this.textBox1);
+            this.tpSkill.Controls.Add(this.txtIcon);
             this.tpSkill.Controls.Add(this.btnIcons);
             this.tpSkill.Controls.Add(this.btnSave);
             this.tpSkill.Controls.Add(this.btnDelProf);
@@ -166,12 +166,12 @@
             this.tpSkill.Text = "Liste de métiers";
             this.tpSkill.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtIcon
             // 
-            this.textBox1.Location = new System.Drawing.Point(353, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(76, 20);
-            this.textBox1.TabIndex = 21;
+            this.txtIcon.Location = new System.Drawing.Point(353, 19);
+            this.txtIcon.Name = "txtIcon";
+            this.txtIcon.Size = new System.Drawing.Size(76, 20);
+            this.txtIcon.TabIndex = 21;
             // 
             // btnIcons
             // 
@@ -1093,7 +1093,7 @@
         private System.Windows.Forms.CheckBox chbBase;
         private System.Windows.Forms.TextBox txtRecipeResult;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtIcon;
         private System.Windows.Forms.Button btnIcons;
         private System.Windows.Forms.Button btnSearchRecipe8;
         private System.Windows.Forms.Button btnSearchRecipe7;
