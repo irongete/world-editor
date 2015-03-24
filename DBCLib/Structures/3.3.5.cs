@@ -383,7 +383,7 @@ namespace DBCLib.Structures335
 
         public override string ToString()
         {
-            return NameNeutral;
+            return Name;
         }
     }
 
@@ -413,7 +413,7 @@ namespace DBCLib.Structures335
 
         public override string ToString()
         {
-            return RaceNameNeutral;
+            return RaceNameMale;
         }
     }
 
