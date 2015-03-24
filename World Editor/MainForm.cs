@@ -350,6 +350,7 @@ namespace World_Editor
             _controlsInEditMode.Add(toolPOIsEditor);
             _controlsInEditMode.Add(toolMapsEditor);
             _controlsInEditMode.Add(toolGameTipsEditor);
+            _controlsInEditMode.Add(toolNamesReservedEditor);
             _controlsInEditMode.Add(toolGemsEditor);
             //_controlsInEditMode.Add(générerUnItemdbcToolStripMenuItem);
         }
