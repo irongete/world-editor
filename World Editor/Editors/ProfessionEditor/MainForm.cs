@@ -158,6 +158,11 @@ namespace World_Editor.ProfessionEditor
             //DBCStores.SkillLine[loadedSkill.Line.Id].Name = txtSkillName.Text;
         }
 
+        private void txtIcon_TextChanged(object sender, EventArgs e)
+        {
+            DBCStores.SkillLine[loadedSkill.Line.Id].SpellIcon = uint.Parse(txtIcon.Text);
+        }
+
         private void txtSkillVerb_TextChanged(object sender, EventArgs e)
         {
             DBCStores.SkillLine[loadedSkill.Line.Id].AlternateVerb = txtSkillVerb.Text;
@@ -218,6 +223,7 @@ namespace World_Editor.ProfessionEditor
 
             txtRecipeEntry.Text = recipe.spell.Id.ToString();
             txtRecipeName.Text = recipe.spell.SpellName;
+            txtRecipeIcon.Text = recipe.spell.SpellIconID.ToString();
 
             txtReagent1.Text = recipe.spell.Reagent[0].ToString();
             txtReagent2.Text = recipe.spell.Reagent[1].ToString();
@@ -270,11 +276,6 @@ namespace World_Editor.ProfessionEditor
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
             recipe.spell.SpellName = txtRecipeName.Text;
-        }
-
-        private void txtRecipeEntry_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void txtRecipeGreen_TextChanged(object sender, EventArgs e)
@@ -792,6 +793,14 @@ namespace World_Editor.ProfessionEditor
         {
             Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtRecipeResult);
             s.Show(this);
+        }
+
+        private void btnRecipeIcon_Click(object sender, EventArgs e)
+        {
+            SpellIconDialog d = new SpellIconDialog(Misc.ParseToUInt(txtRecipeIcon.Text));
+            d.ShowDialog();
+            if (d.DialogResult == DialogResult.OK)
+                txtRecipeIcon.Text = d.choosenIcon.ToString();
         }
     }
 }

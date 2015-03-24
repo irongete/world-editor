@@ -102,6 +102,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.grpInfos = new System.Windows.Forms.GroupBox();
+            this.txtRecipeIcon = new System.Windows.Forms.TextBox();
+            this.btnRecipeIcon = new System.Windows.Forms.Button();
             this.btnSearchResultRecipe = new System.Windows.Forms.Button();
             this.txtRecipeResult = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -172,6 +174,7 @@
             this.txtIcon.Name = "txtIcon";
             this.txtIcon.Size = new System.Drawing.Size(76, 20);
             this.txtIcon.TabIndex = 21;
+            this.txtIcon.TextChanged += new System.EventHandler(this.txtIcon_TextChanged);
             // 
             // btnIcons
             // 
@@ -384,19 +387,19 @@
             // 
             // btnSaveRecipe
             // 
-            this.btnSaveRecipe.Location = new System.Drawing.Point(398, 361);
+            this.btnSaveRecipe.Location = new System.Drawing.Point(398, 360);
             this.btnSaveRecipe.Name = "btnSaveRecipe";
-            this.btnSaveRecipe.Size = new System.Drawing.Size(121, 20);
+            this.btnSaveRecipe.Size = new System.Drawing.Size(121, 24);
             this.btnSaveRecipe.TabIndex = 31;
-            this.btnSaveRecipe.Text = "Sauvegarder recette";
+            this.btnSaveRecipe.Text = "Sauvegarder";
             this.btnSaveRecipe.UseVisualStyleBackColor = true;
             this.btnSaveRecipe.Click += new System.EventHandler(this.btnSaveRecipe_Click);
             // 
             // btnDelRecipe
             // 
-            this.btnDelRecipe.Location = new System.Drawing.Point(543, 361);
+            this.btnDelRecipe.Location = new System.Drawing.Point(543, 360);
             this.btnDelRecipe.Name = "btnDelRecipe";
-            this.btnDelRecipe.Size = new System.Drawing.Size(113, 20);
+            this.btnDelRecipe.Size = new System.Drawing.Size(113, 24);
             this.btnDelRecipe.TabIndex = 30;
             this.btnDelRecipe.Text = "Supprimer recette";
             this.btnDelRecipe.UseVisualStyleBackColor = true;
@@ -406,7 +409,7 @@
             // 
             this.btnNewRecipe.Location = new System.Drawing.Point(262, 361);
             this.btnNewRecipe.Name = "btnNewRecipe";
-            this.btnNewRecipe.Size = new System.Drawing.Size(104, 20);
+            this.btnNewRecipe.Size = new System.Drawing.Size(104, 24);
             this.btnNewRecipe.TabIndex = 29;
             this.btnNewRecipe.Text = "Nouvelle recette";
             this.btnNewRecipe.UseVisualStyleBackColor = true;
@@ -843,6 +846,8 @@
             // 
             // grpInfos
             // 
+            this.grpInfos.Controls.Add(this.txtRecipeIcon);
+            this.grpInfos.Controls.Add(this.btnRecipeIcon);
             this.grpInfos.Controls.Add(this.btnSearchResultRecipe);
             this.grpInfos.Controls.Add(this.txtRecipeResult);
             this.grpInfos.Controls.Add(this.label28);
@@ -862,6 +867,23 @@
             this.grpInfos.TabIndex = 6;
             this.grpInfos.TabStop = false;
             this.grpInfos.Text = "Informations";
+            // 
+            // txtRecipeIcon
+            // 
+            this.txtRecipeIcon.Location = new System.Drawing.Point(261, 75);
+            this.txtRecipeIcon.Name = "txtRecipeIcon";
+            this.txtRecipeIcon.Size = new System.Drawing.Size(69, 20);
+            this.txtRecipeIcon.TabIndex = 23;
+            // 
+            // btnRecipeIcon
+            // 
+            this.btnRecipeIcon.Location = new System.Drawing.Point(336, 74);
+            this.btnRecipeIcon.Name = "btnRecipeIcon";
+            this.btnRecipeIcon.Size = new System.Drawing.Size(52, 23);
+            this.btnRecipeIcon.TabIndex = 22;
+            this.btnRecipeIcon.Text = "Icône";
+            this.btnRecipeIcon.UseVisualStyleBackColor = true;
+            this.btnRecipeIcon.Click += new System.EventHandler(this.btnRecipeIcon_Click);
             // 
             // btnSearchResultRecipe
             // 
@@ -904,11 +926,11 @@
             // txtRecipeEntry
             // 
             this.txtRecipeEntry.Enabled = false;
-            this.txtRecipeEntry.Location = new System.Drawing.Point(247, 19);
+            this.txtRecipeEntry.Location = new System.Drawing.Point(247, 20);
             this.txtRecipeEntry.Name = "txtRecipeEntry";
-            this.txtRecipeEntry.Size = new System.Drawing.Size(69, 20);
-            this.txtRecipeEntry.TabIndex = 9;
-            this.txtRecipeEntry.TextChanged += new System.EventHandler(this.txtRecipeEntry_TextChanged);
+            this.txtRecipeEntry.ReadOnly = true;
+            this.txtRecipeEntry.Size = new System.Drawing.Size(100, 20);
+            this.txtRecipeEntry.TabIndex = 13;
             // 
             // label27
             // 
@@ -1105,5 +1127,7 @@
         private System.Windows.Forms.Button btnSearchRecipe1;
         private System.Windows.Forms.Button btnSearchResultRecipe;
         private System.Windows.Forms.Button btnSaveRecipe;
+        private System.Windows.Forms.TextBox txtRecipeIcon;
+        private System.Windows.Forms.Button btnRecipeIcon;
     }
 }
