@@ -13,6 +13,7 @@ using World_Editor.Editors;
 using World_Editor.Dialogs;
 using World_Editor.Stormlib;
 using MDS.cBlp2;
+using World_Editor.Editors.ProfessionEditor;
 
 namespace World_Editor.ProfessionEditor
 {
@@ -754,56 +755,74 @@ namespace World_Editor.ProfessionEditor
 
         private void btnSearchRecipe1_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent1);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent1.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent1.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe2_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent2);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent2.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent2.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe3_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent3);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent3.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent3.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe4_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent4);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent4.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent4.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe5_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent5);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent5.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent5.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe6_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent6);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent6.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent6.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe7_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent7);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent7.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent7.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe8_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent8);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent8.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent8.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchResultRecipe_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtRecipeResult);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtRecipeResult.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtRecipeResult.Text = s.choosenItem.ToString();
         }
 
         private void btnRecipeIcon_Click(object sender, EventArgs e)

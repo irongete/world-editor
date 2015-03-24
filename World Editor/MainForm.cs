@@ -59,6 +59,8 @@ namespace World_Editor
                 }
 
                 listProjects.SelectedItem = _lastproject;
+                if(_lastproject == null)
+                    menuProjectsEditor_Click(sender, e);
             }
             catch (Exception ex)
             {

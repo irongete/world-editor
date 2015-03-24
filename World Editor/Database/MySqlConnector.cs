@@ -154,7 +154,7 @@ namespace World_Editor.Database
             return Items;
         }
 
-        public List<string> GetItemById(string itemEntry)
+        public List<string> GetItemById(String itemEntry)
         {
             MySqlCommand Command = Connection.CreateCommand();
             Command.CommandText = Core.GetItemById(itemEntry);
