@@ -133,6 +133,7 @@ namespace World_Editor.ProfessionEditor
                 lstRecipes.Items.Add(recipe);
             }
             lstRecipes.SelectedIndex = lstRecipes.Items.Count - 1;
+            lstRecipes.Sorted = true;
             activateComposants();
             labelNbRecipes.Text = lstRecipes.Items.Count.ToString() + " recettes";
         }
@@ -167,12 +168,18 @@ namespace World_Editor.ProfessionEditor
         {
             DBCStores.SkillLine[loadedSkill.Line.Id].SpellIcon = uint.Parse(txtIcon.Text);
 
-            SpellIconEntry sp = DBCStores.SpellIcon.Records.Single(i => i.Id.ToString().Equals(txtIcon.Text));
+            try
+            {
+                SpellIconEntry sp = DBCStores.SpellIcon.Records.Single(i => i.Id.ToString().Equals(txtIcon.Text));
+                if (MPQFile.Exists(sp.IconPath + ".blp"))
+                    pbIcon.Image = Blp2.FromStream(new MPQFile(sp.IconPath + ".blp"));
+                else
+                    pbIcon.Image = Blp2.FromStream(new MPQFile("Interface\\InventoryItems\\WoWUnknownItem01.blp"));
+            }
+            catch (Exception )
+            {
 
-            if (MPQFile.Exists(sp.IconPath + ".blp"))
-                pbIcon.Image = Blp2.FromStream(new MPQFile(sp.IconPath + ".blp"));
-            else
-                pbIcon.Image = Blp2.FromStream(new MPQFile("Interface\\InventoryItems\\WoWUnknownItem01.blp"));
+            }
         }
 
         private void txtSkillVerb_TextChanged(object sender, EventArgs e)
