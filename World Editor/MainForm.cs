@@ -59,6 +59,8 @@ namespace World_Editor
                 }
 
                 listProjects.SelectedItem = _lastproject;
+                if(_lastproject == null)
+                    menuProjectsEditor_Click(sender, e);
             }
             catch (Exception ex)
             {
@@ -350,6 +352,7 @@ namespace World_Editor
             _controlsInEditMode.Add(toolPOIsEditor);
             _controlsInEditMode.Add(toolMapsEditor);
             _controlsInEditMode.Add(toolGameTipsEditor);
+            _controlsInEditMode.Add(toolNamesReservedEditor);
             _controlsInEditMode.Add(toolGemsEditor);
             //_controlsInEditMode.Add(générerUnItemdbcToolStripMenuItem);
         }

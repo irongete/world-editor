@@ -11,6 +11,9 @@ using DBCLib.Structures335;
 using World_Editor.DBC;
 using World_Editor.Editors;
 using World_Editor.Dialogs;
+using World_Editor.Stormlib;
+using MDS.cBlp2;
+using World_Editor.Editors.ProfessionEditor;
 
 namespace World_Editor.ProfessionEditor
 {
@@ -49,6 +52,7 @@ namespace World_Editor.ProfessionEditor
             try
             {
                 DBCStores.LoadProfessionEditorFiles();
+                DBCStores.SpellIcon.LoadData();
             }
             catch (Exception)
             {
@@ -109,6 +113,7 @@ namespace World_Editor.ProfessionEditor
             txtSkillName.Text = loadedSkill.Line.Name;
             txtSkillDescription.Text = loadedSkill.Line.Description;
             txtSkillVerb.Text = loadedSkill.Line.AlternateVerb;
+            txtIcon.Text = loadedSkill.Line.SpellIcon.ToString();
 
             if (loadedSkill.Line.CanLink == 1)
             {
@@ -128,7 +133,9 @@ namespace World_Editor.ProfessionEditor
                 lstRecipes.Items.Add(recipe);
             }
             lstRecipes.SelectedIndex = lstRecipes.Items.Count - 1;
+            lstRecipes.Sorted = true;
             activateComposants();
+            labelNbRecipes.Text = lstRecipes.Items.Count.ToString() + " recettes";
         }
 
         private void btnRaceMask_Click(object sender, EventArgs e)
@@ -155,6 +162,24 @@ namespace World_Editor.ProfessionEditor
             DBCStores.SkillLine.ReplaceEntry(s.Id, s);
             lstSkills.Items[lstSkills.SelectedIndex] = s;
             //DBCStores.SkillLine[loadedSkill.Line.Id].Name = txtSkillName.Text;
+        }
+
+        private void txtIcon_TextChanged(object sender, EventArgs e)
+        {
+            DBCStores.SkillLine[loadedSkill.Line.Id].SpellIcon = uint.Parse(txtIcon.Text);
+
+            try
+            {
+                SpellIconEntry sp = DBCStores.SpellIcon.Records.Single(i => i.Id.ToString().Equals(txtIcon.Text));
+                if (MPQFile.Exists(sp.IconPath + ".blp"))
+                    pbIcon.Image = Blp2.FromStream(new MPQFile(sp.IconPath + ".blp"));
+                else
+                    pbIcon.Image = Blp2.FromStream(new MPQFile("Interface\\InventoryItems\\WoWUnknownItem01.blp"));
+            }
+            catch (Exception )
+            {
+
+            }
         }
 
         private void txtSkillVerb_TextChanged(object sender, EventArgs e)
@@ -217,6 +242,7 @@ namespace World_Editor.ProfessionEditor
 
             txtRecipeEntry.Text = recipe.spell.Id.ToString();
             txtRecipeName.Text = recipe.spell.SpellName;
+            txtRecipeIcon.Text = recipe.spell.SpellIconID.ToString();
 
             txtReagent1.Text = recipe.spell.Reagent[0].ToString();
             txtReagent2.Text = recipe.spell.Reagent[1].ToString();
@@ -269,11 +295,6 @@ namespace World_Editor.ProfessionEditor
 
             Recipe recipe = (Recipe)lstRecipes.SelectedItem;
             recipe.spell.SpellName = txtRecipeName.Text;
-        }
-
-        private void txtRecipeEntry_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void txtRecipeGreen_TextChanged(object sender, EventArgs e)
@@ -741,56 +762,82 @@ namespace World_Editor.ProfessionEditor
 
         private void btnSearchRecipe1_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent1);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent1.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent1.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe2_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent2);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent2.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent2.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe3_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent3);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent3.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent3.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe4_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent4);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent4.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent4.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe5_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent5);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent5.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent5.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe6_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent6);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent6.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent6.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe7_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent7);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent7.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent7.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchRecipe8_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtReagent8);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtReagent8.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtReagent8.Text = s.choosenItem.ToString();
         }
 
         private void btnSearchResultRecipe_Click(object sender, EventArgs e)
         {
-            Editors.ProfessionEditor.SearchComponent s = new Editors.ProfessionEditor.SearchComponent(txtRecipeResult);
-            s.Show(this);
+            SearchComponent s = new SearchComponent(txtRecipeResult.Text);
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtRecipeResult.Text = s.choosenItem.ToString();
+        }
+
+        private void btnRecipeIcon_Click(object sender, EventArgs e)
+        {
+            SpellIconDialog d = new SpellIconDialog(Misc.ParseToUInt(txtRecipeIcon.Text));
+            d.ShowDialog();
+            if (d.DialogResult == DialogResult.OK)
+                txtRecipeIcon.Text = d.choosenIcon.ToString();
         }
     }
 }

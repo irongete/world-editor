@@ -36,6 +36,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblPreview = new System.Windows.Forms.RichTextBox();
             this.btnSave = new System.Windows.Forms.Button();
+            this.tipsColorDialog = new System.Windows.Forms.ColorDialog();
+            this.btnTipsColor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listGameTips
@@ -69,7 +71,7 @@
             // 
             // txtTip
             // 
-            this.txtTip.Location = new System.Drawing.Point(12, 126);
+            this.txtTip.Location = new System.Drawing.Point(12, 142);
             this.txtTip.Multiline = true;
             this.txtTip.Name = "txtTip";
             this.txtTip.Size = new System.Drawing.Size(395, 85);
@@ -79,7 +81,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 110);
+            this.label1.Location = new System.Drawing.Point(12, 123);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 13);
             this.label1.TabIndex = 4;
@@ -88,7 +90,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 214);
+            this.label2.Location = new System.Drawing.Point(12, 235);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 5;
@@ -97,10 +99,10 @@
             // lblPreview
             // 
             this.lblPreview.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lblPreview.Location = new System.Drawing.Point(12, 230);
+            this.lblPreview.Location = new System.Drawing.Point(12, 251);
             this.lblPreview.Name = "lblPreview";
             this.lblPreview.ReadOnly = true;
-            this.lblPreview.Size = new System.Drawing.Size(395, 81);
+            this.lblPreview.Size = new System.Drawing.Size(395, 60);
             this.lblPreview.TabIndex = 7;
             this.lblPreview.Text = "lblPreview";
             // 
@@ -114,11 +116,22 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // btnTipsColor
+            // 
+            this.btnTipsColor.Location = new System.Drawing.Point(336, 113);
+            this.btnTipsColor.Name = "btnTipsColor";
+            this.btnTipsColor.Size = new System.Drawing.Size(71, 23);
+            this.btnTipsColor.TabIndex = 9;
+            this.btnTipsColor.Text = "Couleur";
+            this.btnTipsColor.UseVisualStyleBackColor = true;
+            this.btnTipsColor.Click += new System.EventHandler(this.btnTipsColor_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 323);
+            this.Controls.Add(this.btnTipsColor);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblPreview);
             this.Controls.Add(this.label2);
@@ -147,5 +160,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox lblPreview;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ColorDialog tipsColorDialog;
+        private System.Windows.Forms.Button btnTipsColor;
     }
 }

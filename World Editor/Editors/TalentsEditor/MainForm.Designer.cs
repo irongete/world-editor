@@ -1,4 +1,4 @@
-﻿using World_Editor.Control;
+﻿﻿using World_Editor.Control;
 
 namespace World_Editor.Editors.TalentsEditor
 {

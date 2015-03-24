@@ -11,21 +11,21 @@ namespace World_Editor.Editors.ProfessionEditor
 {
     public partial class SearchComponent : Form
     {
-        TextBox txtItemId;
+        public String choosenItem { get; private set; }
         char[] splitter = new char[] { ',' };
-        public SearchComponent(TextBox txtItemId)
+        public SearchComponent(String txtItemId)
         {
             InitializeComponent();
-            this.txtItemId = txtItemId;
+            this.choosenItem = txtItemId;
         }
 
         private void SearchComponent_Load(object sender, EventArgs e)
         {
             txtSearchComponents.Focus();
-            if (txtItemId.Text != "")
+            if (choosenItem != "")
             {
                 List<String> Items = new List<string>();
-                Items = ProjectManager.SelectedProject.GetMysqlConnector().GetItemById(txtItemId.Text);
+                Items = ProjectManager.SelectedProject.GetMysqlConnector().GetItemById(choosenItem.ToString());
                 lstComponents.DataSource = Items;
             }
         }
@@ -50,12 +50,21 @@ namespace World_Editor.Editors.ProfessionEditor
             string[] tabItems;
             tabItems = lstComponents.SelectedItem.ToString().Split(splitter);
             txtComponentID.Text = tabItems[0];
-            txtItemId.Text = txtComponentID.Text;
+            choosenItem = txtComponentID.Text;
         }
 
         private void btnValidateComponent_Click(object sender, EventArgs e)
         {
-            Close();
+            if (lstComponents.SelectedItems == null)
+                return;
+
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

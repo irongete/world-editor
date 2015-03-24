@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnValidateComponent = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstComponents
@@ -55,15 +56,15 @@
             // 
             // txtComponentID
             // 
-            this.txtComponentID.Location = new System.Drawing.Point(40, 243);
+            this.txtComponentID.Location = new System.Drawing.Point(37, 243);
             this.txtComponentID.Name = "txtComponentID";
-            this.txtComponentID.Size = new System.Drawing.Size(67, 20);
+            this.txtComponentID.Size = new System.Drawing.Size(40, 20);
             this.txtComponentID.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 246);
+            this.label1.Location = new System.Drawing.Point(9, 246);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 13);
             this.label1.TabIndex = 3;
@@ -71,7 +72,7 @@
             // 
             // btnValidateComponent
             // 
-            this.btnValidateComponent.Location = new System.Drawing.Point(160, 242);
+            this.btnValidateComponent.Location = new System.Drawing.Point(83, 242);
             this.btnValidateComponent.Name = "btnValidateComponent";
             this.btnValidateComponent.Size = new System.Drawing.Size(75, 20);
             this.btnValidateComponent.TabIndex = 4;
@@ -88,11 +89,22 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Recherche :";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(164, 242);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(71, 21);
+            this.btnCancel.TabIndex = 6;
+            this.btnCancel.Text = "Annuler";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // SearchComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(248, 272);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnValidateComponent);
             this.Controls.Add(this.label1);
@@ -116,5 +128,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnValidateComponent;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

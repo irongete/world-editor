@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using World_Editor.DBC;
 using World_Editor.Editors;
 using DBCLib.Structures335;
+using World_Editor.Dialogs;
 
 namespace World_Editor.GemsEditor
 {
@@ -17,6 +18,57 @@ namespace World_Editor.GemsEditor
     {
         public static MainForm m_gemsEditor;
         ResourceManager Loc = new ResourceManager("World_Editor.Editors.GemsEditor.GemsEditorLocal", System.Reflection.Assembly.GetExecutingAssembly());
+        
+        #region Enums
+
+        enum EnchantStatsFlags
+        {
+            Health = 1,
+            Mana = 2,
+            Agility = 3,
+            Strength = 4,
+            Intellect = 5,
+            Spirit = 6,
+            Stamina = 7,
+            DefenseRating = 12,
+            DodgeRating = 13,
+            ParryRating = 14,
+            ShieldBlockRating = 15,
+            MeleeHitRating = 16,
+            RangedHitRating = 17,
+            SpellHitRating = 18,
+            MeleeCriticalStrikeRating = 19,
+            RangedCriticalStrikeRating = 20,
+            SpellCriticalStrikeRating = 21,
+            MeleeHitAvoidanceRating = 22,
+            RangedHitAvoidanceRating = 23,
+            SpellHitAvoidanceRating = 24,
+            MeleeCriticalAvoidanceRating = 25,
+            RangedCriticalAvoidanceRating = 26,
+            SpellCriticalAvoidanceRating = 27,
+            MeleeHasteRating = 28,
+            RangedHasteRating = 29,
+            SpellHasteRating = 30,
+            HitRating = 31,
+            CriticalStrikeRating = 32,
+            HitAvoidanceRating = 33,
+            CriticalAvoidanceRating = 34,
+            ResilienceRating = 35,
+            HasteRating = 36,
+            ExpertiseRating = 37,
+            AttackPower = 38,
+            RangedPower = 39,
+            FeralAttackPower = 40,
+            DamageDone = 41,
+            HealingDone = 42,
+            ManaEvery5Seconds = 43,
+            ArmorPenetration = 44,
+            SpellPower = 45,
+            HealthEvery5Seconds = 46,
+            SpellPenetration = 47,
+            BlockValue = 48
+        }
+        #endregion
 
         public MainForm()
         {
@@ -38,6 +90,7 @@ namespace World_Editor.GemsEditor
             {
                 lstGems.Items.Add(entry);
             }
+            lstGems.SelectedIndex = lstGems.Items.Count - 1;
         }
 
         private void lstGems_SelectedIndexChanged(object sender, EventArgs e)
@@ -153,6 +206,30 @@ namespace World_Editor.GemsEditor
         private void txtSearchEnchant_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnEffect1Mask_Click(object sender, EventArgs e)
+        {
+            ListDialog d = new ListDialog(typeof(EnchantStatsFlags), Misc.ParseToUInt(txtEffect1.Text));
+            d.ShowDialog();
+            if (d.DialogResult == DialogResult.OK)
+                txtEffect1.Text = d.Bitmask.ToString();
+        }
+
+        private void btnEffect2Mask_Click(object sender, EventArgs e)
+        {
+            ListDialog d = new ListDialog(typeof(EnchantStatsFlags), Misc.ParseToUInt(txtEffect2.Text));
+            d.ShowDialog();
+            if (d.DialogResult == DialogResult.OK)
+                txtEffect2.Text = d.Bitmask.ToString();
+        }
+
+        private void btnEffect3Mask_Click(object sender, EventArgs e)
+        {
+            ListDialog d = new ListDialog(typeof(EnchantStatsFlags), Misc.ParseToUInt(txtEffect3.Text));
+            d.ShowDialog();
+            if (d.DialogResult == DialogResult.OK)
+                txtEffect3.Text = d.Bitmask.ToString();
         }
     }
 }

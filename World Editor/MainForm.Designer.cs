@@ -67,8 +67,6 @@
             this.btnValidateProject = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.listProjects = new System.Windows.Forms.ComboBox();
-            this.toolGemsEditor = new System.Windows.Forms.ToolStripButton();
-            this.menuGemsEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.topMenu.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -207,6 +205,7 @@
             // 
             // menuGameTipsEditor
             // 
+            this.menuGameTipsEditor.Image = ((System.Drawing.Image)(resources.GetObject("menuGameTipsEditor.Image")));
             this.menuGameTipsEditor.Name = "menuGameTipsEditor";
             this.menuGameTipsEditor.Size = new System.Drawing.Size(203, 22);
             this.menuGameTipsEditor.Text = "Editeur de game tips";
@@ -214,6 +213,7 @@
             // 
             // menuNamesReservedEditor
             // 
+            this.menuNamesReservedEditor.Image = ((System.Drawing.Image)(resources.GetObject("menuNamesReservedEditor.Image")));
             this.menuNamesReservedEditor.Name = "menuNamesReservedEditor";
             this.menuNamesReservedEditor.Size = new System.Drawing.Size(203, 22);
             this.menuNamesReservedEditor.Text = "Editeur de noms réservés";
@@ -221,6 +221,7 @@
             // 
             // menuGemsEditor
             // 
+            this.menuGemsEditor.Image = ((System.Drawing.Image)(resources.GetObject("menuGemsEditor.Image")));
             this.menuGemsEditor.Name = "menuGemsEditor";
             this.menuGemsEditor.Size = new System.Drawing.Size(203, 22);
             this.menuGemsEditor.Text = "Editeur de gemmes";
@@ -433,21 +434,6 @@
             this.listProjects.Name = "listProjects";
             this.listProjects.Size = new System.Drawing.Size(180, 21);
             this.listProjects.TabIndex = 18;
-            // 
-            // toolGemsEditor
-            // 
-            this.toolGemsEditor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolGemsEditor.Image = ((System.Drawing.Image)(resources.GetObject("toolGemsEditor.Image")));
-            this.toolGemsEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolGemsEditor.Name = "toolGemsEditor";
-            this.toolGemsEditor.Size = new System.Drawing.Size(23, 22);
-            this.toolGemsEditor.Text = "Editeur de gemmes";
-            // 
-            // menuGemsEditor
-            // 
-            this.menuGemsEditor.Name = "menuGemsEditor";
-            this.menuGemsEditor.Size = new System.Drawing.Size(203, 22);
-            this.menuGemsEditor.Text = "Editeur de gemmes";
             // 
             // MainForm
             // 
