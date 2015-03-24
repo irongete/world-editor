@@ -163,5 +163,13 @@ namespace World_Editor.Editors.GameTipsEditor
                 MessageBox.Show("Error:" + ex.Message);
             }
         }
+
+        private void btnTipsColor_Click(object sender, EventArgs e)
+        {
+            if (tipsColorDialog.ShowDialog() == DialogResult.OK)
+            {
+                txtTip.Text = txtTip.Text.Replace(txtTip.Text.Substring(2, 8), tipsColorDialog.Color.Name);
+            }
+        }
     }
 }
