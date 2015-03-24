@@ -41,7 +41,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(308, 82);
+            this.btnOk.Location = new System.Drawing.Point(368, 82);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(64, 23);
             this.btnOk.TabIndex = 0;
@@ -52,7 +52,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(308, 111);
+            this.btnCancel.Location = new System.Drawing.Point(368, 111);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(64, 23);
             this.btnCancel.TabIndex = 1;
@@ -82,7 +82,7 @@
             // 
             this.txtFilter.Location = new System.Drawing.Point(65, 36);
             this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(237, 20);
+            this.txtFilter.Size = new System.Drawing.Size(297, 20);
             this.txtFilter.TabIndex = 5;
             this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
@@ -91,12 +91,12 @@
             this.txtPath.Enabled = false;
             this.txtPath.Location = new System.Drawing.Point(65, 12);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(237, 20);
+            this.txtPath.Size = new System.Drawing.Size(297, 20);
             this.txtPath.TabIndex = 6;
             // 
             // pbIcon
             // 
-            this.pbIcon.Location = new System.Drawing.Point(308, 12);
+            this.pbIcon.Location = new System.Drawing.Point(368, 12);
             this.pbIcon.Name = "pbIcon";
             this.pbIcon.Size = new System.Drawing.Size(64, 64);
             this.pbIcon.TabIndex = 8;
@@ -108,7 +108,7 @@
             this.listIcons.FormattingEnabled = true;
             this.listIcons.Location = new System.Drawing.Point(12, 62);
             this.listIcons.Name = "listIcons";
-            this.listIcons.Size = new System.Drawing.Size(290, 212);
+            this.listIcons.Size = new System.Drawing.Size(350, 212);
             this.listIcons.TabIndex = 10;
             this.listIcons.SelectedIndexChanged += new System.EventHandler(this.listIcons_SelectedIndexChanged);
             // 
@@ -117,7 +117,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(384, 283);
+            this.ClientSize = new System.Drawing.Size(444, 283);
             this.Controls.Add(this.listIcons);
             this.Controls.Add(this.pbIcon);
             this.Controls.Add(this.txtPath);

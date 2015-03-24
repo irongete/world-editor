@@ -109,6 +109,7 @@ namespace World_Editor.ProfessionEditor
             txtSkillName.Text = loadedSkill.Line.Name;
             txtSkillDescription.Text = loadedSkill.Line.Description;
             txtSkillVerb.Text = loadedSkill.Line.AlternateVerb;
+            txtIcon.Text = loadedSkill.Line.SpellIcon.ToString();
 
             if (loadedSkill.Line.CanLink == 1)
             {
