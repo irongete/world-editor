@@ -31,22 +31,22 @@
             this.lstNamesReserved = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lstNicknamesReserved = new System.Windows.Forms.ListBox();
-            this.txt_id = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txt_nom = new System.Windows.Forms.TextBox();
-            this.btn_enregistrer = new System.Windows.Forms.Button();
-            this.btn_nouveau = new System.Windows.Forms.Button();
+            this.btn_delete = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_nouveau = new System.Windows.Forms.Button();
+            this.btn_enregistrer = new System.Windows.Forms.Button();
+            this.txt_nom = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_id = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btn_deleteNickname = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_ajouterNickname = new System.Windows.Forms.Button();
             this.btn_enregistrerNickname = new System.Windows.Forms.Button();
             this.txt_nomNickname = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txt_idNickname = new System.Windows.Forms.TextBox();
-            this.btn_deleteNickname = new System.Windows.Forms.Button();
-            this.btn_delete = new System.Windows.Forms.Button();
+            this.lstNicknamesReserved = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -90,6 +90,70 @@
             this.tabPage1.Text = "Noms réservés";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btn_delete
+            // 
+            this.btn_delete.Location = new System.Drawing.Point(209, 332);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(75, 23);
+            this.btn_delete.TabIndex = 8;
+            this.btn_delete.Text = "Supprimer";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(206, 42);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Modifier";
+            // 
+            // btn_nouveau
+            // 
+            this.btn_nouveau.Location = new System.Drawing.Point(209, 95);
+            this.btn_nouveau.Name = "btn_nouveau";
+            this.btn_nouveau.Size = new System.Drawing.Size(75, 23);
+            this.btn_nouveau.TabIndex = 6;
+            this.btn_nouveau.Text = "Ajouter";
+            this.btn_nouveau.UseVisualStyleBackColor = true;
+            this.btn_nouveau.Click += new System.EventHandler(this.btn_nouveau_Click);
+            // 
+            // btn_enregistrer
+            // 
+            this.btn_enregistrer.Location = new System.Drawing.Point(290, 332);
+            this.btn_enregistrer.Name = "btn_enregistrer";
+            this.btn_enregistrer.Size = new System.Drawing.Size(86, 23);
+            this.btn_enregistrer.TabIndex = 5;
+            this.btn_enregistrer.Text = "Sauvegarder";
+            this.btn_enregistrer.UseVisualStyleBackColor = true;
+            this.btn_enregistrer.Click += new System.EventHandler(this.btn_enregistrer_Click);
+            // 
+            // txt_nom
+            // 
+            this.txt_nom.Location = new System.Drawing.Point(209, 58);
+            this.txt_nom.Name = "txt_nom";
+            this.txt_nom.Size = new System.Drawing.Size(165, 20);
+            this.txt_nom.TabIndex = 4;
+            this.txt_nom.TextChanged += new System.EventHandler(this.txt_nom_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(206, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(18, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "ID";
+            // 
+            // txt_id
+            // 
+            this.txt_id.Enabled = false;
+            this.txt_id.Location = new System.Drawing.Point(319, 6);
+            this.txt_id.Name = "txt_id";
+            this.txt_id.Size = new System.Drawing.Size(55, 20);
+            this.txt_id.TabIndex = 2;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.btn_deleteNickname);
@@ -108,68 +172,15 @@
             this.tabPage2.Text = "Pseudos réservés";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // lstNicknamesReserved
+            // btn_deleteNickname
             // 
-            this.lstNicknamesReserved.FormattingEnabled = true;
-            this.lstNicknamesReserved.Location = new System.Drawing.Point(3, 3);
-            this.lstNicknamesReserved.Name = "lstNicknamesReserved";
-            this.lstNicknamesReserved.Size = new System.Drawing.Size(197, 355);
-            this.lstNicknamesReserved.TabIndex = 2;
-            this.lstNicknamesReserved.SelectedIndexChanged += new System.EventHandler(this.lstNicknamesReserved_SelectedIndexChanged);
-            // 
-            // txt_id
-            // 
-            this.txt_id.Enabled = false;
-            this.txt_id.Location = new System.Drawing.Point(319, 6);
-            this.txt_id.Name = "txt_id";
-            this.txt_id.Size = new System.Drawing.Size(55, 20);
-            this.txt_id.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(206, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "ID";
-            // 
-            // txt_nom
-            // 
-            this.txt_nom.Location = new System.Drawing.Point(209, 58);
-            this.txt_nom.Name = "txt_nom";
-            this.txt_nom.Size = new System.Drawing.Size(165, 20);
-            this.txt_nom.TabIndex = 4;
-            this.txt_nom.TextChanged += new System.EventHandler(this.txt_nom_TextChanged);
-            // 
-            // btn_enregistrer
-            // 
-            this.btn_enregistrer.Location = new System.Drawing.Point(290, 332);
-            this.btn_enregistrer.Name = "btn_enregistrer";
-            this.btn_enregistrer.Size = new System.Drawing.Size(86, 23);
-            this.btn_enregistrer.TabIndex = 5;
-            this.btn_enregistrer.Text = "Sauvegarder";
-            this.btn_enregistrer.UseVisualStyleBackColor = true;
-            this.btn_enregistrer.Click += new System.EventHandler(this.btn_enregistrer_Click);
-            // 
-            // btn_nouveau
-            // 
-            this.btn_nouveau.Location = new System.Drawing.Point(209, 95);
-            this.btn_nouveau.Name = "btn_nouveau";
-            this.btn_nouveau.Size = new System.Drawing.Size(75, 23);
-            this.btn_nouveau.TabIndex = 6;
-            this.btn_nouveau.Text = "Ajouter";
-            this.btn_nouveau.UseVisualStyleBackColor = true;
-            this.btn_nouveau.Click += new System.EventHandler(this.btn_nouveau_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(206, 42);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Modifier";
+            this.btn_deleteNickname.Location = new System.Drawing.Point(209, 332);
+            this.btn_deleteNickname.Name = "btn_deleteNickname";
+            this.btn_deleteNickname.Size = new System.Drawing.Size(75, 23);
+            this.btn_deleteNickname.TabIndex = 14;
+            this.btn_deleteNickname.Text = "Supprimer";
+            this.btn_deleteNickname.UseVisualStyleBackColor = true;
+            this.btn_deleteNickname.Click += new System.EventHandler(this.btn_deleteNickname_Click);
             // 
             // label3
             // 
@@ -225,25 +236,14 @@
             this.txt_idNickname.Size = new System.Drawing.Size(55, 20);
             this.txt_idNickname.TabIndex = 8;
             // 
-            // btn_deleteNickname
+            // lstNicknamesReserved
             // 
-            this.btn_deleteNickname.Location = new System.Drawing.Point(209, 332);
-            this.btn_deleteNickname.Name = "btn_deleteNickname";
-            this.btn_deleteNickname.Size = new System.Drawing.Size(75, 23);
-            this.btn_deleteNickname.TabIndex = 14;
-            this.btn_deleteNickname.Text = "Supprimer";
-            this.btn_deleteNickname.UseVisualStyleBackColor = true;
-            this.btn_deleteNickname.Click += new System.EventHandler(this.btn_deleteNickname_Click);
-            // 
-            // btn_delete
-            // 
-            this.btn_delete.Location = new System.Drawing.Point(209, 332);
-            this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(75, 23);
-            this.btn_delete.TabIndex = 8;
-            this.btn_delete.Text = "Supprimer";
-            this.btn_delete.UseVisualStyleBackColor = true;
-            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            this.lstNicknamesReserved.FormattingEnabled = true;
+            this.lstNicknamesReserved.Location = new System.Drawing.Point(3, 3);
+            this.lstNicknamesReserved.Name = "lstNicknamesReserved";
+            this.lstNicknamesReserved.Size = new System.Drawing.Size(197, 355);
+            this.lstNicknamesReserved.TabIndex = 2;
+            this.lstNicknamesReserved.SelectedIndexChanged += new System.EventHandler(this.lstNicknamesReserved_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -251,6 +251,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(390, 389);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
             this.Text = "Réserver des pseudos";
             this.Load += new System.EventHandler(this.MainForm_Load);

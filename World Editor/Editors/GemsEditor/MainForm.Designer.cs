@@ -447,6 +447,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grpInfos);
             this.Controls.Add(this.lstGems);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
             this.Text = "Gems Editor";
             this.Load += new System.EventHandler(this.MainForm_Load);
