@@ -1030,9 +1030,9 @@
             this.labelNbRecipes.AutoSize = true;
             this.labelNbRecipes.Location = new System.Drawing.Point(-1, 418);
             this.labelNbRecipes.Name = "labelNbRecipes";
-            this.labelNbRecipes.Size = new System.Drawing.Size(41, 13);
+            this.labelNbRecipes.Size = new System.Drawing.Size(58, 13);
             this.labelNbRecipes.TabIndex = 1;
-            this.labelNbRecipes.Text = "label29";
+            this.labelNbRecipes.Text = "nbRecipes";
             // 
             // MainForm
             // 

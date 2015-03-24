@@ -98,6 +98,12 @@
     <Compile Include="Database\Emulators\Trinity.cs" />
     <Compile Include="Database\MySqlConnector.cs" />
     <Compile Include="Database\Structures.cs" />
+    <Compile Include="Dialogs\ListDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ListDialog.Designer.cs">
+      <DependentUpon>ListDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\ClassesEditor\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +302,9 @@
     <Compile Include="Utils\StreamedMpq.cs" />
     <EmbeddedResource Include="Control\TalentsUserControl.resx">
       <DependentUpon>TalentsUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ListDialog.resx">
+      <DependentUpon>ListDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\ClassesEditor\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
