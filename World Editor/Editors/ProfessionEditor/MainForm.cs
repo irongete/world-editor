@@ -133,6 +133,7 @@ namespace World_Editor.ProfessionEditor
             }
             lstRecipes.SelectedIndex = lstRecipes.Items.Count - 1;
             activateComposants();
+            labelNbRecipes.Text = lstRecipes.Items.Count.ToString() + " recettes";
         }
 
         private void btnRaceMask_Click(object sender, EventArgs e)

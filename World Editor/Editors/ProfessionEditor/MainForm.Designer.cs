@@ -119,6 +119,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lstRecipes = new System.Windows.Forms.ListBox();
+            this.labelNbRecipes = new System.Windows.Forms.Label();
             this.tcMain.SuspendLayout();
             this.tpSkill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
@@ -1024,11 +1025,21 @@
             this.lstRecipes.TabIndex = 0;
             this.lstRecipes.SelectedIndexChanged += new System.EventHandler(this.lstRecipes_SelectedIndexChanged);
             // 
+            // labelNbRecipes
+            // 
+            this.labelNbRecipes.AutoSize = true;
+            this.labelNbRecipes.Location = new System.Drawing.Point(-1, 418);
+            this.labelNbRecipes.Name = "labelNbRecipes";
+            this.labelNbRecipes.Size = new System.Drawing.Size(41, 13);
+            this.labelNbRecipes.TabIndex = 1;
+            this.labelNbRecipes.Text = "label29";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(669, 416);
+            this.ClientSize = new System.Drawing.Size(669, 431);
+            this.Controls.Add(this.labelNbRecipes);
             this.Controls.Add(this.tcMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
@@ -1048,6 +1059,7 @@
             this.grpInfos.ResumeLayout(false);
             this.grpInfos.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1143,5 +1155,6 @@
         private System.Windows.Forms.TextBox txtRecipeIcon;
         private System.Windows.Forms.Button btnRecipeIcon;
         private System.Windows.Forms.PictureBox pbIcon;
+        private System.Windows.Forms.Label labelNbRecipes;
     }
 }
