@@ -11,6 +11,8 @@ using DBCLib.Structures335;
 using World_Editor.DBC;
 using World_Editor.Editors;
 using World_Editor.Dialogs;
+using World_Editor.Stormlib;
+using MDS.cBlp2;
 
 namespace World_Editor.ProfessionEditor
 {
@@ -49,6 +51,7 @@ namespace World_Editor.ProfessionEditor
             try
             {
                 DBCStores.LoadProfessionEditorFiles();
+                DBCStores.SpellIcon.LoadData();
             }
             catch (Exception)
             {
@@ -161,6 +164,13 @@ namespace World_Editor.ProfessionEditor
         private void txtIcon_TextChanged(object sender, EventArgs e)
         {
             DBCStores.SkillLine[loadedSkill.Line.Id].SpellIcon = uint.Parse(txtIcon.Text);
+
+            SpellIconEntry sp = DBCStores.SpellIcon.Records.Single(i => i.Id.ToString().Equals(txtIcon.Text));
+
+            if (MPQFile.Exists(sp.IconPath + ".blp"))
+                pbIcon.Image = Blp2.FromStream(new MPQFile(sp.IconPath + ".blp"));
+            else
+                pbIcon.Image = Blp2.FromStream(new MPQFile("Interface\\InventoryItems\\WoWUnknownItem01.blp"));
         }
 
         private void txtSkillVerb_TextChanged(object sender, EventArgs e)

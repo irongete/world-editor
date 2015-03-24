@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tpSkill = new System.Windows.Forms.TabPage();
+            this.pbIcon = new System.Windows.Forms.PictureBox();
             this.txtIcon = new System.Windows.Forms.TextBox();
             this.btnIcons = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -120,6 +121,7 @@
             this.lstRecipes = new System.Windows.Forms.ListBox();
             this.tcMain.SuspendLayout();
             this.tpSkill.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
             this.tpRecipe.SuspendLayout();
             this.grpFacultatif.SuspendLayout();
             this.grpComposants.SuspendLayout();
@@ -138,6 +140,7 @@
             // 
             // tpSkill
             // 
+            this.tpSkill.Controls.Add(this.pbIcon);
             this.tpSkill.Controls.Add(this.txtIcon);
             this.tpSkill.Controls.Add(this.btnIcons);
             this.tpSkill.Controls.Add(this.btnSave);
@@ -168,8 +171,17 @@
             this.tpSkill.Text = "Liste de métiers";
             this.tpSkill.UseVisualStyleBackColor = true;
             // 
+            // pbIcon
+            // 
+            this.pbIcon.Location = new System.Drawing.Point(592, 6);
+            this.pbIcon.Name = "pbIcon";
+            this.pbIcon.Size = new System.Drawing.Size(64, 64);
+            this.pbIcon.TabIndex = 9;
+            this.pbIcon.TabStop = false;
+            // 
             // txtIcon
             // 
+            this.txtIcon.Enabled = false;
             this.txtIcon.Location = new System.Drawing.Point(353, 19);
             this.txtIcon.Name = "txtIcon";
             this.txtIcon.Size = new System.Drawing.Size(76, 20);
@@ -178,9 +190,9 @@
             // 
             // btnIcons
             // 
-            this.btnIcons.Location = new System.Drawing.Point(435, 16);
+            this.btnIcons.Location = new System.Drawing.Point(592, 76);
             this.btnIcons.Name = "btnIcons";
-            this.btnIcons.Size = new System.Drawing.Size(75, 23);
+            this.btnIcons.Size = new System.Drawing.Size(64, 23);
             this.btnIcons.TabIndex = 20;
             this.btnIcons.Text = "Icône";
             this.btnIcons.UseVisualStyleBackColor = true;
@@ -282,7 +294,7 @@
             // 
             // txtSkillVerb
             // 
-            this.txtSkillVerb.Location = new System.Drawing.Point(353, 94);
+            this.txtSkillVerb.Location = new System.Drawing.Point(353, 97);
             this.txtSkillVerb.Name = "txtSkillVerb";
             this.txtSkillVerb.Size = new System.Drawing.Size(229, 20);
             this.txtSkillVerb.TabIndex = 9;
@@ -335,7 +347,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(261, 97);
+            this.label3.Location = new System.Drawing.Point(261, 104);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 3;
@@ -344,7 +356,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(261, 60);
+            this.label2.Location = new System.Drawing.Point(261, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 13);
             this.label2.TabIndex = 2;
@@ -353,7 +365,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(261, 16);
+            this.label1.Location = new System.Drawing.Point(262, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 1;
@@ -1027,6 +1039,7 @@
             this.tcMain.ResumeLayout(false);
             this.tpSkill.ResumeLayout(false);
             this.tpSkill.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
             this.tpRecipe.ResumeLayout(false);
             this.grpFacultatif.ResumeLayout(false);
             this.grpFacultatif.PerformLayout();
@@ -1129,5 +1142,6 @@
         private System.Windows.Forms.Button btnSaveRecipe;
         private System.Windows.Forms.TextBox txtRecipeIcon;
         private System.Windows.Forms.Button btnRecipeIcon;
+        private System.Windows.Forms.PictureBox pbIcon;
     }
 }
