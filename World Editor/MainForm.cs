@@ -208,6 +208,14 @@ namespace World_Editor
             {
                 //ShowAndBringToFrontEditor<MapsEditor.MainForm>();
             }
+            else if (sender == menuRacesClassCombosEditor || sender == toolRacesClassCombosEditor)
+            {
+                ShowAndBringToFrontEditor<RacesClassCombosEditor.MainForm>();
+            }
+            else if (sender == menuItemSetEditor || sender == toolItemSetEditor)
+            {
+                ShowAndBringToFrontEditor<ItemSetEditor.MainForm>();
+            }
             else if (sender == générerUnItemdbcToolStripMenuItem)
             {
                 ItemDbcGenerator.MainForm d = new ItemDbcGenerator.MainForm();
@@ -340,6 +348,8 @@ namespace World_Editor
             _controlsInEditMode.Add(menuGameTipsEditor);
             _controlsInEditMode.Add(menuNamesReservedEditor);
             _controlsInEditMode.Add(menuGemsEditor);
+            _controlsInEditMode.Add(menuRacesClassCombosEditor);
+            _controlsInEditMode.Add(menuItemSetEditor);
             _controlsInEditMode.Add(générerUnItemdbcToolStripMenuItem);
 
             _controlsInEditMode.Add(toolTalentsEditor);
@@ -353,6 +363,8 @@ namespace World_Editor
             _controlsInEditMode.Add(toolMapsEditor);
             _controlsInEditMode.Add(toolGameTipsEditor);
             _controlsInEditMode.Add(toolNamesReservedEditor);
+            _controlsInEditMode.Add(toolRacesClassCombosEditor);
+            _controlsInEditMode.Add(toolItemSetEditor);
             _controlsInEditMode.Add(toolGemsEditor);
             //_controlsInEditMode.Add(générerUnItemdbcToolStripMenuItem);
         }

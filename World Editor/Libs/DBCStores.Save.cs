@@ -90,5 +90,17 @@ namespace World_Editor.DBC
             GemProperties.SaveDBC();
             SpellItemEnchantment.SaveDBC();
         }
+
+        public static void SaveRacesClassCombosEditorFiles()
+        {
+            ChrClasses.SaveDBC();
+            ChrRaces.SaveDBC();
+            CharBaseInfo.SaveDBC();
+        }
+
+        public static void SaveItemSetEditorFiles()
+        {
+            ItemSet.SaveDBC();
+        }
     }
 }

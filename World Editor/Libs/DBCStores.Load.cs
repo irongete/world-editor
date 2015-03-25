@@ -99,5 +99,17 @@ namespace World_Editor.DBC
             GemProperties.LoadData();
             SpellItemEnchantment.LoadData();
         }
+
+        public static void LoadRacesClassCombosEditorFiles()
+        {
+            CharBaseInfo.LoadData();
+            ChrClasses.LoadData();
+            ChrRaces.LoadData();
+        }
+
+        public static void LoadItemSetEditorFiles()
+        {
+            ItemSet.LoadData();
+        }
     }
 }

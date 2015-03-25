@@ -142,6 +142,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Editors\ItemSetEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\ItemSetEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\NamesReservedEditor\NamesReservedEditorLocal.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -168,6 +174,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Editors\NamesReservedEditor\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\RacesClassCombosEditor\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\RacesClassCombosEditor\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\TitlesEditor\TitlesEditorLocal.fr.Designer.cs">
@@ -349,6 +361,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GemsEditorLocal.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Editors\ItemSetEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editors\NamesReservedEditor\NamesReservedEditorLocal.fr.resx" />
     <EmbeddedResource Include="Editors\NamesReservedEditor\NamesReservedEditorLocal.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -366,6 +381,9 @@
       <DependentUpon>SearchComponent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\NamesReservedEditor\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\RacesClassCombosEditor\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\TitlesEditor\MainForm.fr.resx">

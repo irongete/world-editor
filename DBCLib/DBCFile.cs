@@ -87,6 +87,12 @@ namespace DBCLib
                                 field.SetValue(t, strVal);
                                 break;
                             }
+                        case TypeCode.Byte:
+                            {
+                                byte bvalue = mReader.ReadByte();
+                                field.SetValue(t, bvalue);
+                                break;
+                            }
 
                         case TypeCode.Object:
                             {

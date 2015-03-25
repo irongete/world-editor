@@ -305,7 +305,8 @@ namespace DBCLib.Structures335
 
     public class CharBaseInfoEntry
     {
-
+        public byte RaceId;
+        public byte ClasseId;
     }
 
     public class CharHairGeosetsEntry
@@ -964,6 +965,18 @@ namespace DBCLib.Structures335
 
     public class ItemSetEntry
     {
+        public uint Id;                                 // 0
+        public LocalizedString sRefName;                // 1-17
+        public uint[] items = new uint[17];
+        public uint[] spells = new uint[8];
+        public uint[] nbItemSpells = new uint[8];
+        public uint RequiredSkill;
+        public uint RequiredLevelSkill;
+
+        public override string ToString()
+        {
+            return sRefName;
+        } 
 
     }
 

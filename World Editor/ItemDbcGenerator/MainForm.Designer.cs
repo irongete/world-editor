@@ -30,15 +30,16 @@
         {
             this.btnGenerate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtFrom = new System.Windows.Forms.TextBox();
-            this.txtTo = new System.Windows.Forms.TextBox();
+            this.radioAdd = new System.Windows.Forms.RadioButton();
+            this.radioNew = new System.Windows.Forms.RadioButton();
             this.checkAll = new System.Windows.Forms.CheckBox();
+            this.txtTo = new System.Windows.Forms.TextBox();
+            this.txtFrom = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.lblProgress = new System.Windows.Forms.Label();
-            this.radioNew = new System.Windows.Forms.RadioButton();
-            this.radioAdd = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +55,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.radioAdd);
             this.groupBox1.Controls.Add(this.radioNew);
             this.groupBox1.Controls.Add(this.checkAll);
@@ -68,37 +70,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Items Range";
             // 
-            // label1
+            // radioAdd
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "From";
+            this.radioAdd.AutoSize = true;
+            this.radioAdd.Location = new System.Drawing.Point(9, 68);
+            this.radioAdd.Name = "radioAdd";
+            this.radioAdd.Size = new System.Drawing.Size(133, 17);
+            this.radioAdd.TabIndex = 6;
+            this.radioAdd.Text = "Add to existing Dbc file";
+            this.radioAdd.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // radioNew
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(95, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "To";
-            // 
-            // txtFrom
-            // 
-            this.txtFrom.Location = new System.Drawing.Point(42, 19);
-            this.txtFrom.Name = "txtFrom";
-            this.txtFrom.Size = new System.Drawing.Size(47, 20);
-            this.txtFrom.TabIndex = 2;
-            // 
-            // txtTo
-            // 
-            this.txtTo.Location = new System.Drawing.Point(121, 19);
-            this.txtTo.Name = "txtTo";
-            this.txtTo.Size = new System.Drawing.Size(47, 20);
-            this.txtTo.TabIndex = 3;
+            this.radioNew.AutoSize = true;
+            this.radioNew.Checked = true;
+            this.radioNew.Location = new System.Drawing.Point(9, 45);
+            this.radioNew.Name = "radioNew";
+            this.radioNew.Size = new System.Drawing.Size(118, 17);
+            this.radioNew.TabIndex = 5;
+            this.radioNew.TabStop = true;
+            this.radioNew.Text = "Create new Dbc file";
+            this.radioNew.UseVisualStyleBackColor = true;
             // 
             // checkAll
             // 
@@ -110,6 +102,38 @@
             this.checkAll.Text = "All";
             this.checkAll.UseVisualStyleBackColor = true;
             this.checkAll.CheckedChanged += new System.EventHandler(this.checkAll_CheckedChanged);
+            // 
+            // txtTo
+            // 
+            this.txtTo.Location = new System.Drawing.Point(121, 19);
+            this.txtTo.Name = "txtTo";
+            this.txtTo.Size = new System.Drawing.Size(47, 20);
+            this.txtTo.TabIndex = 3;
+            // 
+            // txtFrom
+            // 
+            this.txtFrom.Location = new System.Drawing.Point(42, 19);
+            this.txtFrom.Name = "txtFrom";
+            this.txtFrom.Size = new System.Drawing.Size(47, 20);
+            this.txtFrom.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(95, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "To";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "From";
             // 
             // progressBar
             // 
@@ -127,27 +151,15 @@
             this.lblProgress.Text = "lblProgress";
             this.lblProgress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // radioNew
+            // label3
             // 
-            this.radioNew.AutoSize = true;
-            this.radioNew.Checked = true;
-            this.radioNew.Location = new System.Drawing.Point(9, 45);
-            this.radioNew.Name = "radioNew";
-            this.radioNew.Size = new System.Drawing.Size(118, 17);
-            this.radioNew.TabIndex = 5;
-            this.radioNew.TabStop = true;
-            this.radioNew.Text = "Create new Dbc file";
-            this.radioNew.UseVisualStyleBackColor = true;
-            // 
-            // radioAdd
-            // 
-            this.radioAdd.AutoSize = true;
-            this.radioAdd.Location = new System.Drawing.Point(9, 68);
-            this.radioAdd.Name = "radioAdd";
-            this.radioAdd.Size = new System.Drawing.Size(133, 17);
-            this.radioAdd.TabIndex = 6;
-            this.radioAdd.Text = "Add to existing Dbc file";
-            this.radioAdd.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(20, 58);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(137, 12);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "(Le fichier sera vidé puis remplit)";
             // 
             // MainForm
             // 
@@ -183,5 +195,6 @@
         private System.Windows.Forms.Label lblProgress;
         private System.Windows.Forms.RadioButton radioAdd;
         private System.Windows.Forms.RadioButton radioNew;
+        private System.Windows.Forms.Label label3;
     }
 }

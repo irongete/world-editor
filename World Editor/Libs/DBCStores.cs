@@ -29,7 +29,7 @@ namespace World_Editor.DBC
         //public static DBCFile<CfgCategoriesEntry> CfgCategories { get; private set; }
         //public static DBCFile<CfgConfigsEntry> CfgConfigs { get; private set; }
         //public static DBCFile<CharacterFacialHairStylesEntry> CharacterFacialHairStyles { get; private set; }
-        //public static DBCFile<CharBaseInfoEntry> CharBaseInfo { get; private set; }
+        public static DBCFile<CharBaseInfoEntry> CharBaseInfo { get; private set; }
         //public static DBCFile<CharHairGeosetsEntry> CharHairGeosets { get; private set; }
         //public static DBCFile<CharHairTexturesEntry> CharHairTextures { get; private set; }
         //public static DBCFile<CharSectionsEntry> CharSections { get; private set; }
@@ -116,7 +116,7 @@ namespace World_Editor.DBC
         //public static DBCFile<ItemPurchaseGroupEntry> ItemPurchaseGroup { get; private set; }
         //public static DBCFile<ItemRandomPropertiesEntry> ItemRandomProperties { get; private set; }
         //public static DBCFile<ItemRandomSuffixEntry> ItemRandomSuffix { get; private set; }
-        //public static DBCFile<ItemSetEntry> ItemSet { get; private set; }
+        public static DBCFile<ItemSetEntry> ItemSet { get; private set; }
         //public static DBCFile<ItemSubClassEntry> ItemSubClass { get; private set; }
         //public static DBCFile<ItemSubClassMaskEntry> ItemSubClassMask { get; private set; }
         //public static DBCFile<ItemVisualEffectsEntry> ItemVisualEffects { get; private set; }
@@ -282,7 +282,7 @@ namespace World_Editor.DBC
             //CfgCategories = new DBCFile<CfgCategoriesEntry>(dbcFolder + "Cfg_Categories.dbc");
             //CfgConfigs = new DBCFile<CfgConfigsEntry>(dbcFolder + "Cfg_Configs.dbc");
             //CharacterFacialHairStyles = new DBCFile<CharacterFacialHairStylesEntry>(dbcFolder + "CharacterFacialHairStyles.dbc");
-            //CharBaseInfo = new DBCFile<CharBaseInfoEntry>(dbcFolder + "CharBaseInfo.dbc");
+            CharBaseInfo = new DBCFile<CharBaseInfoEntry>(dbcFolder + "CharBaseInfo.dbc");
             //CharHairGeosets = new DBCFile<CharHairGeosetsEntry>(dbcFolder + "CharHairGeosets.dbc");
             //CharHairTextures = new DBCFile<CharHairTexturesEntry>(dbcFolder + "CharHairTextures.dbc");
             //CharSections = new DBCFile<CharSectionsEntry>(dbcFolder + "CharSections.dbc");
@@ -369,7 +369,7 @@ namespace World_Editor.DBC
             //ItemPurchaseGroup = new DBCFile<ItemPurchaseGroupEntry>(dbcFolder + "ItemPurchaseGroup.dbc");
             //ItemRandomProperties = new DBCFile<ItemRandomPropertiesEntry>(dbcFolder + "ItemRandomProperties.dbc");
             //ItemRandomSuffix = new DBCFile<ItemRandomSuffixEntry>(dbcFolder + "ItemRandomSuffix.dbc");
-            //ItemSet = new DBCFile<ItemSetEntry>(dbcFolder + "ItemSet.dbc");
+            ItemSet = new DBCFile<ItemSetEntry>(dbcFolder + "ItemSet.dbc");
             //ItemSubClass = new DBCFile<ItemSubClassEntry>(dbcFolder + "ItemSubClass.dbc");
             //ItemSubClassMask = new DBCFile<ItemSubClassMaskEntry>(dbcFolder + "ItemSubClassMask.dbc");
             //ItemVisualEffects = new DBCFile<ItemVisualEffectsEntry>(dbcFolder + "ItemVisualEffects.dbc");
