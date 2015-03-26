@@ -283,7 +283,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.sRefName = txtSetName.Text;
+            if (!txtSetName.Text.Equals(""))
+                t.sRefName = txtSetName.Text;
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -293,7 +294,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.RequiredSkill = uint.Parse(txtRequiredSkill.Text);
+            if (!txtRequiredSkill.Text.Equals(""))
+                t.RequiredSkill = uint.Parse(txtRequiredSkill.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -303,7 +305,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.RequiredLevelSkill = uint.Parse(txtRequiredSkillLevel.Text);
+            if (!txtRequiredSkillLevel.Text.Equals(""))
+                t.RequiredLevelSkill = uint.Parse(txtRequiredSkillLevel.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -313,7 +316,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.items[0] = uint.Parse(txtItem1.Text);
+            if (!txtItem1.Text.Equals(""))
+                t.items[0] = uint.Parse(txtItem1.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -323,7 +327,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.items[1] = uint.Parse(txtItem2.Text);
+            if (!txtItem2.Text.Equals(""))
+                t.items[1] = uint.Parse(txtItem2.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -333,7 +338,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.items[2] = uint.Parse(txtItem3.Text);
+            if (!txtItem3.Text.Equals(""))
+                t.items[2] = uint.Parse(txtItem3.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -343,7 +349,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.items[3] = uint.Parse(txtItem4.Text);
+            if (!txtItem4.Text.Equals(""))
+                t.items[3] = uint.Parse(txtItem4.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -353,7 +360,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.items[4] = uint.Parse(txtItem5.Text);
+            if (!txtItem5.Text.Equals(""))
+                t.items[4] = uint.Parse(txtItem5.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -363,7 +371,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.items[5] = uint.Parse(txtItem6.Text);
+            if (!txtItem6.Text.Equals(""))
+                t.items[5] = uint.Parse(txtItem6.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -373,7 +382,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.items[6] = uint.Parse(txtItem7.Text);
+            if (!txtItem7.Text.Equals(""))
+                t.items[6] = uint.Parse(txtItem7.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -383,7 +393,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.items[7] = uint.Parse(txtItem8.Text);
+            if (!txtItem8.Text.Equals(""))
+                t.items[7] = uint.Parse(txtItem8.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -404,7 +415,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.nbItemSpells[0] = uint.Parse(txtNbItemForEffect1.Text);
+            if (!txtNbItemForEffect1.Text.Equals(""))
+                t.nbItemSpells[0] = uint.Parse(txtNbItemForEffect1.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -425,7 +437,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.nbItemSpells[1] = uint.Parse(txtNbItemForEffect2.Text);
+            if (!txtNbItemForEffect2.Text.Equals(""))
+                t.nbItemSpells[1] = uint.Parse(txtNbItemForEffect2.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -446,7 +459,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.nbItemSpells[2] = uint.Parse(txtNbItemForEffect3.Text);
+            if (!txtNbItemForEffect3.Text.Equals(""))
+                t.nbItemSpells[2] = uint.Parse(txtNbItemForEffect3.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -467,7 +481,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.nbItemSpells[3] = uint.Parse(txtNbItemForEffect4.Text);
+            if (!txtNbItemForEffect4.Text.Equals(""))
+                t.nbItemSpells[3] = uint.Parse(txtNbItemForEffect4.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -488,7 +503,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.nbItemSpells[4] = uint.Parse(txtNbItemForEffect5.Text);
+            if (!txtNbItemForEffect5.Text.Equals(""))
+                t.nbItemSpells[4] = uint.Parse(txtNbItemForEffect5.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -509,7 +525,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.nbItemSpells[5] = uint.Parse(txtNbItemForEffect6.Text);
+            if (!txtNbItemForEffect6.Text.Equals(""))
+                t.nbItemSpells[5] = uint.Parse(txtNbItemForEffect6.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -530,7 +547,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.nbItemSpells[6] = uint.Parse(txtNbItemForEffect7.Text);
+            if (!txtNbItemForEffect7.Text.Equals(""))
+                t.nbItemSpells[6] = uint.Parse(txtNbItemForEffect7.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;
@@ -551,7 +569,8 @@ namespace World_Editor.ItemSetEditor
         {
             ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
 
-            t.nbItemSpells[7] = uint.Parse(txtNbItemForEffect8.Text);
+            if (!txtNbItemForEffect8.Text.Equals(""))
+                t.nbItemSpells[7] = uint.Parse(txtNbItemForEffect8.Text);
 
             DBCStores.ItemSet.ReplaceEntry(t.Id, t);
             lstItemSet.Items[lstItemSet.SelectedIndex] = t;

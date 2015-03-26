@@ -424,7 +424,7 @@
             // 
             // btnDelItemSet
             // 
-            this.btnDelItemSet.Location = new System.Drawing.Point(259, 183);
+            this.btnDelItemSet.Location = new System.Drawing.Point(259, 187);
             this.btnDelItemSet.Name = "btnDelItemSet";
             this.btnDelItemSet.Size = new System.Drawing.Size(100, 39);
             this.btnDelItemSet.TabIndex = 36;

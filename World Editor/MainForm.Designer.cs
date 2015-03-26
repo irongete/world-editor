@@ -47,6 +47,7 @@
             this.menuNamesReservedEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuGemsEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuRacesClassCombosEditor = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemSetEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.générerUnItemdbcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,11 +67,10 @@
             this.toolNamesReservedEditor = new System.Windows.Forms.ToolStripButton();
             this.toolGemsEditor = new System.Windows.Forms.ToolStripButton();
             this.toolRacesClassCombosEditor = new System.Windows.Forms.ToolStripButton();
+            this.toolItemSetEditor = new System.Windows.Forms.ToolStripButton();
             this.btnValidateProject = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.listProjects = new System.Windows.Forms.ComboBox();
-            this.toolItemSetEditor = new System.Windows.Forms.ToolStripButton();
-            this.menuItemSetEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.topMenu.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -242,6 +242,7 @@
             // 
             // menuItemSetEditor
             // 
+            this.menuItemSetEditor.Image = ((System.Drawing.Image)(resources.GetObject("menuItemSetEditor.Image")));
             this.menuItemSetEditor.Name = "menuItemSetEditor";
             this.menuItemSetEditor.Size = new System.Drawing.Size(228, 22);
             this.menuItemSetEditor.Text = "Editeur de sets d\'items";
