@@ -26,11 +26,45 @@ namespace World_Editor.Dialogs
         {
             DBCStores.Spell.LoadData();
 
-            lstSpells.DisplayMember = "ToStringIdNameFile";
             lstSpells.Items.AddRange(DBCStores.Spell.Records.ToArray());
 
             if (DBCStores.Spell.ContainsKey(choosenSpell))
                 lstSpells.SelectedItem = DBCStores.Spell[choosenSpell];
+        }
+
+        private void btnValidateComponent_Click(object sender, EventArgs e)
+        {
+            if (lstSpells.SelectedItems == null)
+                return;
+
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtSearchSpells_TextChanged(object sender, EventArgs e)
+        {
+            lstSpells.Items.Clear();
+
+            if (txtSearchSpells.Text == "")
+                lstSpells.Items.AddRange(DBCStores.Spell.Records.ToArray());
+            else
+                lstSpells.Items.AddRange(DBCStores.Spell.Records.Where(i => i.SpellName.String.ToLower().Contains(txtSearchSpells.Text.ToLower())).ToArray());
+        }
+
+        private void lstSpells_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstSpells.SelectedItem == null)
+                return;
+
+            SpellEntry s = (SpellEntry)lstSpells.SelectedItem;
+            //txtSpellId.Text = s.Id.ToString();
+
+            choosenSpell = s.Id;
         }
 
     }

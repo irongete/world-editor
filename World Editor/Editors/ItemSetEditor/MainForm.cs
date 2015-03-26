@@ -48,6 +48,11 @@ namespace World_Editor.ItemSetEditor
 
             ItemSetEntry itemSetSelected = (ItemSetEntry)lstItemSet.SelectedItem;
 
+            txtSetId.Text = itemSetSelected.Id.ToString();
+            txtSetName.Text = itemSetSelected.sRefName;
+            txtRequiredSkill.Text = itemSetSelected.RequiredSkill.ToString();
+            txtRequiredSkillLevel.Text = itemSetSelected.RequiredLevelSkill.ToString();
+
             txtItem1.Text = itemSetSelected.items[0].ToString();
             txtItem2.Text = itemSetSelected.items[1].ToString();
             txtItem3.Text = itemSetSelected.items[2].ToString();
@@ -76,6 +81,7 @@ namespace World_Editor.ItemSetEditor
             txtNbItemForEffect8.Text = itemSetSelected.nbItemSpells[7].ToString();
         }
 
+        #region btnAddItem
         private void btnItem1_Click(object sender, EventArgs e)
         {
             SearchComponent s = new SearchComponent(txtItem1.Text);
@@ -139,7 +145,9 @@ namespace World_Editor.ItemSetEditor
             if (s.DialogResult == DialogResult.OK)
                 txtItem8.Text = s.choosenItem.ToString();
         }
+        #endregion
 
+        #region btnAddEffect
         private void btnEffect1_Click(object sender, EventArgs e)
         {
             SpellDialog s = new SpellDialog(uint.Parse(txtEffect1.Text));
@@ -147,5 +155,408 @@ namespace World_Editor.ItemSetEditor
             if (s.DialogResult == DialogResult.OK)
                 txtEffect1.Text = s.choosenSpell.ToString();
         }
+
+        private void btnEffect2_Click(object sender, EventArgs e)
+        {
+            SpellDialog s = new SpellDialog(uint.Parse(txtEffect2.Text));
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtEffect2.Text = s.choosenSpell.ToString();
+        }
+
+        private void btnEffect3_Click(object sender, EventArgs e)
+        {
+            SpellDialog s = new SpellDialog(uint.Parse(txtEffect3.Text));
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtEffect3.Text = s.choosenSpell.ToString();
+        }
+
+        private void btnEffect4_Click(object sender, EventArgs e)
+        {
+            SpellDialog s = new SpellDialog(uint.Parse(txtEffect4.Text));
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtEffect4.Text = s.choosenSpell.ToString();
+        }
+
+        private void btnEffect5_Click(object sender, EventArgs e)
+        {
+            SpellDialog s = new SpellDialog(uint.Parse(txtEffect5.Text));
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtEffect5.Text = s.choosenSpell.ToString();
+        }
+
+        private void btnEffect6_Click(object sender, EventArgs e)
+        {
+            SpellDialog s = new SpellDialog(uint.Parse(txtEffect6.Text));
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtEffect6.Text = s.choosenSpell.ToString();
+        }
+
+        private void btnEffect7_Click(object sender, EventArgs e)
+        {
+            SpellDialog s = new SpellDialog(uint.Parse(txtEffect7.Text));
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtEffect7.Text = s.choosenSpell.ToString();
+        }
+
+        private void btnEffect8_Click(object sender, EventArgs e)
+        {
+            SpellDialog s = new SpellDialog(uint.Parse(txtEffect8.Text));
+            s.ShowDialog();
+            if (s.DialogResult == DialogResult.OK)
+                txtEffect8.Text = s.choosenSpell.ToString();
+        }
+        #endregion
+
+        private void btnNewItemSet_Click(object sender, EventArgs e)
+        {
+
+            uint[] itemsId = new uint[8];
+            uint[] spellsId = new uint[8];
+            uint[] nbItemSpellsCount = new uint[8];
+
+            try
+            {
+                ItemSetEntry t = new ItemSetEntry
+                {
+                    Id = DBCStores.ItemSet.MaxKey + 1,
+                    sRefName = "New set",
+                    items = itemsId,
+                    spells = spellsId,
+                    nbItemSpells = nbItemSpellsCount,
+                    RequiredSkill = uint.Parse(txtRequiredSkill.Text),
+                    RequiredLevelSkill = uint.Parse(txtRequiredSkillLevel.Text)
+                };
+
+                lstItemSet.Items.Add(t);
+                DBCStores.ItemSet.AddEntry(t.Id, t);
+
+                lstItemSet.SelectedIndex = lstItemSet.Items.Count - 1;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Add ItemSet Error");
+            }
+        }
+
+        private void btnDelItemSet_Click(object sender, EventArgs e)
+        {
+            DialogResult choix = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce set d'items ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1);
+            if (choix == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+                    --lstItemSet.SelectedIndex;
+
+                    DBCStores.ItemSet.RemoveEntry(t.Id);
+                    lstItemSet.Items.Remove(t);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Del ItemSet Error");
+                }
+            }
+        }
+
+        private void btnSaveItemSet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DBCStores.SaveItemSetEditorFiles();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Save Dbc Error");
+            }
+        }
+
+        #region textChanged
+
+        private void txtSetName_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.sRefName = txtSetName.Text;
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtRequiredSkill_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.RequiredSkill = uint.Parse(txtRequiredSkill.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtRequiredSkillLevel_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.RequiredLevelSkill = uint.Parse(txtRequiredSkillLevel.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtItem1_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.items[0] = uint.Parse(txtItem1.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtItem2_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.items[1] = uint.Parse(txtItem2.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtItem3_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.items[2] = uint.Parse(txtItem3.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtItem4_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.items[3] = uint.Parse(txtItem4.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtItem5_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.items[4] = uint.Parse(txtItem5.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtItem6_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.items[5] = uint.Parse(txtItem6.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtItem7_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.items[6] = uint.Parse(txtItem7.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtItem8_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.items[7] = uint.Parse(txtItem8.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtEffect1_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            if (!txtEffect1.Text.Equals(""))
+                t.spells[0] = uint.Parse(txtEffect1.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtNbItemForEffect1_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.nbItemSpells[0] = uint.Parse(txtNbItemForEffect1.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtEffect2_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            if (!txtEffect2.Text.Equals(""))
+                t.spells[1] = uint.Parse(txtEffect2.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtNbItemForEffect2_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.nbItemSpells[1] = uint.Parse(txtNbItemForEffect2.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtEffect3_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            if (!txtEffect3.Text.Equals(""))
+                t.spells[2] = uint.Parse(txtEffect3.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtNbItemForEffect3_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.nbItemSpells[2] = uint.Parse(txtNbItemForEffect3.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtEffect4_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            if (!txtEffect4.Text.Equals(""))
+                t.spells[3] = uint.Parse(txtEffect4.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtNbItemForEffect4_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.nbItemSpells[3] = uint.Parse(txtNbItemForEffect4.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtEffect5_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            if (!txtEffect5.Text.Equals(""))
+                t.spells[4] = uint.Parse(txtEffect5.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtNbItemForEffect5_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.nbItemSpells[4] = uint.Parse(txtNbItemForEffect5.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtEffect6_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            if (!txtEffect6.Text.Equals(""))
+                t.spells[5] = uint.Parse(txtEffect6.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtNbItemForEffect6_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.nbItemSpells[5] = uint.Parse(txtNbItemForEffect6.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtEffect7_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            if (!txtEffect7.Text.Equals(""))
+                t.spells[6] = uint.Parse(txtEffect7.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtNbItemForEffect7_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.nbItemSpells[6] = uint.Parse(txtNbItemForEffect7.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtEffect8_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            if (!txtEffect8.Text.Equals(""))
+                t.spells[7] = uint.Parse(txtEffect8.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        private void txtNbItemForEffect8_TextChanged(object sender, EventArgs e)
+        {
+            ItemSetEntry t = (ItemSetEntry)lstItemSet.Items[lstItemSet.SelectedIndex];
+
+            t.nbItemSpells[7] = uint.Parse(txtNbItemForEffect8.Text);
+
+            DBCStores.ItemSet.ReplaceEntry(t.Id, t);
+            lstItemSet.Items[lstItemSet.SelectedIndex] = t;
+        }
+
+        #endregion
     }
 }

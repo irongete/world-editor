@@ -56,6 +56,9 @@
             this.txtItem1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnDelItemSet = new System.Windows.Forms.Button();
+            this.btnSaveItemSet = new System.Windows.Forms.Button();
+            this.btnNewItemSet = new System.Windows.Forms.Button();
             this.txtNbItemForEffect8 = new System.Windows.Forms.TextBox();
             this.txtNbItemForEffect7 = new System.Windows.Forms.TextBox();
             this.txtNbItemForEffect6 = new System.Windows.Forms.TextBox();
@@ -89,20 +92,29 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtEffect1 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnAddRequiredSkill = new System.Windows.Forms.Button();
+            this.txtRequiredSkillLevel = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtRequiredSkill = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtSetId = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtSetName = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstItemSet
             // 
             this.lstItemSet.FormattingEnabled = true;
+            this.lstItemSet.HorizontalScrollbar = true;
             this.lstItemSet.Location = new System.Drawing.Point(6, 19);
             this.lstItemSet.Name = "lstItemSet";
-            this.lstItemSet.Size = new System.Drawing.Size(224, 342);
+            this.lstItemSet.Size = new System.Drawing.Size(224, 420);
             this.lstItemSet.TabIndex = 0;
             this.lstItemSet.SelectedIndexChanged += new System.EventHandler(this.lstItemSet_SelectedIndexChanged);
             // 
@@ -111,7 +123,7 @@
             this.groupBox1.Controls.Add(this.lstItemSet);
             this.groupBox1.Location = new System.Drawing.Point(2, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(240, 373);
+            this.groupBox1.Size = new System.Drawing.Size(240, 456);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Liste des sets";
@@ -142,7 +154,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtItem1);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(248, 3);
+            this.groupBox2.Location = new System.Drawing.Point(248, 86);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(373, 125);
             this.groupBox2.TabIndex = 2;
@@ -235,6 +247,7 @@
             this.txtItem8.Name = "txtItem8";
             this.txtItem8.Size = new System.Drawing.Size(80, 20);
             this.txtItem8.TabIndex = 15;
+            this.txtItem8.TextChanged += new System.EventHandler(this.txtItem8_TextChanged);
             // 
             // label8
             // 
@@ -251,6 +264,7 @@
             this.txtItem7.Name = "txtItem7";
             this.txtItem7.Size = new System.Drawing.Size(80, 20);
             this.txtItem7.TabIndex = 13;
+            this.txtItem7.TextChanged += new System.EventHandler(this.txtItem7_TextChanged);
             // 
             // label7
             // 
@@ -267,6 +281,7 @@
             this.txtItem6.Name = "txtItem6";
             this.txtItem6.Size = new System.Drawing.Size(80, 20);
             this.txtItem6.TabIndex = 11;
+            this.txtItem6.TextChanged += new System.EventHandler(this.txtItem6_TextChanged);
             // 
             // label6
             // 
@@ -283,6 +298,7 @@
             this.txtItem5.Name = "txtItem5";
             this.txtItem5.Size = new System.Drawing.Size(80, 20);
             this.txtItem5.TabIndex = 9;
+            this.txtItem5.TextChanged += new System.EventHandler(this.txtItem5_TextChanged);
             // 
             // label5
             // 
@@ -299,6 +315,7 @@
             this.txtItem4.Name = "txtItem4";
             this.txtItem4.Size = new System.Drawing.Size(80, 20);
             this.txtItem4.TabIndex = 7;
+            this.txtItem4.TextChanged += new System.EventHandler(this.txtItem4_TextChanged);
             // 
             // label4
             // 
@@ -315,6 +332,7 @@
             this.txtItem3.Name = "txtItem3";
             this.txtItem3.Size = new System.Drawing.Size(80, 20);
             this.txtItem3.TabIndex = 5;
+            this.txtItem3.TextChanged += new System.EventHandler(this.txtItem3_TextChanged);
             // 
             // label3
             // 
@@ -331,6 +349,7 @@
             this.txtItem2.Name = "txtItem2";
             this.txtItem2.Size = new System.Drawing.Size(80, 20);
             this.txtItem2.TabIndex = 3;
+            this.txtItem2.TextChanged += new System.EventHandler(this.txtItem2_TextChanged);
             // 
             // label2
             // 
@@ -347,6 +366,7 @@
             this.txtItem1.Name = "txtItem1";
             this.txtItem1.Size = new System.Drawing.Size(80, 20);
             this.txtItem1.TabIndex = 1;
+            this.txtItem1.TextChanged += new System.EventHandler(this.txtItem1_TextChanged);
             // 
             // label1
             // 
@@ -359,9 +379,9 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.btnDelItemSet);
+            this.groupBox3.Controls.Add(this.btnSaveItemSet);
+            this.groupBox3.Controls.Add(this.btnNewItemSet);
             this.groupBox3.Controls.Add(this.txtNbItemForEffect8);
             this.groupBox3.Controls.Add(this.txtNbItemForEffect7);
             this.groupBox3.Controls.Add(this.txtNbItemForEffect6);
@@ -395,12 +415,42 @@
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.txtEffect1);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Location = new System.Drawing.Point(248, 134);
+            this.groupBox3.Location = new System.Drawing.Point(248, 217);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(373, 242);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Bonus octroyés";
+            // 
+            // btnDelItemSet
+            // 
+            this.btnDelItemSet.Location = new System.Drawing.Point(259, 183);
+            this.btnDelItemSet.Name = "btnDelItemSet";
+            this.btnDelItemSet.Size = new System.Drawing.Size(100, 39);
+            this.btnDelItemSet.TabIndex = 36;
+            this.btnDelItemSet.Text = "Supprimer";
+            this.btnDelItemSet.UseVisualStyleBackColor = true;
+            this.btnDelItemSet.Click += new System.EventHandler(this.btnDelItemSet_Click);
+            // 
+            // btnSaveItemSet
+            // 
+            this.btnSaveItemSet.Location = new System.Drawing.Point(259, 69);
+            this.btnSaveItemSet.Name = "btnSaveItemSet";
+            this.btnSaveItemSet.Size = new System.Drawing.Size(100, 38);
+            this.btnSaveItemSet.TabIndex = 35;
+            this.btnSaveItemSet.Text = "Sauvegarder";
+            this.btnSaveItemSet.UseVisualStyleBackColor = true;
+            this.btnSaveItemSet.Click += new System.EventHandler(this.btnSaveItemSet_Click);
+            // 
+            // btnNewItemSet
+            // 
+            this.btnNewItemSet.Location = new System.Drawing.Point(259, 22);
+            this.btnNewItemSet.Name = "btnNewItemSet";
+            this.btnNewItemSet.Size = new System.Drawing.Size(100, 41);
+            this.btnNewItemSet.TabIndex = 34;
+            this.btnNewItemSet.Text = "Nouveau set";
+            this.btnNewItemSet.UseVisualStyleBackColor = true;
+            this.btnNewItemSet.Click += new System.EventHandler(this.btnNewItemSet_Click);
             // 
             // txtNbItemForEffect8
             // 
@@ -408,6 +458,7 @@
             this.txtNbItemForEffect8.Name = "txtNbItemForEffect8";
             this.txtNbItemForEffect8.Size = new System.Drawing.Size(34, 20);
             this.txtNbItemForEffect8.TabIndex = 33;
+            this.txtNbItemForEffect8.TextChanged += new System.EventHandler(this.txtNbItemForEffect8_TextChanged);
             // 
             // txtNbItemForEffect7
             // 
@@ -415,6 +466,7 @@
             this.txtNbItemForEffect7.Name = "txtNbItemForEffect7";
             this.txtNbItemForEffect7.Size = new System.Drawing.Size(34, 20);
             this.txtNbItemForEffect7.TabIndex = 32;
+            this.txtNbItemForEffect7.TextChanged += new System.EventHandler(this.txtNbItemForEffect7_TextChanged);
             // 
             // txtNbItemForEffect6
             // 
@@ -422,6 +474,7 @@
             this.txtNbItemForEffect6.Name = "txtNbItemForEffect6";
             this.txtNbItemForEffect6.Size = new System.Drawing.Size(34, 20);
             this.txtNbItemForEffect6.TabIndex = 31;
+            this.txtNbItemForEffect6.TextChanged += new System.EventHandler(this.txtNbItemForEffect6_TextChanged);
             // 
             // txtNbItemForEffect5
             // 
@@ -429,6 +482,7 @@
             this.txtNbItemForEffect5.Name = "txtNbItemForEffect5";
             this.txtNbItemForEffect5.Size = new System.Drawing.Size(34, 20);
             this.txtNbItemForEffect5.TabIndex = 30;
+            this.txtNbItemForEffect5.TextChanged += new System.EventHandler(this.txtNbItemForEffect5_TextChanged);
             // 
             // txtNbItemForEffect4
             // 
@@ -436,6 +490,7 @@
             this.txtNbItemForEffect4.Name = "txtNbItemForEffect4";
             this.txtNbItemForEffect4.Size = new System.Drawing.Size(34, 20);
             this.txtNbItemForEffect4.TabIndex = 29;
+            this.txtNbItemForEffect4.TextChanged += new System.EventHandler(this.txtNbItemForEffect4_TextChanged);
             // 
             // txtNbItemForEffect3
             // 
@@ -443,6 +498,7 @@
             this.txtNbItemForEffect3.Name = "txtNbItemForEffect3";
             this.txtNbItemForEffect3.Size = new System.Drawing.Size(34, 20);
             this.txtNbItemForEffect3.TabIndex = 28;
+            this.txtNbItemForEffect3.TextChanged += new System.EventHandler(this.txtNbItemForEffect3_TextChanged);
             // 
             // txtNbItemForEffect2
             // 
@@ -450,6 +506,7 @@
             this.txtNbItemForEffect2.Name = "txtNbItemForEffect2";
             this.txtNbItemForEffect2.Size = new System.Drawing.Size(34, 20);
             this.txtNbItemForEffect2.TabIndex = 27;
+            this.txtNbItemForEffect2.TextChanged += new System.EventHandler(this.txtNbItemForEffect2_TextChanged);
             // 
             // txtNbItemForEffect1
             // 
@@ -457,6 +514,7 @@
             this.txtNbItemForEffect1.Name = "txtNbItemForEffect1";
             this.txtNbItemForEffect1.Size = new System.Drawing.Size(34, 20);
             this.txtNbItemForEffect1.TabIndex = 26;
+            this.txtNbItemForEffect1.TextChanged += new System.EventHandler(this.txtNbItemForEffect1_TextChanged);
             // 
             // btnEffect8
             // 
@@ -466,6 +524,7 @@
             this.btnEffect8.TabIndex = 25;
             this.btnEffect8.Text = "+";
             this.btnEffect8.UseVisualStyleBackColor = true;
+            this.btnEffect8.Click += new System.EventHandler(this.btnEffect8_Click);
             // 
             // btnEffect7
             // 
@@ -475,6 +534,7 @@
             this.btnEffect7.TabIndex = 24;
             this.btnEffect7.Text = "+";
             this.btnEffect7.UseVisualStyleBackColor = true;
+            this.btnEffect7.Click += new System.EventHandler(this.btnEffect7_Click);
             // 
             // btnEffect6
             // 
@@ -484,6 +544,7 @@
             this.btnEffect6.TabIndex = 23;
             this.btnEffect6.Text = "+";
             this.btnEffect6.UseVisualStyleBackColor = true;
+            this.btnEffect6.Click += new System.EventHandler(this.btnEffect6_Click);
             // 
             // btnEffect5
             // 
@@ -493,6 +554,7 @@
             this.btnEffect5.TabIndex = 22;
             this.btnEffect5.Text = "+";
             this.btnEffect5.UseVisualStyleBackColor = true;
+            this.btnEffect5.Click += new System.EventHandler(this.btnEffect5_Click);
             // 
             // btnEffect4
             // 
@@ -502,6 +564,7 @@
             this.btnEffect4.TabIndex = 21;
             this.btnEffect4.Text = "+";
             this.btnEffect4.UseVisualStyleBackColor = true;
+            this.btnEffect4.Click += new System.EventHandler(this.btnEffect4_Click);
             // 
             // btnEffect3
             // 
@@ -511,6 +574,7 @@
             this.btnEffect3.TabIndex = 20;
             this.btnEffect3.Text = "+";
             this.btnEffect3.UseVisualStyleBackColor = true;
+            this.btnEffect3.Click += new System.EventHandler(this.btnEffect3_Click);
             // 
             // btnEffect2
             // 
@@ -520,6 +584,7 @@
             this.btnEffect2.TabIndex = 19;
             this.btnEffect2.Text = "+";
             this.btnEffect2.UseVisualStyleBackColor = true;
+            this.btnEffect2.Click += new System.EventHandler(this.btnEffect2_Click);
             // 
             // label17
             // 
@@ -546,6 +611,7 @@
             this.txtEffect8.Name = "txtEffect8";
             this.txtEffect8.Size = new System.Drawing.Size(80, 20);
             this.txtEffect8.TabIndex = 16;
+            this.txtEffect8.TextChanged += new System.EventHandler(this.txtEffect8_TextChanged);
             // 
             // label16
             // 
@@ -562,6 +628,7 @@
             this.txtEffect7.Name = "txtEffect7";
             this.txtEffect7.Size = new System.Drawing.Size(80, 20);
             this.txtEffect7.TabIndex = 14;
+            this.txtEffect7.TextChanged += new System.EventHandler(this.txtEffect7_TextChanged);
             // 
             // label15
             // 
@@ -578,6 +645,7 @@
             this.txtEffect6.Name = "txtEffect6";
             this.txtEffect6.Size = new System.Drawing.Size(80, 20);
             this.txtEffect6.TabIndex = 12;
+            this.txtEffect6.TextChanged += new System.EventHandler(this.txtEffect6_TextChanged);
             // 
             // label14
             // 
@@ -594,6 +662,7 @@
             this.txtEffect5.Name = "txtEffect5";
             this.txtEffect5.Size = new System.Drawing.Size(80, 20);
             this.txtEffect5.TabIndex = 10;
+            this.txtEffect5.TextChanged += new System.EventHandler(this.txtEffect5_TextChanged);
             // 
             // label13
             // 
@@ -610,6 +679,7 @@
             this.txtEffect4.Name = "txtEffect4";
             this.txtEffect4.Size = new System.Drawing.Size(80, 20);
             this.txtEffect4.TabIndex = 8;
+            this.txtEffect4.TextChanged += new System.EventHandler(this.txtEffect4_TextChanged);
             // 
             // label12
             // 
@@ -626,6 +696,7 @@
             this.txtEffect3.Name = "txtEffect3";
             this.txtEffect3.Size = new System.Drawing.Size(80, 20);
             this.txtEffect3.TabIndex = 6;
+            this.txtEffect3.TextChanged += new System.EventHandler(this.txtEffect3_TextChanged);
             // 
             // label11
             // 
@@ -642,6 +713,7 @@
             this.txtEffect2.Name = "txtEffect2";
             this.txtEffect2.Size = new System.Drawing.Size(80, 20);
             this.txtEffect2.TabIndex = 4;
+            this.txtEffect2.TextChanged += new System.EventHandler(this.txtEffect2_TextChanged);
             // 
             // label10
             // 
@@ -658,6 +730,7 @@
             this.txtEffect1.Name = "txtEffect1";
             this.txtEffect1.Size = new System.Drawing.Size(80, 20);
             this.txtEffect1.TabIndex = 2;
+            this.txtEffect1.TextChanged += new System.EventHandler(this.txtEffect1_TextChanged);
             // 
             // label9
             // 
@@ -668,50 +741,121 @@
             this.label9.TabIndex = 1;
             this.label9.Text = "Effet 1 :";
             // 
-            // button1
+            // groupBox4
             // 
-            this.button1.Location = new System.Drawing.Point(259, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 41);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "Nouveau set";
-            this.button1.UseVisualStyleBackColor = true;
+            this.groupBox4.Controls.Add(this.btnAddRequiredSkill);
+            this.groupBox4.Controls.Add(this.txtRequiredSkillLevel);
+            this.groupBox4.Controls.Add(this.label18);
+            this.groupBox4.Controls.Add(this.txtRequiredSkill);
+            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.txtSetId);
+            this.groupBox4.Controls.Add(this.label21);
+            this.groupBox4.Controls.Add(this.txtSetName);
+            this.groupBox4.Controls.Add(this.label25);
+            this.groupBox4.Location = new System.Drawing.Point(248, 3);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(373, 77);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Informations";
             // 
-            // button2
+            // btnAddRequiredSkill
             // 
-            this.button2.Location = new System.Drawing.Point(259, 69);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 38);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "Sauvegarder";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnAddRequiredSkill.Location = new System.Drawing.Point(147, 41);
+            this.btnAddRequiredSkill.Name = "btnAddRequiredSkill";
+            this.btnAddRequiredSkill.Size = new System.Drawing.Size(30, 23);
+            this.btnAddRequiredSkill.TabIndex = 17;
+            this.btnAddRequiredSkill.Text = "+";
+            this.btnAddRequiredSkill.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // txtRequiredSkillLevel
             // 
-            this.button3.Location = new System.Drawing.Point(259, 183);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 39);
-            this.button3.TabIndex = 36;
-            this.button3.Text = "Supprimer";
-            this.button3.UseVisualStyleBackColor = true;
+            this.txtRequiredSkillLevel.Location = new System.Drawing.Point(255, 46);
+            this.txtRequiredSkillLevel.Name = "txtRequiredSkillLevel";
+            this.txtRequiredSkillLevel.Size = new System.Drawing.Size(104, 20);
+            this.txtRequiredSkillLevel.TabIndex = 13;
+            this.txtRequiredSkillLevel.TextChanged += new System.EventHandler(this.txtRequiredSkillLevel_TextChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(183, 49);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(67, 13);
+            this.label18.TabIndex = 12;
+            this.label18.Text = "Niveau skill :";
+            // 
+            // txtRequiredSkill
+            // 
+            this.txtRequiredSkill.Location = new System.Drawing.Point(76, 43);
+            this.txtRequiredSkill.Name = "txtRequiredSkill";
+            this.txtRequiredSkill.Size = new System.Drawing.Size(65, 20);
+            this.txtRequiredSkill.TabIndex = 11;
+            this.txtRequiredSkill.TextChanged += new System.EventHandler(this.txtRequiredSkill_TextChanged);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(7, 46);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(63, 13);
+            this.label19.TabIndex = 10;
+            this.label19.Text = "Skill requis :";
+            // 
+            // txtSetId
+            // 
+            this.txtSetId.Enabled = false;
+            this.txtSetId.Location = new System.Drawing.Point(297, 17);
+            this.txtSetId.Name = "txtSetId";
+            this.txtSetId.Size = new System.Drawing.Size(62, 20);
+            this.txtSetId.TabIndex = 9;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(252, 19);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(39, 13);
+            this.label21.TabIndex = 8;
+            this.label21.Text = "Id set :";
+            // 
+            // txtSetName
+            // 
+            this.txtSetName.Location = new System.Drawing.Point(48, 17);
+            this.txtSetName.Name = "txtSetName";
+            this.txtSetName.Size = new System.Drawing.Size(198, 20);
+            this.txtSetName.TabIndex = 1;
+            this.txtSetName.TextChanged += new System.EventHandler(this.txtSetName_TextChanged);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(7, 20);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(35, 13);
+            this.label25.TabIndex = 0;
+            this.label25.Text = "Nom :";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 388);
+            this.ClientSize = new System.Drawing.Size(633, 471);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Editeur de sets d\'items";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -779,8 +923,18 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtEffect1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDelItemSet;
+        private System.Windows.Forms.Button btnSaveItemSet;
+        private System.Windows.Forms.Button btnNewItemSet;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox txtSetId;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txtSetName;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button btnAddRequiredSkill;
+        private System.Windows.Forms.TextBox txtRequiredSkillLevel;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtRequiredSkill;
+        private System.Windows.Forms.Label label19;
     }
 }
