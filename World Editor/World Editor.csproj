@@ -104,6 +104,12 @@
     <Compile Include="Dialogs\ListDialog.Designer.cs">
       <DependentUpon>ListDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SpellDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SpellDialog.Designer.cs">
+      <DependentUpon>SpellDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\ClassesEditor\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ListDialog.resx">
       <DependentUpon>ListDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SpellDialog.resx">
+      <DependentUpon>SpellDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\ClassesEditor\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
