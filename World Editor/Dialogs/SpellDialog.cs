@@ -33,10 +33,5 @@ namespace World_Editor.Dialogs
                 lstSpells.SelectedItem = DBCStores.Spell[choosenSpell];
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
     }
 }
